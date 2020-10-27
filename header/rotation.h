@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thor <thor@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:31:19 by thor              #+#    #+#             */
-/*   Updated: 2020/04/02 17:32:50 by thor             ###   ########.fr       */
+/*   Updated: 2020/10/27 18:19:13 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 void rotation_r_l(t_data *type);
 void rotation_u_d(t_data *type);
 void rotation_a_b(t_data *type);
+void rotation(t_data *type);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thor <thor@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 02:11:35 by thor              #+#    #+#             */
-/*   Updated: 2020/04/02 16:20:03 by thor             ###   ########.fr       */
+/*   Updated: 2020/10/27 14:48:32 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 #include "minirt.h"
 
-#define up 65362
-#define down 65364
-#define right 65363
-#define left 65361
-#define back 65453
-#define ahead 65451
+#define up 126
+#define down 125
+#define right 124
+#define left 123
+#define back 1
+#define ahead 13
 #endif

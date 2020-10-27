@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thor <thor@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:15:50 by thor              #+#    #+#             */
-/*   Updated: 2020/04/02 20:20:19 by thor             ###   ########.fr       */
+/*   Updated: 2020/10/27 18:19:14 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void rotation_r_l(t_data *type)
             type->clo.camera->ort_vec.x -= orient;
         else if (check_orient(type->clo.objet->type))
             type->clo.objet->v.x += orient;
-        printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
     }
     if (type->key.key == left)
     {
@@ -38,7 +38,7 @@ void rotation_r_l(t_data *type)
             type->clo.camera->ort_vec.x += orient;
         else if (check_orient(type->clo.objet->type))
             type->clo.objet->v.x -= orient;
-        printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
     }
 }
 void rotation_u_d(t_data *type)
@@ -53,7 +53,7 @@ void rotation_u_d(t_data *type)
         else if (check_orient(type->clo.objet->type))
         {
             type->clo.objet->v.y += orient;
-            printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+            // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
         }
     }
     if (type->key.key == down)
@@ -63,7 +63,7 @@ void rotation_u_d(t_data *type)
         else if (check_orient(type->clo.objet->type))
         {
             type->clo.objet->v.y -= orient;
-            printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+            // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
         }
     }
 }
@@ -78,7 +78,7 @@ void rotation_a_b(t_data *type)
             type->clo.camera->ort_vec.z += orient;
         else if (check_orient(type->clo.objet->type))
             type->clo.objet->v.z += orient;
-        printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
     }
     if (type->key.key == back)
     {
@@ -86,6 +86,19 @@ void rotation_a_b(t_data *type)
             type->clo.camera->ort_vec.z -= orient;
         else if (check_orient(type->clo.objet->type))
             type->clo.objet->v.z -= orient;
-        printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
     }
+}
+
+void rotation(t_data *type)
+{
+
+        if (type->key.key == right || type->key.key == left)
+            rotation_r_l(type);
+        if (type->key.key == up || type->key.key == down)
+            rotation_u_d(type);
+        if (type->key.key == ahead || type->key.key == back)
+        {
+            rotation_a_b(type);
+        }
 }
