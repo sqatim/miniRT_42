@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:22:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/10/24 11:12:59 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/10/26 14:40:46 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ int key_hook(int key, t_data *type)
 {
 
     printf("%d\n", key);
-    if (hook_element(type, key)) // c
-        type->key.check = 1;
+    // if (hook_element(type, key)) // c
+    //     type->key.check = 1;
     if (type->key.check == 1 && check_trans_rot(type, key))
         type->key.check = 1;
     if (type->key.check == 1 && check_direction(type, key))
@@ -227,7 +227,7 @@ void ft_mlx(t_data *type)
     screen_blue(type);
     type->mlx.win_ptr = mlx_new_window(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height, "samir");
     mlx_put_image_to_window(type->mlx.mlx_ptr, type->mlx.win_ptr, type->mlx.img_ptr, 0, 0);
-    //mlx_key_hook(type->mlx.win_ptr, key_hook, type);
+    mlx_key_hook(type->mlx.win_ptr, key_hook, type);
     // create_bmp(type);
     mlx_loop(type->mlx.mlx_ptr);
 }
