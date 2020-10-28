@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:22:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/10/27 20:26:43 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/10/28 13:58:46 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ static int check_objet(int type)
     if (type == sphere_d || type == plane_d || type == square_d || type == cylinder_d || type == triangle_d)
         return (1);
     return (0);
+}
+
+static void check_xyz(t_data *type,int key)
+{
+        if(key == 7)
+            type->key.rot_xyz = 1;
+        else if(key == 16)
+            type->key.rot_xyz = 2;
+        else if(key == 6)
+            type->key.rot_xyz = 3;
 }
 
 int check_trans_rot(t_data *type, int key)
@@ -57,7 +67,6 @@ void change_element(t_data *type)
     
     if (type->key.key == 0)
     {
-            printf("a==>light ---> |%d|\n",type->key.type);
         if (type->key.type == camera_d && type->camera->previous != NULL)
         {
             type->camera = type->camera->previous;
@@ -66,16 +75,11 @@ void change_element(t_data *type)
             type->clo.objet = type->clo.objet->previous;
         else if (type->key.type == light_d && type->clo.light->previous != NULL)
         {
-            printf("a=>|type->i ===> %d|\n",type->i);
             type->clo.light = type->clo.light->previous;
-            //   printf("|type->i ===> %d|\n",type->i);
-            // type->i++;
         }
     }
     else if (type->key.key == 2)
     {
-            // type->i++;
-            printf("d==>light ---> |%d|\n",type->key.type);
         if (type->key.type == camera_d && type->camera->next != NULL)
         {
             type->camera = type->camera->next;
@@ -86,7 +90,6 @@ void change_element(t_data *type)
         }
         else if (type->key.type == light_d && type->clo.light->next != NULL)
         {
-            // printf("d=>|type->i ===> %d|\n",type->i);
             type->clo.light = type->clo.light->next;
         }
     }
@@ -97,15 +100,16 @@ int hook_element(t_data *type, int key)
     if (key == 31) // objet
     {
         type->key.type = type->clo.objet->type;
+        // printf("|objet ===> %d|\n",type->clo.objet->type);
         return (1);
     }
-    if (key == 8)
+    if (key == 8) // camera
     {
         type->key.type = camera_d;
 
         return (1);
     }
-    if (key == 37)
+    if (key == 37) // light
     {
         type->key.type = light_d;
         return (1);
@@ -117,15 +121,25 @@ int key_press(int keycode, t_data *type)
 {
 
     // printf("%d\n", keycode);
-     if (hook_element(type, keycode)) // c
+     if (hook_element(type, keycode))
          type->key.check = 1;
-    if (type->key.check == 1 && check_trans_rot(type, keycode))
+    if ((type->key.check == 1 || type->key.renitialise == 1) && check_trans_rot(type, keycode))
         type->key.check = 2;
-    if (type->key.check == 2 && (type->key.tr_rt == 0 || type->key.tr_rt == 1))
+    if (type->key.check == 2)
     {
         type->key.key = keycode;
         if(type->key.tr_rt == 0 && check_direction(type,keycode))
+        {
+            type->key.renitialise = 1;
             translation(type);
+        }
+        if(type->key.tr_rt == 1)
+        {
+            type->key.renitialise = 1;
+            check_xyz(type,keycode);
+            if(type->key.rot_xyz != 0 || check_direction(type,keycode))
+                rotation(type);
+        }
     }
     if(keycode == 0 || keycode == 2)
     {

@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/10/27 18:49:11 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/10/28 13:58:55 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ typedef struct s_key
     int key;
     int type;
     int check;
+    int rot_xyz;
     int tr_rt;
+    int renitialise;
 }               t_key;
 typedef struct s_camera
 {
