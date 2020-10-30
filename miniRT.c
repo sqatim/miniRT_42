@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:41:19 by sqatim            #+#    #+#             */
-/*   Updated: 2020/10/21 14:47:37 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/10/30 10:29:02 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void screen_blue(t_data *type)
         type->rsl.x = 0;
         while (type->rsl.x < type->rsl.width)
         {
-            // affectation(type);
-            //   write(1,"i am here\n",10);
             camera_setting(type);
             ray(type);
             colour = coleur(type);

@@ -6,75 +6,12 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:52:14 by thor              #+#    #+#             */
-/*   Updated: 2020/10/19 08:39:08 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/10/30 10:28:25 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// void affectation(t_data *type)
-// {
-
-//     double aspect;
-//     double theta = 90 * PI / 180;
-
-//     double half_height;
-//     double half_width;
-//     if (type->rsl.width >= type->rsl.height)
-//     {
-//         aspect = type->rsl.width / type->rsl.height;
-//         half_height = -1 * (((double)type->rsl.height / 1000) * tan(theta / 2));
-//         half_width = ((double)type->rsl.width / 1000) * aspect * tan(theta / 2);
-//     }
-//     else
-//     {
-//         aspect = type->rsl.height / type->rsl.width;
-//         half_height = -1 * (aspect * ((double)type->rsl.height / 1000) * tan(theta / 2));
-//         half_width = ((double)type->rsl.width / 1000) * tan(theta / 2);
-//     }
-
-//     double s, t;
-//     t_vector u;
-//     t_vector v;
-//     t_vector w = {0, 0, 1};
-//     t_vector pixel;
-
-//     t_vector lookfrom = {0, 0, 0};
-//     t_vector lookat = {0, 0, -1};
-//     t_vector Vup = {0, 1, 0};
-
-//     type->ray.origin = lookfrom;
-
-//     // w = vector_sub(&lookfrom, &lookat);
-//     // w = unit_vector(&w);
-
-//     u = vector_cross(&Vup, &w);
-//     u = unit_vector(&u);
-
-//     v = vector_cross(&w, &u);
-//     // printf("|v.x ===> %f|\t|v.y ===> %f|\t|v.z ===> %f|\n",v.x, v.y, v.z);
-//     /**************************************/
-
-//     t_vector C;
-//     t_vector L;
-
-//     C.x = type->ray.origin.x - w.x;
-//     C.y = type->ray.origin.y - w.y;
-//     C.z = type->ray.origin.z - w.z;
-
-//     L.x = C.x - u.x * half_width / 2 - v.x * half_height / 2;
-//     L.y = C.y - u.y * half_width / 2 - v.y * half_height / 2;
-//     L.z = C.z - u.z * half_width / 2 - v.z * half_height / 2;
-
-//     pixel.x = L.x + u.x * type->rsl.x * half_width / type->rsl.width + v.x * type->rsl.y * half_height / type->rsl.height;
-//     pixel.y = L.y + u.y * type->rsl.x * half_width / type->rsl.width + v.y * type->rsl.y * half_height / type->rsl.height;
-//     pixel.z = L.z + u.z * type->rsl.x * half_width / type->rsl.width + v.z * type->rsl.y * half_height / type->rsl.height;
-
-//     type->ray.direction.x = pixel.x - type->ray.origin.x;
-//     type->ray.direction.y = pixel.y - type->ray.origin.y;
-//     type->ray.direction.z = pixel.z - type->ray.origin.z;
-//     type->ray.direction = unit_vector(&type->ray.direction);
-// }
 
 void half_w_h(t_data *type)
 {

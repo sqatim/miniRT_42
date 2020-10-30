@@ -50,7 +50,6 @@ int key_hook(int key, t_data *type);
 t_colour coleur(t_data *type);
 int _3til_lbabaha(t_colour *data);
 void screen_blue(t_data *type);
-void affectation(t_data *type);
 
 t_colour r_g_b(char *r, char *g, char *b);
 void objet(t_objet *objet);

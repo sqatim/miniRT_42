@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:15:50 by thor              #+#    #+#             */
-/*   Updated: 2020/10/28 14:45:24 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/10/30 10:32:37 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,41 +31,41 @@ void rotation_x(t_data *type)
     {
         if (type->key.type == camera_d)
         {
-            y = type->clo.camera->ort_vec.y;
-            z = type->clo.camera->ort_vec.z;
-            type->clo.camera->ort_vec.y = y * cos(orient) - z * sin(orient);
-            type->clo.camera->ort_vec.z = y * sin(orient) + z * cos(orient);
+            y = type->clone.camera->ort_vec.y;
+            z = type->clone.camera->ort_vec.z;
+            type->clone.camera->ort_vec.y = y * cos(orient) - z * sin(orient);
+            type->clone.camera->ort_vec.z = y * sin(orient) + z * cos(orient);
 
         }
-        else if (check_orient(type->clo.objet->type))
+        else if (check_orient(type->clone.objet->type))
         {
-            y = type->clo.objet->v.y;
-            z = type->clo.objet->v.z;
+            y = type->clone.objet->v.y;
+            z = type->clone.objet->v.z;
 
-            type->clo.objet->v.y = y * cos(orient) - z * sin(orient);
-            type->clo.objet->v.z = y * sin(orient) + z * cos(orient);
+            type->clone.objet->v.y = y * cos(orient) - z * sin(orient);
+            type->clone.objet->v.z = y * sin(orient) + z * cos(orient);
         }
-        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clone.objet->v.x, type->clone.objet->v.y, type->clone.objet->v.z);
     }
     if (type->key.key == back)
     {
         orient *= -1;
        if (type->key.type == camera_d)
         {
-            y = type->clo.camera->ort_vec.y;
-            z = type->clo.camera->ort_vec.z;
-            type->clo.camera->ort_vec.y = y * cos(orient) - z * sin(orient);
-            type->clo.camera->ort_vec.z = y * sin(orient) + z * cos(orient);
+            y = type->clone.camera->ort_vec.y;
+            z = type->clone.camera->ort_vec.z;
+            type->clone.camera->ort_vec.y = y * cos(orient) - z * sin(orient);
+            type->clone.camera->ort_vec.z = y * sin(orient) + z * cos(orient);
 
         }
-        else if (check_orient(type->clo.objet->type))
+        else if (check_orient(type->clone.objet->type))
         {
-            y = type->clo.objet->v.y;
-            z = type->clo.objet->v.z;
-            type->clo.objet->v.y = y * cos(orient) - z * sin(orient);
-            type->clo.objet->v.z = y * sin(orient) + z * cos(orient);
+            y = type->clone.objet->v.y;
+            z = type->clone.objet->v.z;
+            type->clone.objet->v.y = y * cos(orient) - z * sin(orient);
+            type->clone.objet->v.z = y * sin(orient) + z * cos(orient);
         }
-        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clone.objet->v.x, type->clone.objet->v.y, type->clone.objet->v.z);
     }
 }
 void rotation_y(t_data *type)
@@ -80,42 +80,42 @@ void rotation_y(t_data *type)
     {
         if (type->key.type == camera_d)
         {
-            x = type->clo.camera->ort_vec.x;
-            z = type->clo.camera->ort_vec.z;
-            type->clo.camera->ort_vec.x = z * sin(orient) + x * cos(orient);
-            type->clo.camera->ort_vec.z = z * cos(orient) - x * sin(orient);
+            x = type->clone.camera->ort_vec.x;
+            z = type->clone.camera->ort_vec.z;
+            type->clone.camera->ort_vec.x = z * sin(orient) + x * cos(orient);
+            type->clone.camera->ort_vec.z = z * cos(orient) - x * sin(orient);
 
-            type->clo.camera->ort_vec.z += orient;
+            type->clone.camera->ort_vec.z += orient;
         }
-        else if (check_orient(type->clo.objet->type))
+        else if (check_orient(type->clone.objet->type))
         {
-            x = type->clo.objet->v.x;
-            z = type->clo.objet->v.z;
+            x = type->clone.objet->v.x;
+            z = type->clone.objet->v.z;
 
-            type->clo.objet->v.x = z * sin(orient) + x * cos(orient);
-            type->clo.objet->v.z = z * cos(orient) - x * sin(orient);
+            type->clone.objet->v.x = z * sin(orient) + x * cos(orient);
+            type->clone.objet->v.z = z * cos(orient) - x * sin(orient);
         }
-        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clone.objet->v.x, type->clone.objet->v.y, type->clone.objet->v.z);
     }
     if (type->key.key == down)
     {
         orient *= -1;
        if (type->key.type == camera_d)
         {
-            x = type->clo.camera->ort_vec.x;
-            z = type->clo.camera->ort_vec.z;
-           type->clo.camera->ort_vec.x = z * sin(orient) + x * cos(orient);
-            type->clo.camera->ort_vec.z = z * cos(orient) - x * sin(orient);
+            x = type->clone.camera->ort_vec.x;
+            z = type->clone.camera->ort_vec.z;
+           type->clone.camera->ort_vec.x = z * sin(orient) + x * cos(orient);
+            type->clone.camera->ort_vec.z = z * cos(orient) - x * sin(orient);
 
         }
-        else if (check_orient(type->clo.objet->type))
+        else if (check_orient(type->clone.objet->type))
         {
-            x = type->clo.objet->v.x;
-            z = type->clo.objet->v.z;
-            type->clo.objet->v.x = z * sin(orient) + x * cos(orient);
-            type->clo.objet->v.z = z * cos(orient) - x * sin(orient);
+            x = type->clone.objet->v.x;
+            z = type->clone.objet->v.z;
+            type->clone.objet->v.x = z * sin(orient) + x * cos(orient);
+            type->clone.objet->v.z = z * cos(orient) - x * sin(orient);
         }
-        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clone.objet->v.x, type->clone.objet->v.y, type->clone.objet->v.z);
     }
 }
 void rotation_z(t_data *type)
@@ -130,40 +130,40 @@ void rotation_z(t_data *type)
     {
         if (type->key.type == camera_d)
         {
-            x = type->clo.camera->ort_vec.x;
-            y = type->clo.camera->ort_vec.y;
-            type->clo.camera->ort_vec.x = x * cos(orient) - y * sin(orient);
-            type->clo.camera->ort_vec.y = x * sin(orient) + y * cos(orient);
+            x = type->clone.camera->ort_vec.x;
+            y = type->clone.camera->ort_vec.y;
+            type->clone.camera->ort_vec.x = x * cos(orient) - y * sin(orient);
+            type->clone.camera->ort_vec.y = x * sin(orient) + y * cos(orient);
 
         }
-        else if (check_orient(type->clo.objet->type))
+        else if (check_orient(type->clone.objet->type))
         {
-            x = type->clo.objet->v.x;
-            y = type->clo.objet->v.y;
-            type->clo.objet->v.x = x * cos(orient) - y * sin(orient);
-            type->clo.objet->v.y = x * sin(orient) + y * cos(orient);
+            x = type->clone.objet->v.x;
+            y = type->clone.objet->v.y;
+            type->clone.objet->v.x = x * cos(orient) - y * sin(orient);
+            type->clone.objet->v.y = x * sin(orient) + y * cos(orient);
         }
-        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clone.objet->v.x, type->clone.objet->v.y, type->clone.objet->v.z);
     }
     if (type->key.key == left)
     {
         orient *= -1;
        if (type->key.type == camera_d)
         {
-            x = type->clo.camera->ort_vec.x;
-            y = type->clo.camera->ort_vec.y;
-            type->clo.camera->ort_vec.x = x * cos(orient) - y * sin(orient);
-            type->clo.camera->ort_vec.y = x * sin(orient) + y * cos(orient);
+            x = type->clone.camera->ort_vec.x;
+            y = type->clone.camera->ort_vec.y;
+            type->clone.camera->ort_vec.x = x * cos(orient) - y * sin(orient);
+            type->clone.camera->ort_vec.y = x * sin(orient) + y * cos(orient);
 
         }
-        else if (check_orient(type->clo.objet->type))
+        else if (check_orient(type->clone.objet->type))
         {
-            x = type->clo.objet->v.x;
-            y = type->clo.objet->v.y;
-            type->clo.objet->v.x = x * cos(orient) - y * sin(orient);
-            type->clo.objet->v.y = x * sin(orient) + y * cos(orient);
+            x = type->clone.objet->v.x;
+            y = type->clone.objet->v.y;
+            type->clone.objet->v.x = x * cos(orient) - y * sin(orient);
+            type->clone.objet->v.y = x * sin(orient) + y * cos(orient);
         }
-        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clo.objet->v.x, type->clo.objet->v.y, type->clo.objet->v.z);
+        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type->clone.objet->v.x, type->clone.objet->v.y, type->clone.objet->v.z);
     }
 }
 

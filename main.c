@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:22:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/10/28 13:58:46 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/10/30 12:04:23 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ void change_element(t_data *type)
         {
             type->camera = type->camera->previous;
         }
-        else if (check_objet(type->key.type) && type->clo.objet->previous != NULL)
-            type->clo.objet = type->clo.objet->previous;
-        else if (type->key.type == light_d && type->clo.light->previous != NULL)
+        else if (check_objet(type->key.type) && type->clone.objet->previous != NULL)
+            type->clone.objet = type->clone.objet->previous;
+        else if (type->key.type == light_d && type->clone.light->previous != NULL)
         {
-            type->clo.light = type->clo.light->previous;
+            type->clone.light = type->clone.light->previous;
         }
     }
     else if (type->key.key == 2)
@@ -84,13 +84,13 @@ void change_element(t_data *type)
         {
             type->camera = type->camera->next;
         }
-        else if (check_objet(type->key.type) && type->clo.objet->next != NULL)
+        else if (check_objet(type->key.type) && type->clone.objet->next != NULL)
         {
-            type->clo.objet = type->clo.objet->next;
+            type->clone.objet = type->clone.objet->next;
         }
-        else if (type->key.type == light_d && type->clo.light->next != NULL)
+        else if (type->key.type == light_d && type->clone.light->next != NULL)
         {
-            type->clo.light = type->clo.light->next;
+            type->clone.light = type->clone.light->next;
         }
     }
 }
@@ -99,8 +99,8 @@ int hook_element(t_data *type, int key)
 {
     if (key == 31) // objet
     {
-        type->key.type = type->clo.objet->type;
-        // printf("|objet ===> %d|\n",type->clo.objet->type);
+        type->key.type = type->clone.objet->type;
+        // printf("|objet ===> %d|\n",type->clone.objet->type);
         return (1);
     }
     if (key == 8) // camera
@@ -259,7 +259,14 @@ void ft_mlx(t_data *type)
     mlx_put_image_to_window(type->mlx.mlx_ptr, type->mlx.win_ptr, type->mlx.img_ptr, 0, 0);
     mlx_hook(type->mlx.win_ptr, 2, 0,key_press, type);
     // create_bmp(type);
-    mlx_loop(type->mlx.mlx_ptr);
+    
+}
+
+void clone(t_data *type)
+{
+    type->clone.objet = type->objet;
+    type->clone.camera = type->camera;
+    type->clone.light = type->light;
 }
 
 int main(int ac, char **av)
@@ -268,19 +275,9 @@ int main(int ac, char **av)
 
     ft_bzero(&type, sizeof(t_data));
     parcing(&type, av);
-    type.clo.objet = type.objet;
-    type.clo.camera = type.camera;
-    type.clo.light = type.light;
-    // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n", type.camera->ort_vec.x, type.camera->ort_vec.y, type.camera->ort_vec.z);
+    clone(&type); 
     ft_mlx(&type);
 
-    // type.mlx.mlx_ptr = mlx_init();
-    // type.mlx.img_ptr = mlx_new_image( type.mlx.mlx_ptr,type.rsl.width,type.rsl.height);
-    // type.mlx.tab =(int *) mlx_get_data_addr(type.mlx.img_ptr,&bpp,&size_line,&endian);
-    // screen_blue(&type);
-    // type.mlx.win_ptr = mlx_new_window(type.mlx.mlx_ptr, type.rsl.width, type.rsl.height, "samir");
-    // mlx_put_image_to_window(type.mlx.mlx_ptr,type.mlx.win_ptr,type.mlx.img_ptr,0,0);
-    // // mlx_key_hook(type.mlx.win_ptr, key_hook, &type);
-    // mlx_loop(type.mlx.mlx_ptr);
+    mlx_loop(type.mlx.mlx_ptr);
     return (0);
 }

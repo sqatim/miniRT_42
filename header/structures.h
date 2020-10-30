@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/10/28 13:58:55 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/10/30 10:33:29 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,6 @@ typedef enum s_bool
     FALSE = 0
 }           t_bool;
 
-
-// typedef enum s_typeObj
-// {
-//     objet = 1,
-//     camera = 2,
-//     light = 3
-
-// }           t_typeObj;
 
 typedef struct s_colour
 {
@@ -124,12 +116,12 @@ typedef struct s_phong
 
 } t_phong;
 
-typedef struct s_clo
+typedef struct s_clone
 {
     t_camera *camera;
     t_light *light;
     t_objet *objet;
-}           t_clo;
+}           t_clone;
 
 typedef struct s_mlx
 {
@@ -165,7 +157,7 @@ typedef struct s_data
     t_ambient ambient;
     t_camera *camera;
     t_resolution rsl;
-    t_clo clo;
+    t_clone clone;
     t_phong phong;
     int i;
 } t_data;

@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:23:04 by thor              #+#    #+#             */
-/*   Updated: 2020/10/20 14:04:51 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/10/30 13:03:46 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,8 @@ void parcing(t_data *type, char **av)
     int r;
     int ligne_err = 0;
     int ss = -1;
-    while ((r = get_next_line(fd, &line)) > 0)
+    int k = 0;
+    while ((r = get_next_line(fd, &line)) > 0 && k != 1)
     {
         ligne_err++;
         ss = parcing_check(line, ligne_err);
@@ -214,6 +215,11 @@ void parcing(t_data *type, char **av)
             parc_triangle(type, line);
         else if (ss == 0)
             exit(0);
+        // if(r == 0)
+        // {
+        //     write(1,"bullshit\n",9);
+        //     k = 1;
+        // }
     }
     if (r == -1)
     {
