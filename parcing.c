@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:23:04 by thor              #+#    #+#             */
-/*   Updated: 2020/10/30 13:03:46 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/10/31 14:34:16 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void parc_resl(t_data *type, char *line)
 {
-    char **res = ft_split(line, ' ');
+    char **res = ft_space_split(line);
     type->rsl.width = ft_atoi(res[1]);
     type->rsl.height = ft_atoi(res[2]);
 }
@@ -43,7 +43,7 @@ void parc_amb(t_data *type, char *line)
     char **amb;
     char **rgb;
 
-    amb = ft_split(line, ' ');
+    amb = ft_space_split(line);
     rgb = ft_split(amb[2], ',');
 
     type->ambient.int_amb = ft_atod(amb[1]);
@@ -58,7 +58,7 @@ void parc_camera(t_data *type, char *line)
     char **ort_vec;
     double fov;
 
-    camera = ft_split(line, ' ');
+    camera = ft_space_split(line);
     pos = ft_split(camera[1], ',');
     ort_vec = ft_split(camera[2], ',');
     fov = ft_atod(camera[3]);
@@ -73,7 +73,7 @@ void parc_light(t_data *type, char *line)
     char **pos;
     double int_light;
 
-    light = ft_split(line, ' ');
+    light = ft_space_split(line);
     pos = ft_split(light[1], ',');
     rgb = ft_split(light[3], ',');
     int_light = ft_atod(light[2]);
@@ -88,7 +88,7 @@ void parc_sphere(t_data *type, char *line)
     char **colour;
     double diametre;
 
-    sphere = ft_split(line, ' ');
+    sphere = ft_space_split(line);
     pos = ft_split(sphere[1], ',');
     colour = ft_split(sphere[3], ',');
     diametre = ft_atod(sphere[2]);
@@ -103,7 +103,7 @@ void parc_plane(t_data *type, char *line)
     char **vector;
     char **colour;
 
-    plane = ft_split(line, ' ');
+    plane = ft_space_split(line);
     pos = ft_split(plane[1], ',');
     vector = ft_split(plane[2], ',');
     colour = ft_split(plane[3], ',');
@@ -117,7 +117,7 @@ void parc_square(t_data *type, char *line)
     char **pos;
     char **normal;
 
-    square = ft_split(line, ' ');
+    square = ft_space_split(line);
     pos = ft_split(square[1], ',');
     normal = ft_split(square[2], ',');
 
@@ -130,7 +130,7 @@ void parc_cylinder(t_data *type, char *line)
     char **pos;
     char **v;
 
-    cylinder = ft_split(line, ' ');
+    cylinder = ft_space_split(line);
     pos = ft_split(cylinder[1], ',');
     v = ft_split(cylinder[2], ',');
 
@@ -144,7 +144,7 @@ void parc_triangle(t_data *type, char *line)
     char **pos1;
     char **pos2;
 
-    triangle = ft_split(line, ' ');
+    triangle = ft_space_split(line);
     pos = ft_split(triangle[1], ',');
     pos1 = ft_split(triangle[2], ',');
     type->objet = add_triangle(type, pos, pos1, triangle);
@@ -154,7 +154,7 @@ int parcing_check(char *line, int ligne_err)
     int i = 0;
     int check = -1;
     int f;
-    char **parc = ft_split(line, ' ');
+    char **parc = ft_space_split(line);
     if (ft_isalpha(line[0]))
         check = check_type(parc);
     if (check == 0)
@@ -179,6 +179,35 @@ int parcing_check(char *line, int ligne_err)
     }
     return (-1);
 }
+
+void parcing_tool(t_data *type, int indice, char *line)
+{
+   if (indice == resolution_d)
+            parc_resl(type, line);
+        else if (indice == ambient_d)
+            parc_amb(type, line);
+        else if (indice == camera_d)
+            parc_camera(type, line);
+        else if (indice == light_d)
+            parc_light(type, line);
+        else if (indice == camera_d)
+            parc_camera(type, line);
+        else if (indice == sphere_d)
+            parc_sphere(type, line);
+        else if (indice == plane_d)
+            parc_plane(type, line);
+        else if (indice == square_d)
+            parc_square(type, line);
+        else if (indice == cylinder_d)
+            parc_cylinder(type, line);
+        else if (indice == triangle_d)
+            parc_triangle(type, line);
+         else if (indice == 0)
+         {
+      
+            exit(0); 
+         }
+}
 void parcing(t_data *type, char **av)
 {
 
@@ -187,39 +216,51 @@ void parcing(t_data *type, char **av)
     char **parc;
     int r;
     int ligne_err = 0;
-    int ss = -1;
+    int indice = -1;
     int k = 0;
-    while ((r = get_next_line(fd, &line)) > 0 && k != 1)
+    while ((r = get_next_line(fd, &line)) > 0)
     {
         ligne_err++;
-        ss = parcing_check(line, ligne_err);
-        if (ss == resolution_d)
-            parc_resl(type, line);
-        else if (ss == ambient_d)
-            parc_amb(type, line);
-        else if (ss == camera_d)
-            parc_camera(type, line);
-        else if (ss == light_d)
-            parc_light(type, line);
-        else if (ss == camera_d)
-            parc_camera(type, line);
-        else if (ss == sphere_d)
-            parc_sphere(type, line);
-        else if (ss == plane_d)
-            parc_plane(type, line);
-        else if (ss == square_d)
-            parc_square(type, line);
-        else if (ss == cylinder_d)
-            parc_cylinder(type, line);
-        else if (ss == triangle_d)
-            parc_triangle(type, line);
-        else if (ss == 0)
-            exit(0);
-        // if(r == 0)
-        // {
-        //     write(1,"bullshit\n",9);
-        //     k = 1;
-        // }
+        // printf("|%d|\n",ligne_err);
+
+        // zadt shi haja khra
+        printf("|%c|\n",line[0]);
+        while((line[0] == '\n' || line[0] == '\0' ) && r > 0)
+        {
+            write(1,"i am here\n",10);
+            r = get_next_line(fd, &line);
+         }
+        indice = parcing_check(line, ligne_err);
+        parcing_tool(type,indice,line);
+        // if (indice == resolution_d)
+        //     parc_resl(type, line);
+        // else if (indice == ambient_d)
+        //     parc_amb(type, line);
+        // else if (indice == camera_d)
+        //     parc_camera(type, line);
+        // else if (indice == light_d)
+        //     parc_light(type, line);
+        // else if (indice == camera_d)
+        //     parc_camera(type, line);
+        // else if (indice == sphere_d)
+        //     parc_sphere(type, line);
+        // else if (indice == plane_d)
+        //     parc_plane(type, line);
+        // else if (indice == square_d)
+        //     parc_square(type, line);
+        // else if (indice == cylinder_d)
+        //     parc_cylinder(type, line);
+        // else if (indice == triangle_d)
+        //     parc_triangle(type, line);
+        // else if (indice == 0)
+        //     exit(0);
+    
+    }
+    if(r == 0)
+    {
+            printf("|%c|\n",line[0]);
+        indice = parcing_check(line, ligne_err);
+        parcing_tool(type,indice,line);
     }
     if (r == -1)
     {

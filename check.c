@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thor <thor@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 01:10:34 by thor              #+#    #+#             */
-/*   Updated: 2020/03/28 17:42:22 by thor             ###   ########.fr       */
+/*   Updated: 2020/10/31 14:25:35 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -375,5 +375,7 @@ int check_type(char **parc)
     else if (ft_strnstr("tr", parc[0], 3))
         return (triangle_d);
     else
+    {
         return (0);
+    }
 }

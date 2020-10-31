@@ -61,4 +61,6 @@ t_colour shadows(t_data *type, t_objet *tmp);
 t_vector x_y_z(char *x, char *y, char *z);
 double ft_atod(const char *str);
 
+char			**ft_space_split(char const *s);
+
 #endif

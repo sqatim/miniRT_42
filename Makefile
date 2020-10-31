@@ -6,7 +6,7 @@
 #    By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/30 04:53:16 by mac               #+#    #+#              #
-#    Updated: 2020/10/14 11:13:00 by sqatim           ###   ########.fr        #
+#    Updated: 2020/10/31 12:59:17 by sqatim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRCS = main.c\
 	translation.c\
 	translation1.c\
 	rotation.c\
+	ft_space_split.c\
 	$(GNL)
 
 OBJ = $(SRCS:.c=.o)	   
