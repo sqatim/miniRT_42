@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 01:10:34 by thor              #+#    #+#             */
-/*   Updated: 2020/10/31 14:25:35 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/02 14:25:02 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int check_double(char *str)
     }
     return (1);
 }
+
 int err_write(int check, int element)
 {
     if (check == 0)
@@ -143,6 +144,7 @@ int err_write(int check, int element)
     }
     return (0);
 }
+
 int check_rgb(char *parc)
 {
     char **rgb;
@@ -193,7 +195,7 @@ int check_resolution(char **parc)
     i = 0;
     if (ft_2strlen(parc) != 3)
         return (element_miss(resolution_d));
-     else if (check_numb(parc[1]) == 0 || check_numb(parc[2]) == 0)
+    else if (check_numb(parc[1]) == 0 || check_numb(parc[2]) == 0)
     {
         if (check_numb(parc[1]) == 0)
             write(1, "Resolution : an error in width\n", 31);
@@ -349,33 +351,33 @@ int check_element(char **parc, int check, int ligne_err)
         return (check_square(parc));
     else if (check == cylinder_d)
         return (check_cylinder(parc));
-    else if (check == triangle_d)
+    else
         return (check_triangle(parc));
-    return (0);
 }
 
-int check_type(char **parc)
+void check_type(t_data *type, char **parc)
 {
     if (ft_strnstr("R", parc[0], 2))
-        return (resolution_d);
+        type->parcing.check = resolution_d;
     else if (ft_strnstr("A", parc[0], 2))
-        return (ambient_d);
+        type->parcing.check = ambient_d;
     else if (ft_strnstr("c", parc[0], 2))
-        return (camera_d);
+        type->parcing.check = camera_d;
     else if (ft_strnstr("l", parc[0], 2))
-        return (light_d);
+        type->parcing.check = light_d;
     else if (ft_strnstr("sp", parc[0], 3))
-        return (sphere_d);
+        type->parcing.check = sphere_d;
     else if (ft_strnstr("pl", parc[0], 3))
-        return (plane_d);
+        type->parcing.check = plane_d;
     else if (ft_strnstr("sq", parc[0], 3))
-        return (square_d);
+        type->parcing.check = square_d;
     else if (ft_strnstr("cy", parc[0], 3))
-        return (cylinder_d);
+        type->parcing.check = cylinder_d;
     else if (ft_strnstr("tr", parc[0], 3))
-        return (triangle_d);
+        type->parcing.check = triangle_d;
     else
     {
-        return (0);
+        write(1, "You must start with type\n", 25);
+        type->parcing.check = 0;
     }
 }

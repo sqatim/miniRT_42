@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing.h                                          :+:      :+:    :+:   */
+/*   tool.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/22 21:34:49 by thor              #+#    #+#             */
-/*   Updated: 2020/11/02 14:50:40 by sqatim           ###   ########.fr       */
+/*   Created: 2020/11/02 14:46:40 by sqatim            #+#    #+#             */
+/*   Updated: 2020/11/02 14:47:42 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARCING_H
-#define PARCING_H
+#ifndef TOOL_H
+#define TOOL_H
 
 #include "minirt.h"
 
-void parcing(t_data *type, char **av);
-void parcing_check(t_data *type, char *line);
-void parcing_tool(t_data *type, int indice, char *line);
+double ft_atod(const char *str);
+int ft_2strlen(char **str);
+t_colour r_g_b(char *r, char *g, char *b);
+t_vector x_y_z(char *x, char *y, char *z);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/30 04:53:16 by mac               #+#    #+#              #
-#    Updated: 2020/10/31 12:59:17 by sqatim           ###   ########.fr        #
+#    Updated: 2020/11/02 14:44:23 by sqatim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,10 @@ SRCS = main.c\
 	hit_objet.c\
 	phong.c\
 	vector.c\
-	outil.c\
+	tool.c\
 	parcing.c\
+	parcing_object.c\
+	parcing_rcl.c\
 	allocation_objet.c\
 	calcul_p_n.c\
 	allocation.c\

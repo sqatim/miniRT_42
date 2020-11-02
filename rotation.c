@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:15:50 by thor              #+#    #+#             */
-/*   Updated: 2020/10/30 10:32:37 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/02 10:41:17 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void rotation_z(t_data *type)
 {
     double orient;
 
-    orient = -PI/11;
+    orient = -PI/70;
     double x; 
     double y;
 

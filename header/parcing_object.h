@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing.h                                          :+:      :+:    :+:   */
+/*   parcing_object.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/22 21:34:49 by thor              #+#    #+#             */
-/*   Updated: 2020/11/02 14:50:40 by sqatim           ###   ########.fr       */
+/*   Created: 2020/11/02 14:31:46 by sqatim            #+#    #+#             */
+/*   Updated: 2020/11/02 14:34:13 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARCING_H
-#define PARCING_H
+#ifndef PARCING_OBJECT_H
+#define PARCING_OBJECT_H
 
 #include "minirt.h"
 
-void parcing(t_data *type, char **av);
-void parcing_check(t_data *type, char *line);
-void parcing_tool(t_data *type, int indice, char *line);
+void parc_sphere(t_data *type, char *line);
+void parc_plane(t_data *type, char *line);
+void parc_square(t_data *type, char *line);
+void parc_cylinder(t_data *type, char *line);
+void parc_triangle(t_data *type, char *line);
 
 #endif

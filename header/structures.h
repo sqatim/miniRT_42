@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/10/30 10:33:29 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/02 14:20:13 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_key
     int rot_xyz;
     int tr_rt;
     int renitialise;
-}               t_key;
+} t_key;
 typedef struct s_camera
 {
     t_vector pos;
@@ -44,8 +44,7 @@ typedef enum s_bool
 {
     TRUE = 1,
     FALSE = 0
-}           t_bool;
-
+} t_bool;
 
 typedef struct s_colour
 {
@@ -87,6 +86,13 @@ typedef struct s_tools
     int done;
 } t_tools;
 
+typedef struct s_parcing
+{
+    int check;
+    int indice;
+    int error;
+} t_parcing;
+
 typedef struct s_ray
 {
     t_vector origin;
@@ -121,7 +127,7 @@ typedef struct s_clone
     t_camera *camera;
     t_light *light;
     t_objet *objet;
-}           t_clone;
+} t_clone;
 
 typedef struct s_mlx
 {
@@ -142,7 +148,7 @@ typedef struct s_resolution
     int height;
     double half_height;
     double half_width;
-}       t_resolution;
+} t_resolution;
 
 typedef struct s_data
 {
@@ -159,6 +165,7 @@ typedef struct s_data
     t_resolution rsl;
     t_clone clone;
     t_phong phong;
+    t_parcing parcing;
     int i;
 } t_data;
 
