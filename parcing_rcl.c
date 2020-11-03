@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:36:24 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/02 14:37:15 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/03 12:28:50 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void parc_resl(t_data *type, char *line)
     char **res = ft_space_split(line);
     type->rsl.width = ft_atoi(res[1]);
     type->rsl.height = ft_atoi(res[2]);
+    if (type->rsl.width > 2560)
+        type->rsl.width = 2560;
+    if (type->rsl.height > 1440)
+        type->rsl.height = 1440;
+    type->parcing.r = 1;
 }
 
 void parc_amb(t_data *type, char *line)
@@ -30,6 +35,7 @@ void parc_amb(t_data *type, char *line)
     type->ambient.int_amb = ft_atod(amb[1]);
     type->ambient.rgb_amb = r_g_b(rgb[0], rgb[1], rgb[2]);
     type->ambient.rgb_amb = make_range(type->ambient.rgb_amb);
+    type->parcing.a = 1;
 }
 
 void parc_camera(t_data *type, char *line)
@@ -61,4 +67,3 @@ void parc_light(t_data *type, char *line)
 
     type->light = add_light(type, pos, int_light, rgb);
 }
-

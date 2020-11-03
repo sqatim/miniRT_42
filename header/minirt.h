@@ -42,7 +42,7 @@
 #define triangle_d 9
 
 void check_type(t_data *type, char **parc);
-int check_element(char **parc, int check, int ligne_err);
+int check_element(t_data *type, char **parc, int check, int ligne_err);
 
 #define max(a, b) ((double)a >= (double)b ? (double)a : (double)b)
 #define min(a, b) ((double)a <= (double)b ? (double)a : (double)b)

@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/02 14:20:13 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/03 12:26:22 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ typedef struct s_parcing
     int check;
     int indice;
     int error;
+    int r;
+    int a;
 } t_parcing;
 
 typedef struct s_ray

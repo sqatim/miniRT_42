@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:23:04 by thor              #+#    #+#             */
-/*   Updated: 2020/11/02 14:49:43 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/03 12:23:42 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void parcing_check(t_data *type, char *line)
             exit(0);
         }
         else
-            type->parcing.indice = check_element(parc, type->parcing.check, type->parcing.error);
+            type->parcing.indice = check_element(type, parc, type->parcing.check, type->parcing.error);
     }
     else if (!ft_isalpha(line[i]) && line[i])
     {
@@ -76,16 +76,8 @@ void parcing(t_data *type, char **av)
     while ((r = get_next_line(fd, &line)) > 0)
     {
         type->parcing.error++;
-        while ((line[0] == '\n' || line[0] == '\0') && r > 0)
-        {
-            type->parcing.error++;
-            r = get_next_line(fd, &line);
-        }
-        if (r > 0)
-        {
-            parcing_check(type, line);
-            parcing_tool(type, type->parcing.indice, line);
-        }
+        parcing_check(type, line);
+        parcing_tool(type, type->parcing.indice, line);
     }
     if (r == 0)
     {
