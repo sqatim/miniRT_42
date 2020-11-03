@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 02:19:52 by thor              #+#    #+#             */
-/*   Updated: 2020/10/20 11:21:30 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/03 19:11:17 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ static int hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
     has_inter = 0;
 
     while (temporaire != NULL)
-    {   
-        
-        if(i == type->objet->i)
+    {
+
+        if (i == type->objet->i)
             temporaire = temporaire->next;
-        if(temporaire != NULL )
+        if (temporaire != NULL)
         {
             if (temporaire->type == sphere_d)
                 has_inter = hit_sphere(temporaire, ombre);
@@ -52,15 +52,15 @@ static int hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
             i++;
             if (has_inter > 0 && has_inter * has_inter < d_light)
             {
-                type->tool.shad = 1;
-                if( type->tool.dahs == 0)
+                // type->tool.shad = 1;
+                if (type->tool.shad == 0)
                     return (0);
                 return (1);
             }
             temporaire = temporaire->next;
         }
     }
-        type->tool.dahs = 0;
+    type->tool.shad = 0;
     return (0);
 }
 
@@ -71,8 +71,8 @@ t_colour shadows(t_data *type, t_objet *tmp)
     t_ray ombre;
     double has_intersect;
     t_light *light;
-    type->tool.shad = 0;
-    type->tool.dahs = 1;
+    // type->tool.shad = 0;
+    type->tool.shad = 1;
     light = type->light;
 
     zero = make_number(zero, 0.0);

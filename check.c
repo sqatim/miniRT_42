@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 01:10:34 by thor              #+#    #+#             */
-/*   Updated: 2020/11/03 14:28:50 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/03 20:29:56 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,38 @@ void ft_print(t_data *type, char *name, int number)
     else if (number == 5)
         ft_putstr_fd(" : an error in rgb\n", 1);
 }
+
+void ft_print_cont(t_data *type, char *name, int object, int error)
+{
+    ft_putstr_fd(name, 1);
+    ft_putstr_fd(" : line ", 1);
+    ft_putnbr_fd(type->parcing.error, 1);
+    if (object == resolution_d)
+    {
+        (error == 1) ? ft_putstr_fd(" : an error in width\n", 1) : ft_putstr_fd(" : an error in height\n", 1);
+    }
+    else if (object == ambient_d || object == light_d)
+    {
+        ft_putstr_fd(" : an error in intensity\n", 1);
+    }
+    else if (object == sphere_d)
+    {
+        ft_putstr_fd(" : an error in radius\n", 1);
+    }
+    else if (object == square_d)
+    {
+        ft_putstr_fd(" : an error in height\n'", 1);
+    }
+    else if (object == cylinder_d)
+    {
+        (error = 1) ? ft_putstr_fd(" : an error in radius\n", 1) : ft_putstr_fd(" : an error in height\n\n", 1);
+    }
+    else if (object == camera_d)
+    {
+        ft_putstr_fd(" : an error in fov\n", 1);
+    }
+    exit(1);
+}
 int element_miss(t_data *type, int object)
 {
     if (object == resolution_d)
@@ -48,60 +80,58 @@ int element_miss(t_data *type, int object)
         ft_print(type, "Cylinder", 1);
     else if (object == triangle_d)
         ft_print(type, "Triangle", 1);
-    exit(0);
+    exit(1);
 }
 
 int wrong_pos(t_data *type, int object)
 {
 
     if (object == light_d)
-        write(1, "Light : an error in pos\n", 24);
+        ft_print(type, "Light", 2);
     else if (object == camera_d)
-        write(1, "Camera : an error in pos\n", 25);
+        ft_print(type, "Camera", 2);
     else if (object == sphere_d)
-        write(1, "Sphere : an error in pos\n", 25);
+        ft_print(type, "Sphere", 2);
     else if (object == plane_d)
-        write(1, "Plane : an error in pos\n", 24);
+        ft_print(type, "Plane", 2);
     else if (object == square_d)
-        write(1, "Square : an error in pos\n", 25);
+        ft_print(type, "Square", 2);
     else if (object == cylinder_d)
-        write(1, "Cylinder : an error in pos\n", 27);
+        ft_print(type, "Cylinder", 2);
     else if (object == triangle_d)
-        write(1, "Triangle : an error in pos\n", 27);
-    exit(0);
+        ft_print(type, "Triangle", 2);
+    exit(1);
 }
 int wrong_vec_ort(t_data *type, int object)
 {
-    ft_putnbr_fd(type->parcing.error, 1);
     if (object == camera_d)
-        write(1, "camera : an error in orientation vector\n", 40);
+        ft_print(type, "Camera", 3);
     else if (object == plane_d)
-        write(1, "Plane : an error in orientation vector\n", 39);
+        ft_print(type, "Plane", 3);
     else if (object == square_d)
-        write(1, "Square : an error in orientation vector\n", 40);
+        ft_print(type, "Square", 3);
     else if (object == cylinder_d)
-        write(1, "Cylinder : an error in orientation vector\n", 42);
-    exit(0);
+        ft_print(type, "Cylinder", 3);
+    exit(1);
 }
 
 int wrong_rgb(t_data *type, int object)
 {
     if (object == ambient_d)
-        write(1, "Ambient : an error in rgb\n", 26);
+        ft_print(type, "Ambient", 4);
     else if (object == light_d)
-        write(1, "Light : an error in rgb\n", 24);
+        ft_print(type, "Light", 4);
     else if (object == sphere_d)
-        write(1, "Sphere : an error in rgb\n", 25);
+        ft_print(type, "Sphere", 4);
     else if (object == plane_d)
-        write(1, "Plane : an error in rgb\n", 24);
+        ft_print(type, "Plane", 4);
     else if (object == square_d)
-        write(1, "Square : an error in rgb\n", 25);
+        ft_print(type, "Square", 4);
     else if (object == cylinder_d)
-        write(1, "Cylinder : an error in rgb\n", 27);
+        ft_print(type, "Cylinder", 4);
     else if (object == triangle_d)
-        write(1, "Triangle : an error in rgb\n", 27);
-    ft_putnbr_fd(type->parcing.error, 1);
-    exit(0);
+        ft_print(type, "Triangle", 4);
+    exit(1);
 }
 
 int check_numb(char *str)
@@ -142,25 +172,6 @@ int check_double(char *str)
         i++;
     }
     return (1);
-}
-
-int err_write(int check, int element)
-{
-    if (check == 0)
-    {
-        if (element == 0)
-            printf("%s\n", "check normal a sat");
-        else if (element == 1)
-            printf("%s\n", "check rgb a sat");
-    }
-    else
-    {
-        if (element == 0)
-            printf("%s\n", "normal must be betwin [0,1]");
-        else if (element == 1)
-            printf("%s\n", "rgb must be betwin [0,255]");
-    }
-    return (0);
 }
 
 int check_rgb(char *parc)
@@ -217,10 +228,9 @@ int check_resolution(t_data *type, char **parc)
     else if (check_numb(parc[1]) == 0 || check_numb(parc[2]) == 0 || ft_atoi(parc[1]) == 0 || ft_atoi(parc[2]) == 0)
     {
         if (check_numb(parc[1]) == 0 || ft_atoi(parc[1]) == 0)
-            write(1, "Resolution : an error in width\n", 31);
+            ft_print_cont(type, "Resolution", resolution_d, 1);
         else if (check_numb(parc[2]) == 0 || ft_atoi(parc[2]) == 0)
-            write(1, "Resolution : an error in height\n", 32);
-        exit(0);
+            ft_print_cont(type, "Resolution", resolution_d, 2);
     }
     if (type->parcing.r == 1)
     {
@@ -236,15 +246,13 @@ int check_ambient(t_data *type, char **parc)
         return (element_miss(type, ambient_d));
     else if (check_double(parc[1]) == 0 || (ft_atod(parc[1]) < 0 || ft_atod(parc[1]) > 1))
     {
-        write(1, "Ambient : an error in intensity\n", 32);
-        exit(0);
+        ft_print_cont(type, "Ambient", ambient_d, 0);
     }
     else if (check_rgb(parc[2]) == 0)
         return (wrong_rgb(type, ambient_d));
     if (type->parcing.a == 1)
     {
         write(1, "You must declare just one Ambient\n", 34);
-        exit(0);
     }
     return (ambient_d);
 }
@@ -256,10 +264,7 @@ int check_light(t_data *type, char **parc)
     else if (check_pos(parc[1]) == 0)
         return (wrong_pos(type, light_d));
     else if (check_double(parc[2]) == 0 || (ft_atod(parc[2]) < 0 || ft_atod(parc[2]) > 1))
-    {
-        write(1, "Light : an error in intensity\n", 30);
-        exit(0);
-    }
+        ft_print_cont(type, "Light", light_d, 0);
     else if (check_rgb(parc[3]) == 0)
         return (wrong_rgb(type, light_d));
     return (light_d);
@@ -272,10 +277,7 @@ int check_sphere(t_data *type, char **parc)
     else if (check_pos(parc[1]) == 0)
         return (wrong_pos(type, sphere_d));
     else if (check_double(parc[2]) == 0 || ft_atod(parc[2]) < 0)
-    {
-        write(1, "Sphere : an error in radius\n", 28);
-        exit(0);
-    }
+        ft_print_cont(type, "Sphere", sphere_d, 0);
     else if (check_rgb(parc[3]) == 0)
         return (wrong_rgb(type, sphere_d));
     return (sphere_d);
@@ -303,11 +305,7 @@ int check_square(t_data *type, char **parc)
     else if (check_vec_ort(parc[2]) == 0)
         return (wrong_vec_ort(type, square_d));
     else if (check_double(parc[3]) == 0 || ft_atod(parc[3]) < 0)
-    {
-        write(1, "Square : an error in height\n", 28);
-        ft_putnbr_fd(type->parcing.error, 1);
-        exit(0);
-    }
+        ft_print_cont(type, "Square", square_d, 0);
     else if (check_rgb(parc[4]) == 0)
         return (wrong_rgb(type, square_d));
     return (square_d);
@@ -324,17 +322,9 @@ int check_cylinder(t_data *type, char **parc)
     else if (check_rgb(parc[3]) == 0)
         return (wrong_rgb(type, cylinder_d));
     else if (check_double(parc[4]) == 0 || ft_atod(parc[4]) < 0)
-    {
-        write(1, "Cylinder : an error in radius\n", 30);
-        ft_putnbr_fd(type->parcing.error, 1);
-        exit(0);
-    }
+        ft_print_cont(type, "Cylinder", cylinder_d, 1);
     else if (check_double(parc[5]) == 0 || ft_atod(parc[5]) < 0)
-    {
-        write(1, "Cylinder : an error in height\n", 30);
-        ft_putnbr_fd(type->parcing.error, 1);
-        exit(0);
-    }
+        ft_print_cont(type, "Cylinder", cylinder_d, 2);
     return (cylinder_d);
 }
 
@@ -358,10 +348,7 @@ int check_camera(t_data *type, char **parc)
     else if (check_vec_ort(parc[2]) == 0)
         return (wrong_vec_ort(type, camera_d));
     else if (check_double(parc[3]) == 0 || (ft_atod(parc[3]) < 0 || ft_atod(parc[3]) > 180))
-    {
-        write(1, "camera : an error in fov\n", 30);
-        exit(0);
-    }
+        ft_print_cont(type, "Camera", camera_d, 0);
     return (camera_d);
 }
 int check_element(t_data *type, char **parc, int check, int ligne_err)
