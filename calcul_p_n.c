@@ -20,7 +20,6 @@ void sphere_p_n(t_data *type, double has_inter)
     type->objet->point = vector_add(type->ray.origin, produit);
     type->objet->normal = vector_sub(type->objet->point, type->objet->pos);
     type->objet->normal = unit_vector(type->objet->normal);
-    // type->objet->light = vector_sub(&type->light->pos, &type->objet->point);
 }
 
 void plane_p_n(t_data *type, double has_inter)
@@ -46,10 +45,9 @@ void square_p_n(t_data *type, double has_inter)
     type->objet->point = vector_add(type->ray.origin, produit);
 
     type->objet->normal = type->objet->v;
-    
-     if (a > 0)
+
+    if (a > 0)
         type->objet->normal = vector_scal(-1, type->objet->normal);
-    // type->objet->light = vector_sub(&type->light->pos, &type->objet->point);
 }
 
 void cylinder_p_n(t_data *type, double has_inter)
@@ -64,21 +62,14 @@ void cylinder_p_n(t_data *type, double has_inter)
     type->objet->v = unit_vector(type->objet->v);
     produit = vector_scal(type->objet->t, type->ray.direction);
     type->objet->point = vector_add(type->ray.origin, produit);
-    
     x = vector_sub(type->ray.origin, type->objet->pos);
     m = vector_dot(type->ray.direction, type->objet->v) * type->objet->t + vector_dot(x, type->objet->v);
-    
     sub = vector_sub(type->objet->point, type->objet->pos);
     scal = vector_scal(m, type->objet->v);
     type->objet->normal = vector_sub(sub, scal);
-
-    if(vector_dot(type->ray.direction,type->objet->normal)> 0.000)
+    if (vector_dot(type->ray.direction, type->objet->normal) > 0.000)
         type->objet->normal = vector_scal(-1, type->objet->normal);
     type->objet->normal = unit_vector(type->objet->normal);
-
-    // zadt had l3ibat bash ntesti 
-    // type->objet->light = vector_sub(type->light->pos, type->objet->point);
-    // type->objet->light = unit_vector(type->objet->light);
 }
 
 void triangle_p_n(t_data *type, double has_inter)
@@ -93,5 +84,4 @@ void triangle_p_n(t_data *type, double has_inter)
     type->objet->point = vector_add(type->ray.origin, produit);
     type->objet->normal = vector_cross(edge1, edge2);
     type->objet->normal = unit_vector(type->objet->normal);
-    // type->objet->light = vector_sub(&type->light->pos, &type->objet->point);
 }

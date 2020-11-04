@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/03 12:26:22 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/04 13:57:35 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ typedef struct s_key
     int tr_rt;
     int renitialise;
 } t_key;
+
+typedef struct s_varCal
+{
+    double a;
+    double b;
+    double c;
+    double delta;
+    double u;
+    double v;
+    double t;
+    double t1;
+    double t2;
+    t_vector edge1;
+    t_vector edge2;
+    t_vector oc;
+}           t_varCal;
+
 typedef struct s_camera
 {
     t_vector pos;

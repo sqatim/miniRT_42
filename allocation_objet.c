@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 18:28:40 by thor              #+#    #+#             */
-/*   Updated: 2020/10/22 09:19:32 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/04 11:50:40 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ t_objet *add_cylinder(t_data *type, char **pos, char **v, char **cylinder)
     new_cylinder->type = cylinder_d;
     new_cylinder->pos = x_y_z(pos[0], pos[1], pos[2]);
     new_cylinder->v = x_y_z(v[0], v[1], v[2]);
-    // new_cylinder->v = unit_vector(new_cylinder->v);
     extr_cylinder(new_cylinder, cylinder);
     new_cylinder->i = type->tool.index;
     type->tool.index++;

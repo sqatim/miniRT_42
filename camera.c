@@ -6,12 +6,11 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:52:14 by thor              #+#    #+#             */
-/*   Updated: 2020/10/30 10:28:25 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/03 20:45:38 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
 
 void half_w_h(t_data *type)
 {
@@ -40,17 +39,12 @@ t_vector calcul_pixel(t_data *type, t_vector left_corner, t_vector u, t_vector v
     double y;
     t_vector pixel;
 
-    x =  type->rsl.x * type->rsl.half_width / type->rsl.width;
+    x = type->rsl.x * type->rsl.half_width / type->rsl.width;
     y = type->rsl.y * type->rsl.half_height / type->rsl.height;
-    pixel_x = vector_scal(x,u);
-    // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n",pixel_x.x,pixel_x.y,pixel_x.z);
-
-    pixel_y = vector_scal(y,v);
-
-        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n",pixel_y.x,pixel_y.y,pixel_y.z);
-
-    pixel = vector_add(pixel_x,pixel_y);
-    pixel = vector_add(left_corner,pixel);
+    pixel_x = vector_scal(x, u);
+    pixel_y = vector_scal(y, v);
+    pixel = vector_add(pixel_x, pixel_y);
+    pixel = vector_add(left_corner, pixel);
     return (pixel);
 }
 
@@ -60,14 +54,12 @@ t_vector mapper_pixel(t_data *type, t_vector u, t_vector v, t_vector n)
     t_vector l;
     t_vector left_corner;
 
-
     center = vector_sub(type->camera->pos, n);
     l.x = u.x * type->rsl.half_width / 2 + v.x * type->rsl.half_height / 2;
     l.y = u.y * type->rsl.half_width / 2 + v.y * type->rsl.half_height / 2;
     l.z = u.z * type->rsl.half_width / 2 + v.z * type->rsl.half_height / 2;
-    
-    left_corner = vector_sub(center,l);
-    return (calcul_pixel(type,left_corner,u,v));
+    left_corner = vector_sub(center, l);
+    return (calcul_pixel(type, left_corner, u, v));
 }
 void camera_setting(t_data *type)
 {
@@ -76,32 +68,19 @@ void camera_setting(t_data *type)
     t_vector vup;
     t_vector n;
 
-
     vup = make_pos(0, 1, 0);
-    n = vector_sub(type->camera->pos,type->camera->ort_vec);
+    n = vector_sub(type->camera->pos, type->camera->ort_vec);
     n = unit_vector(n);
-    // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n",n.x,n.y,n.z);
     u = vector_cross(vup, n);
     u = unit_vector(u);
-    // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n",u.x,u.y,u.z);
-
-
     v = vector_cross(n, u);
-
-        // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n",v.x,v.y,v.z);
-
-
     half_w_h(type);
     type->camera->pixel = mapper_pixel(type, u, v, n);
-    // printf("|x ===> %f|\t|y ===> %f|\t|z ===> %f|\n",type->camera->pixel.x,type->camera->pixel.y,type->camera->pixel.z);
-
 }
 
 void ray(t_data *type)
 {
     type->ray.origin = type->camera->pos;
-    type->ray.direction = vector_sub(type->camera->pixel,type->ray.origin);
+    type->ray.direction = vector_sub(type->camera->pixel, type->ray.origin);
     type->ray.direction = unit_vector(type->ray.direction);
-    // printf("x ===> %f|\t|y ===> %f|\t|z ===> %f|\n",type->ray.direction.x, type->ray.direction.y, type->ray.direction.z);
-
 }
