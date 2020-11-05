@@ -6,7 +6,7 @@
 #    By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/30 04:53:16 by mac               #+#    #+#              #
-#    Updated: 2020/11/02 14:44:23 by sqatim           ###   ########.fr        #
+#    Updated: 2020/11/05 13:36:23 by sqatim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ DEFAULT = \033[0m
 GNL = ./GNL/get_next_line.c ./GNL/get_next_line_utils.c
 
 SRCS = main.c\
-	miniRT.c\
+	minirt.c\
 	shading.c\
 	colour.c\
 	hit_objet.c\
@@ -34,6 +34,7 @@ SRCS = main.c\
 	parcing_object.c\
 	parcing_rcl.c\
 	allocation_objet.c\
+	allocation_objet2.c\
 	calcul_p_n.c\
 	allocation.c\
 	check.c\
@@ -42,6 +43,7 @@ SRCS = main.c\
 	translation1.c\
 	rotation.c\
 	ft_space_split.c\
+	hit_function.c\
 	$(GNL)
 
 OBJ = $(SRCS:.c=.o)	   

@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:22:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/04 09:59:59 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/05 13:45:21 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int key_press(int keycode, t_data *type)
 		{
 			type->key.renitialise = 1;
 			translation(type);
+			minirt(type);
 		}
 		if(type->key.tr_rt == 1)
 		{
@@ -139,6 +140,7 @@ int key_press(int keycode, t_data *type)
 			check_xyz(type,keycode);
 			if(type->key.rot_xyz != 0 || check_direction(type,keycode))
 				rotation(type);
+				minirt(type);
 		}
 	}
 	if(keycode == 0 || keycode == 2)
@@ -146,21 +148,9 @@ int key_press(int keycode, t_data *type)
 		type->key.key = keycode;
 		change_element(type);
 	}
-	// else if(type->key.check == 2 && type->key.tr_rt == 1)
-	// {
-	//     type->key.key = keycode;
-	//     rotation(type);
-	// }
-	// if (type->key.check == 1 && (key == 97 || key == 100)) // 97 == a && 100 == d
-	// {
-	//     type->key.key = key;
-	//     change_element(type);
-	// }
 	if (keycode == 53)
 		exit(0);
-	screen_blue(type);
-
-	//mlx_key_hook(type->mlx.win_ptr, key_hook, type);
+	// minirt(type);
 	mlx_put_image_to_window(type->mlx.mlx_ptr, type->mlx.win_ptr, type->mlx.img_ptr, 0, 0);
 
 	return (0);
@@ -254,7 +244,7 @@ void ft_mlx(t_data *type)
 	type->mlx.img_ptr = mlx_new_image(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height);
 	type->mlx.img_data = (int *)mlx_get_data_addr(type->mlx.img_ptr, &type->mlx.bpp, &type->mlx.size_line, &endian);
 
-	screen_blue(type);
+	minirt(type);
 	type->mlx.win_ptr = mlx_new_window(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height, "samir");
 	mlx_put_image_to_window(type->mlx.mlx_ptr, type->mlx.win_ptr, type->mlx.img_ptr, 0, 0);
 	mlx_hook(type->mlx.win_ptr, 2, 0,key_press, type);

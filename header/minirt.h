@@ -19,6 +19,7 @@
 #include "parcing_rcl.h"
 #include "parcing.h"
 #include "hit_objet.h"
+#include "hit_function.h"
 #include "allocation_objet.h"
 #include "vector.h"
 #include "camera.h"
@@ -50,8 +51,8 @@ int check_element(t_data *type, char **parc, int check, int ligne_err);
 int key_hook(int key, t_data *type);
 
 t_colour coleur(t_data *type);
-int _3til_lbabaha(t_colour *data);
-void screen_blue(t_data *type);
+int merge(t_colour *data);
+void minirt(t_data *type);
 
 void objet(t_objet *objet);
 t_colour colour_scal(double nbr, t_colour rgb);

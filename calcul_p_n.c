@@ -83,5 +83,7 @@ void triangle_p_n(t_data *type, double has_inter)
     produit = vector_scal(type->objet->t, type->ray.direction);
     type->objet->point = vector_add(type->ray.origin, produit);
     type->objet->normal = vector_cross(edge1, edge2);
+    if(vector_dot(type->objet->normal,type->ray.direction)> 0.0000001)
+        type->objet->normal = vector_scal(-1, type->objet->normal);
     type->objet->normal = unit_vector(type->objet->normal);
 }
