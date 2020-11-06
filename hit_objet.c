@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:16:55 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/05 14:40:00 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/06 11:07:24 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,24 @@ int			hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
 	double	has_inter;
 	t_objet	*temporaire;
 
+	double lenght_light;
+	double lenght_t;
+
 	temporaire = tmp;
 	has_inter = 0;
 	d_light = vector_dot(type->objet->light, type->objet->light);
 	i = 0;
+
+	// lenght_light = a
 	while (temporaire != NULL)
 	{
-		if (i == temporaire->i)
-			temporaire = temporaire->next;
+		// if (i == temporaire->i)
+		// 	temporaire = temporaire->next;
 		if (temporaire != NULL)
 		{
 			witch_object(temporaire, ombre, &has_inter);
 			i++;
-			if (has_inter > 0 && has_inter * has_inter < d_light)
+			if (has_inter > 0 && has_inter <= ombre->lenght/* has_inter * has_inter < d_light */)
 				return (intersection(type) == 0) ? 0 : 1;
 			temporaire = temporaire->next;
 		}

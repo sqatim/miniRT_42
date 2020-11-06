@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/04 13:57:35 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/06 11:06:46 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct s_parcing
 typedef struct s_ray
 {
     t_vector origin;
+    double lenght;
     t_vector direction;
 } t_ray;
 
