@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.c                                           :+:      :+:    :+:   */
+/*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:41:19 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/05 13:41:19 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/07 10:12:54 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int			merge(t_colour *data)
+int merge(t_colour *data)
 {
 	return ((data->r * 256 * 256) + (data->g * 256) + data->b);
 }
 
-t_colour	coleur(t_data *type)
+t_colour coleur(t_data *type)
 {
-	double		t1;
-	t_objet		*tmp;
-	t_colour	black;
-	t_colour	phong_s;
-	t_colour	shadow1;
+	double t1;
+	t_objet *tmp;
+	t_colour black;
+	t_colour phong_s;
+	t_colour shadow1;
 
 	t1 = FLT_MAX;
 	tmp = type->objet;
 	black = make_number(black, 0);
 	hit_objet(type, &t1);
+	// type->tool.shad = 0;
 	if (type->tool.intersect == 1)
 	{
 		shadow1 = shadows(type, tmp);
+		// if (shadow1.r < 1)
+
 		phong_s = phong(type, shadow1);
 		type->objet = tmp;
 		return (phong_s);
@@ -40,10 +43,10 @@ t_colour	coleur(t_data *type)
 		return (black);
 }
 
-void		minirt(t_data *type)
+void minirt(t_data *type)
 {
-	int			i;
-	t_colour	colour;
+	int i;
+	t_colour colour;
 
 	i = 0;
 	type->rsl.x = 0;

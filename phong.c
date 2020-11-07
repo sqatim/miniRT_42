@@ -6,13 +6,13 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 22:31:32 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/05 12:13:39 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/07 10:40:32 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static t_colour	ft_ambient(t_data *type)
+static t_colour ft_ambient(t_data *type)
 {
 	t_colour ambient;
 	t_colour scal;
@@ -27,12 +27,12 @@ static t_colour	ft_ambient(t_data *type)
 	return (ambient);
 }
 
-static t_colour	ft_diffuse(t_data *type)
+static t_colour ft_diffuse(t_data *type)
 {
-	double		dot;
-	t_colour	diffuse;
-	t_colour	produit;
-	t_vector	l_norm;
+	double dot;
+	t_colour diffuse;
+	t_colour produit;
+	t_vector l_norm;
 
 	l_norm = unit_vector(type->objet->light);
 	dot = vector_dot(l_norm, type->objet->normal);
@@ -43,12 +43,12 @@ static t_colour	ft_diffuse(t_data *type)
 	return (diffuse);
 }
 
-t_colour		ft_specular(t_data *type)
+t_colour ft_specular(t_data *type)
 {
-	double		dot;
-	t_vector	scal;
-	t_colour	specular;
-	double		shininess;
+	double dot;
+	t_vector scal;
+	t_colour specular;
+	double shininess;
 
 	shininess = 2000;
 	dot = 2 * vector_dot(type->objet->normal, type->objet->light);
@@ -65,11 +65,11 @@ t_colour		ft_specular(t_data *type)
 	return (specular);
 }
 
-t_colour		phong(t_data *type, t_colour shadow)
+t_colour phong(t_data *type, t_colour shadow)
 {
-	t_light		*light;
-	t_colour	somme;
-	t_colour	phong_s;
+	t_light *light;
+	t_colour somme;
+	t_colour phong_s;
 
 	ft_bzero(&type->phong, sizeof(t_phong));
 	light = type->light;
@@ -77,8 +77,8 @@ t_colour		phong(t_data *type, t_colour shadow)
 	{
 		type->objet->light = vector_sub(type->light->pos, type->objet->point);
 		type->phong.diffuse = colour_add(type->phong.diffuse, ft_diffuse(type));
-		type->phong.specular = colour_add(type->phong.specular,\
-		ft_specular(type));
+		type->phong.specular = colour_add(type->phong.specular,
+										  ft_specular(type));
 		type->light = type->light->next;
 	}
 	type->phong.diffuse = colour_scal(255, type->phong.diffuse);

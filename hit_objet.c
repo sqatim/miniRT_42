@@ -6,13 +6,13 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:16:55 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/06 11:07:24 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/07 13:44:59 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void		just_calcul(t_data *type, double has_inter)
+void just_calcul(t_data *type, double has_inter)
 {
 	t_objet *tmp;
 
@@ -30,7 +30,7 @@ void		just_calcul(t_data *type, double has_inter)
 		triangle_p_n(type, has_inter);
 }
 
-void		witch_object(t_objet *objet, t_ray *ray, double *has_inter)
+void witch_object(t_objet *objet, t_ray *ray, double *has_inter)
 {
 	if (objet->type == sphere_d)
 		*has_inter = hit_sphere(objet, ray);
@@ -44,22 +44,23 @@ void		witch_object(t_objet *objet, t_ray *ray, double *has_inter)
 		*has_inter = hit_triangle(objet, ray);
 }
 
-static int	intersection(t_data *type)
+static int intersection(t_data *type)
 {
-	if (type->tool.shad == 0)
-		return (0);
+	// if (type->tool.shad == 0)
+	// return (0);
 	return (1);
 }
 
-int			hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
+void hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
 {
-	int		i;
-	double	d_light;
-	double	has_inter;
-	t_objet	*temporaire;
+	int i;
+	double d_light;
+	double has_inter;
+	t_objet *temporaire;
 
 	double lenght_light;
 	double lenght_t;
+	int index = 0;
 
 	temporaire = tmp;
 	has_inter = 0;
@@ -69,26 +70,36 @@ int			hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
 	// lenght_light = a
 	while (temporaire != NULL)
 	{
-		// if (i == temporaire->i)
-		// 	temporaire = temporaire->next;
+		if (i == type->tool.index)
+			temporaire = temporaire->next;
 		if (temporaire != NULL)
 		{
+
 			witch_object(temporaire, ombre, &has_inter);
 			i++;
-			if (has_inter > 0 && has_inter <= ombre->lenght/* has_inter * has_inter < d_light */)
-				return (intersection(type) == 0) ? 0 : 1;
+			if (has_inter > 0 && has_inter <= ombre->lenght /* has_inter * has_inter < d_light */)
+			{
+				if (index == 0)
+				{
+					index = 1;
+					type->shad.intersect = 1;
+					type->shad.degre += 0.4;
+				}
+			}
+			// return (intersection(type) == 0) ? 0 : 1;
+			// return (intersection(type) == 0) ? 0 : 1;
 			temporaire = temporaire->next;
 		}
 	}
-	type->tool.shad = 0;
-	return (0);
+	// type->tool.shad = 0;
+	// return (0);
 }
 
-void		hit_objet(t_data *type, double *t1)
+void hit_objet(t_data *type, double *t1)
 {
-	t_ray	*ray;
-	t_objet	*tmp;
-	double	has_inter;
+	t_ray *ray;
+	t_objet *tmp;
+	double has_inter;
 
 	ray = &type->ray;
 	type->tool.type = 0;

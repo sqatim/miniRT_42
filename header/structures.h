@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/06 11:06:46 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/07 10:27:25 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_varCal
     t_vector edge1;
     t_vector edge2;
     t_vector oc;
-}           t_varCal;
+} t_varCal;
 
 typedef struct s_camera
 {
@@ -92,13 +92,18 @@ typedef struct s_objet
     struct s_objet *next;
 } t_objet;
 
+typedef struct s_shadow
+{
+    double degre;
+    double intersect;
+
+} t_shadow;
 typedef struct s_tools
 {
     int index;
     int type;
     int intersect;
     double dif;
-    double shad;
     double dahs;
     int done;
 } t_tools;
@@ -187,6 +192,7 @@ typedef struct s_data
     t_phong phong;
     t_parcing parcing;
     int i;
+    t_shadow shad;
 } t_data;
 
 #endif

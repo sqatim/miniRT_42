@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:22:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/05 13:45:21 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/07 13:24:19 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,21 @@
 static int check_objet(int type)
 {
 	if (type == sphere_d || type == plane_d || type == square_d || type == cylinder_d || type == triangle_d)
+	{
+		if (type == plane_d)
+			printf("salam\n");
 		return (1);
+	}
 	return (0);
 }
 
-static void check_xyz(t_data *type,int key)
+static void check_xyz(t_data *type, int key)
 {
-	if(key == 7)
+	if (key == 7)
 		type->key.rot_xyz = 1;
-	else if(key == 16)
+	else if (key == 16)
 		type->key.rot_xyz = 2;
-	else if(key == 6)
+	else if (key == 6)
 		type->key.rot_xyz = 3;
 }
 
@@ -72,7 +76,10 @@ void change_element(t_data *type)
 			type->camera = type->camera->previous;
 		}
 		else if (check_objet(type->key.type) && type->clone.objet->previous != NULL)
+		{
 			type->clone.objet = type->clone.objet->previous;
+			type->key.type = type->clone.objet->type;
+		}
 		else if (type->key.type == light_d && type->clone.light->previous != NULL)
 		{
 			type->clone.light = type->clone.light->previous;
@@ -87,6 +94,7 @@ void change_element(t_data *type)
 		else if (check_objet(type->key.type) && type->clone.objet->next != NULL)
 		{
 			type->clone.objet = type->clone.objet->next;
+			type->key.type = type->clone.objet->type;
 		}
 		else if (type->key.type == light_d && type->clone.light->next != NULL)
 		{
@@ -128,22 +136,22 @@ int key_press(int keycode, t_data *type)
 	if (type->key.check == 2)
 	{
 		type->key.key = keycode;
-		if(type->key.tr_rt == 0 && check_direction(type,keycode))
+		if (type->key.tr_rt == 0 && check_direction(type, keycode))
 		{
 			type->key.renitialise = 1;
 			translation(type);
 			minirt(type);
 		}
-		if(type->key.tr_rt == 1)
+		if (type->key.tr_rt == 1)
 		{
 			type->key.renitialise = 1;
-			check_xyz(type,keycode);
-			if(type->key.rot_xyz != 0 || check_direction(type,keycode))
+			check_xyz(type, keycode);
+			if (type->key.rot_xyz != 0 || check_direction(type, keycode))
 				rotation(type);
-				minirt(type);
+			minirt(type);
 		}
 	}
-	if(keycode == 0 || keycode == 2)
+	if (keycode == 0 || keycode == 2)
 	{
 		type->key.key = keycode;
 		change_element(type);
@@ -247,9 +255,8 @@ void ft_mlx(t_data *type)
 	minirt(type);
 	type->mlx.win_ptr = mlx_new_window(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height, "samir");
 	mlx_put_image_to_window(type->mlx.mlx_ptr, type->mlx.win_ptr, type->mlx.img_ptr, 0, 0);
-	mlx_hook(type->mlx.win_ptr, 2, 0,key_press, type);
+	mlx_hook(type->mlx.win_ptr, 2, 0, key_press, type);
 	// create_bmp(type);
-
 }
 
 void clone(t_data *type)
@@ -265,7 +272,7 @@ int main(int ac, char **av)
 
 	ft_bzero(&type, sizeof(t_data));
 	parcing(&type, av);
-	clone(&type); 
+	clone(&type);
 	ft_mlx(&type);
 
 	mlx_loop(type.mlx.mlx_ptr);
