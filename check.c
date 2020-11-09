@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 01:10:34 by thor              #+#    #+#             */
-/*   Updated: 2020/11/09 12:31:43 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 20:48:14 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void ft_print_cont(t_data *type, char *name, int object, int error)
 		(error = 1) ? ft_putstr_fd(" : an error in radius\n", 1) : ft_putstr_fd(" : an error in height\n\n", 1);
 	else if (object == camera_d)
 		ft_putstr_fd(" : an error in fov\n", 1);
-	exit(1);
+	free_exit(type, 1);
 }
 int element_miss(t_data *type, int object)
 {
@@ -70,7 +70,7 @@ int element_miss(t_data *type, int object)
 		ft_print(type, "Cylinder", 1);
 	else if (object == triangle_d)
 		ft_print(type, "Triangle", 1);
-	exit(1);
+	return (free_exit(type, 1));
 }
 
 int wrong_pos(t_data *type, int object)
@@ -90,7 +90,7 @@ int wrong_pos(t_data *type, int object)
 		ft_print(type, "Cylinder", 2);
 	else if (object == triangle_d)
 		ft_print(type, "Triangle", 2);
-	exit(1);
+	return (free_exit(type, 1));
 }
 int wrong_vec_ort(t_data *type, int object)
 {
@@ -102,7 +102,7 @@ int wrong_vec_ort(t_data *type, int object)
 		ft_print(type, "Square", 3);
 	else if (object == cylinder_d)
 		ft_print(type, "Cylinder", 3);
-	exit(1);
+	return (free_exit(type, 1));
 }
 
 int wrong_rgb(t_data *type, int object)
@@ -121,7 +121,7 @@ int wrong_rgb(t_data *type, int object)
 		ft_print(type, "Cylinder", 4);
 	else if (object == triangle_d)
 		ft_print(type, "Triangle", 4);
-	exit(1);
+	return (free_exit(type, 1));
 }
 
 int wrong_trans_rot(t_data *type, int object, int wich)
@@ -146,7 +146,7 @@ int wrong_trans_rot(t_data *type, int object, int wich)
 		ft_print(type, "Cylinder", i);
 	else if (object == triangle_d)
 		ft_print(type, "Triangle", i);
-	exit(1);
+	return (free_exit(type, 1));
 }
 
 int check_numb(char *str)
@@ -268,7 +268,7 @@ int check_resolution(t_data *type, char **parc)
 	if (type->parcing.r == 1)
 	{
 		write(1, "You must declare just one Resolution\n", 37);
-		exit(0);
+		free_exit(type, 1);
 	}
 	return (resolution_d);
 }

@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:16:55 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/09 20:23:15 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 20:35:41 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,18 +95,7 @@ void hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
 		{
 			witch_object(temporaire, ombre, &has_inter);
 			if (has_inter > 0 && has_inter <= ombre->lenght)
-			{
-				// if (save == 0)
-				// {
-				// 	if (index == 0)
-				// 	{
-				// 		index = 1;
-				// 		type->shad.intersect = 1;
-				// 		type->shad.degre += 0.5;
-				// 	}
-				// }
 				check_tr_fl(type, save, &index);
-			}
 			temporaire = temporaire->next;
 		}
 	}

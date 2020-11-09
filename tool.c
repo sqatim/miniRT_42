@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 00:59:19 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/02 14:45:13 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 20:46:36 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,33 @@ t_vector x_y_z(char *x, char *y, char *z)
     extr.z = ft_atod(z);
 
     return (extr);
+}
+
+int free_exit(t_data *type, int wich)
+{
+    if (type->objet != NULL)
+    {
+        while (type->objet != NULL)
+        {
+            free(type->objet);
+            type->objet = type->objet->next;
+        }
+    }
+    if (type->camera != NULL)
+    {
+        while (type->camera != NULL)
+        {
+            free(type->camera);
+            type->camera = type->camera->next;
+        }
+    }
+    if (type->light != NULL)
+    {
+        while (type->light != NULL)
+        {
+            free(type->light);
+            type->light = type->light->next;
+        }
+    }
+    exit(wich);
 }

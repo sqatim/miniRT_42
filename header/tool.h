@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:46:40 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/02 14:47:42 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 20:46:45 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ double ft_atod(const char *str);
 int ft_2strlen(char **str);
 t_colour r_g_b(char *r, char *g, char *b);
 t_vector x_y_z(char *x, char *y, char *z);
+int free_exit(t_data *type, int wich);
 
 #endif

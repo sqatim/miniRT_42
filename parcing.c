@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:23:04 by thor              #+#    #+#             */
-/*   Updated: 2020/11/04 11:32:01 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 20:45:06 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void parcing_check(t_data *type, char *line)
 		{
 			write(1, "t2akad man type line ", 21);
 			ft_putnbr_fd(type->parcing.error, 1);
-			exit(1);
+			free_exit(type, 1);
 		}
 		else
 			type->parcing.indice = check_element(type,
@@ -63,7 +63,7 @@ void parcing_check(t_data *type, char *line)
 	else if (!ft_isalpha(line[i]) && line[i])
 	{
 		write(1, "t2akad man type line ", 21);
-		exit(1);
+		free_exit(type, 1);
 	}
 }
 
@@ -136,6 +136,6 @@ void parcing(t_data *type, char **av)
 	if (type->parcing.r == 0)
 	{
 		ft_putstr_fd("Resolution not found\n", 1);
-		exit(1);
+		free_exit(type, 1);
 	}
 }
