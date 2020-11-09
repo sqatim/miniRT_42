@@ -84,6 +84,7 @@ typedef struct s_objet
     t_vector reflection;
     t_vector light;
     t_vector view;
+    t_vector translation;
     double height;
     double t;
     double test;

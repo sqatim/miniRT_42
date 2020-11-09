@@ -25,8 +25,12 @@ void ft_print(t_data *type, char *name, int number)
 		ft_putstr_fd(" : an error in orientation vector\n", 1);
 	else if (number == 4)
 		ft_putstr_fd(" : an error in rgb\n", 1);
+	// else if (number == 5)
+	// 	ft_putstr_fd(" : an error in rgb\n", 1);
 	else if (number == 5)
-		ft_putstr_fd(" : an error in rgb\n", 1);
+		ft_putstr_fd(" : an error in translation\n", 1);
+	else if (number == 6)
+		ft_putstr_fd(" : an error in rotation\n", 1);
 }
 
 void ft_print_cont(t_data *type, char *name, int object, int error)
@@ -122,6 +126,26 @@ int wrong_rgb(t_data *type, int object)
 	exit(1);
 }
 
+int wrong_translation(t_data *type, int object)
+{
+
+	if (object == light_d)
+		ft_print(type, "Light", 5);
+	else if (object == camera_d)
+		ft_print(type, "Camera", 5);
+	else if (object == sphere_d)
+		ft_print(type, "Sphere", 5);
+	else if (object == plane_d)
+		ft_print(type, "Plane", 5);
+	else if (object == square_d)
+		ft_print(type, "Square", 5);
+	else if (object == cylinder_d)
+		ft_print(type, "Cylinder", 5);
+	else if (object == triangle_d)
+		ft_print(type, "Triangle", 5);
+	exit(1);
+}
+
 int check_numb(char *str)
 {
 	int i;
@@ -186,6 +210,8 @@ int check_pos(char *parc)
 	pos = ft_split(parc, ',');
 	if (ft_2strlen(pos) != 3)
 		return (0);
+	// ft_putstr_fd("salams\n", 1);
+	// printf("%s\n", parc);
 	if (check_double(pos[0]) == 0 || check_double(pos[1]) == 0 || check_double(pos[2]) == 0)
 		return (0);
 	return (1);
@@ -256,14 +282,27 @@ int check_light(t_data *type, char **parc)
 
 int check_sphere(t_data *type, char **parc)
 {
-	if (ft_2strlen(parc) != 4)
+	if (ft_2strlen(parc) < 4)
+	{
 		return (element_miss(type, sphere_d));
+	}
 	else if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, sphere_d));
 	else if (check_double(parc[2]) == 0 || ft_atod(parc[2]) < 0)
 		ft_print_cont(type, "Sphere", sphere_d, 0);
 	else if (check_rgb(parc[3]) == 0)
 		return (wrong_rgb(type, sphere_d));
+	if (ft_2strlen(parc) > 4)
+	{
+		// bdit kanmodifi bash n9ad check dyal translation
+		if (ft_2strlen(parc) == 5)
+		{
+			if (check_pos(parc[4]) == 0)
+			{
+				return (wrong_translation(type, sphere_d));
+			}
+		}
+	}
 	return (sphere_d);
 }
 

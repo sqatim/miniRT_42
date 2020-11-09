@@ -12,7 +12,7 @@
 
 #include "minirt.h"
 
-void	parcing_tool(t_data *type, int indice, char *line)
+void parcing_tool(t_data *type, int indice, char *line)
 {
 	if (indice == resolution_d)
 		parc_resl(type, line);
@@ -36,10 +36,10 @@ void	parcing_tool(t_data *type, int indice, char *line)
 		parc_triangle(type, line);
 }
 
-void	parcing_check(t_data *type, char *line)
+void parcing_check(t_data *type, char *line)
 {
-	int		i;
-	char	**parc;
+	int i;
+	char **parc;
 
 	i = 0;
 	parc = ft_space_split(line);
@@ -57,8 +57,8 @@ void	parcing_check(t_data *type, char *line)
 			exit(1);
 		}
 		else
-			type->parcing.indice = check_element(type,\
-			parc, type->parcing.check, type->parcing.error);
+			type->parcing.indice = check_element(type,
+												 parc, type->parcing.check, type->parcing.error);
 	}
 	else if (!ft_isalpha(line[i]) && line[i])
 	{
@@ -67,7 +67,7 @@ void	parcing_check(t_data *type, char *line)
 	}
 }
 
-char	*ft_str_in_str(const char *s1, const char *s2)
+char *ft_str_in_str(const char *s1, const char *s2)
 {
 	size_t i;
 	size_t j;
@@ -92,10 +92,10 @@ char	*ft_str_in_str(const char *s1, const char *s2)
 	return (NULL);
 }
 
-void	read_line(t_data *type, int fd)
+void read_line(t_data *type, int fd)
 {
-	int		r;
-	char	*line;
+	int r;
+	char *line;
 
 	while ((r = get_next_line(fd, &line)) > 0)
 	{
@@ -113,12 +113,12 @@ void	read_line(t_data *type, int fd)
 		exit(1);
 }
 
-void	parcing(t_data *type, char **av)
+void parcing(t_data *type, char **av)
 {
-	int		fd;
-	char	*line;
-	char	**parc;
-	int		r;
+	int fd;
+	char *line;
+	char **parc;
+	int r;
 
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
@@ -133,9 +133,9 @@ void	parcing(t_data *type, char **av)
 		ft_putstr_fd("File is not format \".rt\"", 1);
 		exit(1);
 	}
-	if(type->parcing.r == 0)
+	if (type->parcing.r == 0)
 	{
-		ft_putstr_fd("Resolution not found\n",1);
+		ft_putstr_fd("Resolution not found\n", 1);
 		exit(1);
 	}
 }
