@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/07 10:27:25 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 12:35:08 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_objet
     t_vector light;
     t_vector view;
     t_vector translation;
+    t_vector rotation;
     double height;
     double t;
     double test;

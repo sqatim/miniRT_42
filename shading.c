@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 02:19:52 by thor              #+#    #+#             */
-/*   Updated: 2020/11/07 11:50:20 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 13:39:05 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ t_colour shadows(t_data *type, t_objet *tmp)
     ombre.origin.x = type->objet->point.x + 0.001 * type->objet->normal.x;
     ombre.origin.y = type->objet->point.y + 0.001 * type->objet->normal.y;
     ombre.origin.z = type->objet->point.z + 0.001 * type->objet->normal.z;
+    // ombre.origin.x = type->objet->point.x + 0.001 * type->objet->normal.x;
+    // ombre.origin.y = type->objet->point.y + 0.001 * type->objet->normal.y;
+    // ombre.origin.z = type->objet->point.z + 0.001 * type->objet->normal.z;
     while (type->light != NULL)
     {
         ombre.direction = vector_sub(type->light->pos, type->objet->point);

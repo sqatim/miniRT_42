@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 01:10:34 by thor              #+#    #+#             */
-/*   Updated: 2020/11/04 10:16:29 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 12:31:43 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void ft_print(t_data *type, char *name, int number)
 		ft_putstr_fd(" : an error in orientation vector\n", 1);
 	else if (number == 4)
 		ft_putstr_fd(" : an error in rgb\n", 1);
-	// else if (number == 5)
-	// 	ft_putstr_fd(" : an error in rgb\n", 1);
 	else if (number == 5)
 		ft_putstr_fd(" : an error in translation\n", 1);
 	else if (number == 6)
@@ -126,23 +124,28 @@ int wrong_rgb(t_data *type, int object)
 	exit(1);
 }
 
-int wrong_translation(t_data *type, int object)
+int wrong_trans_rot(t_data *type, int object, int wich)
 {
+	int i;
 
+	if (wich == 1)
+		i = 5;
+	else
+		i = 6;
 	if (object == light_d)
-		ft_print(type, "Light", 5);
+		ft_print(type, "Light", i);
 	else if (object == camera_d)
-		ft_print(type, "Camera", 5);
+		ft_print(type, "Camera", i);
 	else if (object == sphere_d)
-		ft_print(type, "Sphere", 5);
+		ft_print(type, "Sphere", i);
 	else if (object == plane_d)
-		ft_print(type, "Plane", 5);
+		ft_print(type, "Plane", i);
 	else if (object == square_d)
-		ft_print(type, "Square", 5);
+		ft_print(type, "Square", i);
 	else if (object == cylinder_d)
-		ft_print(type, "Cylinder", 5);
+		ft_print(type, "Cylinder", i);
 	else if (object == triangle_d)
-		ft_print(type, "Triangle", 5);
+		ft_print(type, "Triangle", i);
 	exit(1);
 }
 
@@ -203,6 +206,23 @@ int check_rgb(char *parc)
 	return (1);
 }
 
+int check_rotation(char *parc)
+{
+	char **rot;
+	int check;
+
+	rot = ft_split(parc, ',');
+	if (ft_2strlen(rot) != 3)
+		return (0);
+	if ((check = check_double(rot[0])) == 0 || (ft_atod(rot[0]) < -360 || ft_atod(rot[0]) > 360))
+		return (0);
+	if ((check = check_double(rot[1])) == 0 || (ft_atod(rot[1]) < -360 || ft_atod(rot[1]) > 360))
+		return (0);
+	if ((check = check_double(rot[2])) == 0 || (ft_atod(rot[2]) < -360 || ft_atod(rot[2]) > 360))
+		return (0);
+	return (1);
+}
+
 int check_pos(char *parc)
 {
 	char **pos;
@@ -210,12 +230,11 @@ int check_pos(char *parc)
 	pos = ft_split(parc, ',');
 	if (ft_2strlen(pos) != 3)
 		return (0);
-	// ft_putstr_fd("salams\n", 1);
-	// printf("%s\n", parc);
 	if (check_double(pos[0]) == 0 || check_double(pos[1]) == 0 || check_double(pos[2]) == 0)
 		return (0);
 	return (1);
 }
+
 int check_vec_ort(char *parc)
 {
 	char **vec_ort;
@@ -269,8 +288,16 @@ int check_ambient(t_data *type, char **parc)
 
 int check_light(t_data *type, char **parc)
 {
-	if (ft_2strlen(parc) != 4)
+	if (ft_2strlen(parc) < 4)
 		return (element_miss(type, light_d));
+	else if (ft_2strlen(parc) > 4)
+	{
+		if (ft_2strlen(parc) == 5)
+		{
+			if (check_pos(parc[4]) == 0)
+				return (wrong_trans_rot(type, light_d, 1));
+		}
+	}
 	else if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, light_d));
 	else if (check_double(parc[2]) == 0 || (ft_atod(parc[2]) < 0 || ft_atod(parc[2]) > 1))
@@ -283,8 +310,14 @@ int check_light(t_data *type, char **parc)
 int check_sphere(t_data *type, char **parc)
 {
 	if (ft_2strlen(parc) < 4)
-	{
 		return (element_miss(type, sphere_d));
+	if (ft_2strlen(parc) > 4)
+	{
+		if (ft_2strlen(parc) == 5)
+		{
+			if (check_pos(parc[4]) == 0)
+				return (wrong_trans_rot(type, sphere_d, 1));
+		}
 	}
 	else if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, sphere_d));
@@ -292,24 +325,26 @@ int check_sphere(t_data *type, char **parc)
 		ft_print_cont(type, "Sphere", sphere_d, 0);
 	else if (check_rgb(parc[3]) == 0)
 		return (wrong_rgb(type, sphere_d));
-	if (ft_2strlen(parc) > 4)
-	{
-		// bdit kanmodifi bash n9ad check dyal translation
-		if (ft_2strlen(parc) == 5)
-		{
-			if (check_pos(parc[4]) == 0)
-			{
-				return (wrong_translation(type, sphere_d));
-			}
-		}
-	}
 	return (sphere_d);
 }
 
 int check_plane(t_data *type, char **parc)
 {
-	if (ft_2strlen(parc) != 4)
+	if (ft_2strlen(parc) < 4)
 		return (element_miss(type, plane_d));
+	else if (ft_2strlen(parc) > 4)
+	{
+		if (ft_2strlen(parc) == 5)
+		{
+			if (check_pos(parc[4]) == 0)
+				return (wrong_trans_rot(type, plane_d, 1));
+		}
+		else if (ft_2strlen(parc) == 6)
+		{
+			if (check_rotation(parc[5]) == 0)
+				return (wrong_trans_rot(type, plane_d, 2));
+		}
+	}
 	else if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, plane_d));
 	else if (check_vec_ort(parc[2]) == 0)
@@ -321,8 +356,21 @@ int check_plane(t_data *type, char **parc)
 
 int check_square(t_data *type, char **parc)
 {
-	if (ft_2strlen(parc) != 5)
+	if (ft_2strlen(parc) < 5)
 		return (element_miss(type, square_d));
+	else if (ft_2strlen(parc) > 5)
+	{
+		if (ft_2strlen(parc) == 6)
+		{
+			if (check_pos(parc[5]) == 0)
+				return (wrong_trans_rot(type, square_d, 1));
+		}
+		else if (ft_2strlen(parc) == 7)
+		{
+			if (check_rotation(parc[6]) == 0)
+				return (wrong_trans_rot(type, square_d, 2));
+		}
+	}
 	else if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, square_d));
 	else if (check_vec_ort(parc[2]) == 0)
@@ -336,8 +384,21 @@ int check_square(t_data *type, char **parc)
 
 int check_cylinder(t_data *type, char **parc)
 {
-	if (ft_2strlen(parc) != 6)
+	if (ft_2strlen(parc) < 6)
 		return (element_miss(type, cylinder_d));
+	else if (ft_2strlen(parc) > 6)
+	{
+		if (ft_2strlen(parc) == 7)
+		{
+			if (check_pos(parc[6]) == 0)
+				return (wrong_trans_rot(type, cylinder_d, 1));
+		}
+		else if (ft_2strlen(parc) == 8)
+		{
+			if (check_rotation(parc[7]) == 0)
+				return (wrong_trans_rot(type, cylinder_d, 2));
+		}
+	}
 	else if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, cylinder_d));
 	else if (check_vec_ort(parc[2]) == 0)
@@ -353,8 +414,16 @@ int check_cylinder(t_data *type, char **parc)
 
 int check_triangle(t_data *type, char **parc)
 {
-	if (ft_2strlen(parc) != 5)
+	if (ft_2strlen(parc) < 5)
 		return (element_miss(type, triangle_d));
+	else if (ft_2strlen(parc) > 5)
+	{
+		if (ft_2strlen(parc) == 6)
+		{
+			if (check_pos(parc[5]) == 0)
+				return (wrong_trans_rot(type, triangle_d, 1));
+		}
+	}
 	else if (check_pos(parc[1]) == 0 || check_pos(parc[2]) == 0 || check_pos(parc[3]) == 0)
 		return (wrong_pos(type, triangle_d));
 	else if (check_rgb(parc[4]) == 0)
@@ -364,8 +433,21 @@ int check_triangle(t_data *type, char **parc)
 
 int check_camera(t_data *type, char **parc)
 {
-	if (ft_2strlen(parc) != 4)
+	if (ft_2strlen(parc) < 4)
 		return (element_miss(type, camera_d));
+	else if (ft_2strlen(parc) > 4)
+	{
+		if (ft_2strlen(parc) == 5)
+		{
+			if (check_pos(parc[4]) == 0)
+				return (wrong_trans_rot(type, camera_d, 1));
+		}
+		else if (ft_2strlen(parc) == 6)
+		{
+			if (check_rotation(parc[5]) == 0)
+				return (wrong_trans_rot(type, camera_d, 2));
+		}
+	}
 	else if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, camera_d));
 	else if (check_vec_ort(parc[2]) == 0)

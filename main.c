@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:22:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/07 13:24:19 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 11:54:38 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@
 static int check_objet(int type)
 {
 	if (type == sphere_d || type == plane_d || type == square_d || type == cylinder_d || type == triangle_d)
-	{
-		if (type == plane_d)
-			printf("salam\n");
 		return (1);
-	}
 	return (0);
 }
 

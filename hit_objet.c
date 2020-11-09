@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:16:55 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/07 13:44:59 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 14:28:20 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,14 @@ void hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
 	has_inter = 0;
 	d_light = vector_dot(type->objet->light, type->objet->light);
 	i = 0;
-
-	// lenght_light = a
 	while (temporaire != NULL)
 	{
 		if (i == type->tool.index)
 			temporaire = temporaire->next;
+		// if(temporaire->t)
 		if (temporaire != NULL)
 		{
-
 			witch_object(temporaire, ombre, &has_inter);
-			i++;
 			if (has_inter > 0 && has_inter <= ombre->lenght /* has_inter * has_inter < d_light */)
 			{
 				if (index == 0)
@@ -86,13 +83,10 @@ void hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
 					type->shad.degre += 0.4;
 				}
 			}
-			// return (intersection(type) == 0) ? 0 : 1;
-			// return (intersection(type) == 0) ? 0 : 1;
+			i++;
 			temporaire = temporaire->next;
 		}
 	}
-	// type->tool.shad = 0;
-	// return (0);
 }
 
 void hit_objet(t_data *type, double *t1)
