@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:16:55 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/09 14:28:20 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/09 20:23:15 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,46 +44,69 @@ void witch_object(t_objet *objet, t_ray *ray, double *has_inter)
 		*has_inter = hit_triangle(objet, ray);
 }
 
-static int intersection(t_data *type)
+double object_sp_cy(t_data *type, t_objet *tmp, t_ray *ombre)
 {
-	// if (type->tool.shad == 0)
-	// return (0);
-	return (1);
-}
-
-void hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
-{
-	int i;
-	double d_light;
-	double has_inter;
 	t_objet *temporaire;
-
-	double lenght_light;
-	double lenght_t;
-	int index = 0;
+	double save;
 
 	temporaire = tmp;
+	if (type->tool.type == sphere_d || type->tool.type == cylinder_d)
+	{
+		while (temporaire->i != type->tool.index)
+			temporaire = temporaire->next;
+		if (type->tool.type == sphere_d)
+			save = hit_sphere(temporaire, ombre);
+		if (type->tool.type == cylinder_d)
+			save = hit_cylinder(temporaire, ombre);
+		temporaire = tmp;
+		return (save);
+	}
+	return (0);
+}
+static void check_tr_fl(t_data *type, double save, int *index)
+{
+	if (save == 0)
+	{
+		if (*index == 0)
+		{
+			*index = 1;
+			type->shad.intersect = 1;
+			type->shad.degre += 0.5;
+		}
+	}
+}
+void hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
+{
+	double has_inter;
+	t_objet *temporaire;
+	int index;
+	double save;
+
+	temporaire = tmp;
+	index = 0;
 	has_inter = 0;
-	d_light = vector_dot(type->objet->light, type->objet->light);
-	i = 0;
+
+	save = object_sp_cy(type, tmp, ombre);
 	while (temporaire != NULL)
 	{
-		if (i == type->tool.index)
+		if (temporaire->i == type->tool.index)
 			temporaire = temporaire->next;
-		// if(temporaire->t)
 		if (temporaire != NULL)
 		{
 			witch_object(temporaire, ombre, &has_inter);
-			if (has_inter > 0 && has_inter <= ombre->lenght /* has_inter * has_inter < d_light */)
+			if (has_inter > 0 && has_inter <= ombre->lenght)
 			{
-				if (index == 0)
-				{
-					index = 1;
-					type->shad.intersect = 1;
-					type->shad.degre += 0.4;
-				}
+				// if (save == 0)
+				// {
+				// 	if (index == 0)
+				// 	{
+				// 		index = 1;
+				// 		type->shad.intersect = 1;
+				// 		type->shad.degre += 0.5;
+				// 	}
+				// }
+				check_tr_fl(type, save, &index);
 			}
-			i++;
 			temporaire = temporaire->next;
 		}
 	}
