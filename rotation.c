@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 17:15:50 by thor              #+#    #+#             */
-/*   Updated: 2020/11/02 10:41:17 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/10 10:33:28 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void rotation_x(t_data *type)
 {
     double orient;
 
-    orient = -PI/11;
-    double y; 
+    orient = -PI / 11;
+    double y;
     double z;
 
     if (type->key.key == ahead)
@@ -35,7 +35,6 @@ void rotation_x(t_data *type)
             z = type->clone.camera->ort_vec.z;
             type->clone.camera->ort_vec.y = y * cos(orient) - z * sin(orient);
             type->clone.camera->ort_vec.z = y * sin(orient) + z * cos(orient);
-
         }
         else if (check_orient(type->clone.objet->type))
         {
@@ -50,13 +49,12 @@ void rotation_x(t_data *type)
     if (type->key.key == back)
     {
         orient *= -1;
-       if (type->key.type == camera_d)
+        if (type->key.type == camera_d)
         {
             y = type->clone.camera->ort_vec.y;
             z = type->clone.camera->ort_vec.z;
             type->clone.camera->ort_vec.y = y * cos(orient) - z * sin(orient);
             type->clone.camera->ort_vec.z = y * sin(orient) + z * cos(orient);
-
         }
         else if (check_orient(type->clone.objet->type))
         {
@@ -72,8 +70,8 @@ void rotation_y(t_data *type)
 {
     double orient;
 
-    orient = -PI/11;
-    double x; 
+    orient = -PI / 11;
+    double x;
     double z;
 
     if (type->key.key == up)
@@ -100,13 +98,12 @@ void rotation_y(t_data *type)
     if (type->key.key == down)
     {
         orient *= -1;
-       if (type->key.type == camera_d)
+        if (type->key.type == camera_d)
         {
             x = type->clone.camera->ort_vec.x;
             z = type->clone.camera->ort_vec.z;
-           type->clone.camera->ort_vec.x = z * sin(orient) + x * cos(orient);
+            type->clone.camera->ort_vec.x = z * sin(orient) + x * cos(orient);
             type->clone.camera->ort_vec.z = z * cos(orient) - x * sin(orient);
-
         }
         else if (check_orient(type->clone.objet->type))
         {
@@ -122,8 +119,8 @@ void rotation_z(t_data *type)
 {
     double orient;
 
-    orient = -PI/70;
-    double x; 
+    orient = -PI / 11;
+    double x;
     double y;
 
     if (type->key.key == right)
@@ -134,7 +131,6 @@ void rotation_z(t_data *type)
             y = type->clone.camera->ort_vec.y;
             type->clone.camera->ort_vec.x = x * cos(orient) - y * sin(orient);
             type->clone.camera->ort_vec.y = x * sin(orient) + y * cos(orient);
-
         }
         else if (check_orient(type->clone.objet->type))
         {
@@ -148,13 +144,12 @@ void rotation_z(t_data *type)
     if (type->key.key == left)
     {
         orient *= -1;
-       if (type->key.type == camera_d)
+        if (type->key.type == camera_d)
         {
             x = type->clone.camera->ort_vec.x;
             y = type->clone.camera->ort_vec.y;
             type->clone.camera->ort_vec.x = x * cos(orient) - y * sin(orient);
             type->clone.camera->ort_vec.y = x * sin(orient) + y * cos(orient);
-
         }
         else if (check_orient(type->clone.objet->type))
         {
@@ -170,12 +165,12 @@ void rotation_z(t_data *type)
 void rotation(t_data *type)
 {
 
-        if (type->key.rot_xyz == 1 && (type->key.key == ahead || type->key.key == back))
-            rotation_x(type);
-        if (type->key.rot_xyz == 2 && (type->key.key == up || type->key.key == down))
-            rotation_y(type);
-        if (type->key.rot_xyz == 3 && (type->key.key == right || type->key.key == left))
-        {
-            rotation_z(type);
-        }
+    if (type->key.rot_xyz == 1 && (type->key.key == ahead || type->key.key == back))
+        rotation_x(type);
+    if (type->key.rot_xyz == 2 && (type->key.key == up || type->key.key == down))
+        rotation_y(type);
+    if (type->key.rot_xyz == 3 && (type->key.key == right || type->key.key == left))
+    {
+        rotation_z(type);
+    }
 }
