@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:41:19 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/09 16:56:16 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/11 10:30:31 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,9 @@ t_colour coleur(t_data *type)
 	tmp = type->objet;
 	black = make_number(black, 0);
 	hit_objet(type, &t1);
-	// type->tool.shad = 0;
 	if (type->tool.intersect == 1)
 	{
 		shadow1 = shadows(type, tmp);
-		// if (shadow1.r < 1)
-
 		phong_s = phong(type, shadow1);
 		type->objet = tmp;
 		return (phong_s);

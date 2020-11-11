@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:22:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/09 11:54:38 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/11 13:39:39 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,10 @@ int key_press(int keycode, t_data *type)
 			type->key.renitialise = 1;
 			check_xyz(type, keycode);
 			if (type->key.rot_xyz != 0 || check_direction(type, keycode))
+			{
 				rotation(type);
-			minirt(type);
+				minirt(type);
+			}
 		}
 	}
 	if (keycode == 0 || keycode == 2)
@@ -154,7 +156,6 @@ int key_press(int keycode, t_data *type)
 	}
 	if (keycode == 53)
 		exit(0);
-	// minirt(type);
 	mlx_put_image_to_window(type->mlx.mlx_ptr, type->mlx.win_ptr, type->mlx.img_ptr, 0, 0);
 
 	return (0);
@@ -193,7 +194,7 @@ int create_bmp(t_data *type)
 	write(fd, &plane_nbr, 2);
 	write(fd, &type->mlx.bpp, 2);
 	o_count = 0;
-	while (o_count < 28)
+	while (o_count < 24)
 	{
 		write(fd, "\0", 1);
 		o_count++;
@@ -230,7 +231,7 @@ int create_bmp(t_data *type)
 	return (1);
 }
 
-void ft_mlx(t_data *type)
+void ft_mlx(t_data *type, int wich)
 {
 	int bpp;
 	int size_line;
@@ -244,15 +245,19 @@ void ft_mlx(t_data *type)
 	//     return (NULL);
 	// if(!(type->mlx.win_ptr = mlx_new_window(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height, "samir")))
 	//     return (NULL);
-	type->mlx.mlx_ptr = mlx_init();
-	type->mlx.img_ptr = mlx_new_image(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height);
-	type->mlx.img_data = (int *)mlx_get_data_addr(type->mlx.img_ptr, &type->mlx.bpp, &type->mlx.size_line, &endian);
-
-	minirt(type);
-	type->mlx.win_ptr = mlx_new_window(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height, "samir");
-	mlx_put_image_to_window(type->mlx.mlx_ptr, type->mlx.win_ptr, type->mlx.img_ptr, 0, 0);
-	mlx_hook(type->mlx.win_ptr, 2, 0, key_press, type);
-	// create_bmp(type);
+	if (wich == 1)
+	{
+		type->mlx.mlx_ptr = mlx_init();
+		type->mlx.img_ptr = mlx_new_image(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height);
+		type->mlx.img_data = (int *)mlx_get_data_addr(type->mlx.img_ptr, &type->mlx.bpp, &type->mlx.size_line, &endian);
+	}
+	else if (wich == 2)
+	{
+		type->mlx.win_ptr = mlx_new_window(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height, "miniRT");
+		mlx_put_image_to_window(type->mlx.mlx_ptr, type->mlx.win_ptr, type->mlx.img_ptr, 0, 0);
+		mlx_hook(type->mlx.win_ptr, 2, 0, key_press, type);
+		mlx_loop(type->mlx.mlx_ptr);
+	}
 }
 
 void clone(t_data *type)
@@ -267,10 +272,13 @@ int main(int ac, char **av)
 	t_data type;
 
 	ft_bzero(&type, sizeof(t_data));
-	parcing(&type, av);
+	parcing(&type, av, ac);
 	clone(&type);
-	ft_mlx(&type);
-
-	mlx_loop(type.mlx.mlx_ptr);
+	ft_mlx(&type, 1);
+	minirt(&type);
+	if (type.tool.bmp == 1)
+		create_bmp(&type);
+	else
+		ft_mlx(&type, 2);
 	return (0);
 }

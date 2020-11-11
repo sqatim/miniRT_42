@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:23:04 by thor              #+#    #+#             */
-/*   Updated: 2020/11/09 20:45:06 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/11 12:12:38 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void read_line(t_data *type, int fd)
 		exit(1);
 }
 
-void parcing(t_data *type, char **av)
+void parcing(t_data *type, char **av, int ac)
 {
 	int fd;
 	char *line;
@@ -121,21 +121,41 @@ void parcing(t_data *type, char **av)
 	int r;
 
 	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
+	if (ac == 2 || ac == 3)
 	{
-		ft_putstr_fd("File not found", 1);
-		exit(1);
+		if (ac == 3)
+		{
+			if (ft_strlen(av[2]) != 5 || (!(ft_strnstr(av[2], "-save", 5))))
+			{
+				ft_putstr_fd("check argument 2", 1);
+				exit(1);
+			}
+			type->tool.bmp = 1;
+		}
+		if (fd == -1)
+		{
+			ft_putstr_fd("File not found", 1);
+			exit(1);
+		}
+		if (ft_str_in_str(av[1], ".rt"))
+			read_line(type, fd);
+		else
+		{
+			ft_putstr_fd("File is not format \".rt\"", 1);
+			exit(1);
+		}
+		if (type->parcing.r == 0)
+		{
+			ft_putstr_fd("Resolution not found\n", 1);
+			free_exit(type, 1);
+		}
 	}
-	if (ft_str_in_str(av[1], ".rt"))
-		read_line(type, fd);
 	else
 	{
-		ft_putstr_fd("File is not format \".rt\"", 1);
+		if (ac == 1)
+			ft_putstr_fd("Argument missing\n", 1);
+		else
+			ft_putstr_fd("Argument out limit\n", 1);
 		exit(1);
-	}
-	if (type->parcing.r == 0)
-	{
-		ft_putstr_fd("Resolution not found\n", 1);
-		free_exit(type, 1);
 	}
 }

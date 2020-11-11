@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/09 12:35:08 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/11 12:14:26 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_tools
     double dif;
     double dahs;
     int done;
+    int bmp;
 } t_tools;
 
 typedef struct s_parcing

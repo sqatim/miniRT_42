@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:52:14 by thor              #+#    #+#             */
-/*   Updated: 2020/11/10 11:07:53 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/11 13:28:51 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void camera_setting(t_data *type)
 
     vup = make_pos(0, 1, 0);
     n = vector_scal(-1, type->camera->ort_vec);
-    // n = vector_sub(type->camera->pos, type->camera->ort_vec);
     n = unit_vector(n);
     u = vector_cross(vup, n);
     u = unit_vector(u);
