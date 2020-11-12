@@ -6,30 +6,37 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 02:19:52 by thor              #+#    #+#             */
-/*   Updated: 2020/11/09 18:12:20 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/12 14:05:47 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_colour shadows(t_data *type, t_objet *tmp)
+static t_colour shadow_intersect(t_data *type)
 {
     t_colour zero;
+    if (type->shad.degre > 1)
+        type->shad.degre = 1;
+    zero.r = 1 - type->shad.degre;
+    zero.g = 1 - type->shad.degre;
+    zero.b = 1 - type->shad.degre;
+
+    return (zero);
+}
+
+t_colour shadows(t_data *type, t_objet *tmp)
+{
     t_colour un;
     t_ray ombre;
     double has_intersect;
     t_light *light;
+
     type->shad.intersect = 0;
-    // type->tool.shad = 0;
     light = type->light;
     type->shad.degre = 0;
-
-    zero = make_number(zero, 0.0);
     un = make_number(un, 1.0);
-
-    ombre.origin.x = type->objet->point.x + 0.001 * type->objet->normal.x;
-    ombre.origin.y = type->objet->point.y + 0.001 * type->objet->normal.y;
-    ombre.origin.z = type->objet->point.z + 0.001 * type->objet->normal.z;
+    ombre.origin = vector_scal(0.001, type->objet->normal);
+    ombre.origin = vector_add(type->objet->point, ombre.origin);
     while (type->light != NULL)
     {
         ombre.direction = vector_sub(type->light->pos, type->objet->point);
@@ -40,14 +47,6 @@ t_colour shadows(t_data *type, t_objet *tmp)
     }
     type->light = light;
     if (type->shad.intersect == 1)
-    {
-        if (type->shad.degre > 1)
-            type->shad.degre = 1;
-        zero.r = 1 - type->shad.degre;
-        zero.g = 1 - type->shad.degre;
-        zero.b = 1 - type->shad.degre;
-
-        return (zero);
-    }
+        return (shadow_intersect(type));
     return (un);
 }

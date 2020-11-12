@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 22:31:32 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/07 10:40:32 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/12 12:01:47 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,33 @@ static t_colour ft_diffuse(t_data *type)
 	return (diffuse);
 }
 
+void static cofficient(t_data *type, double *ks, double *shininess)
+{
+	if (type->objet->type == plane_d || type->objet->type == triangle_d || type->objet->type == square_d)
+	{
+		*shininess = 1;
+		*ks = 0.2;
+	}
+	else if (type->objet->type == cylinder_d)
+	{
+		*shininess = 2;
+		*ks = 0.2;
+	}
+	else if (type->objet->type == sphere_d)
+	{
+		*shininess = 50;
+		*ks = 0.5;
+	}
+}
 t_colour ft_specular(t_data *type)
 {
 	double dot;
 	t_vector scal;
 	t_colour specular;
 	double shininess;
+	double ks;
 
-	shininess = 2000;
+	cofficient(type, &ks, &shininess);
 	dot = 2 * vector_dot(type->objet->normal, type->objet->light);
 	scal = vector_scal(dot, type->objet->normal);
 	type->objet->reflection = vector_sub(scal, type->objet->light);
@@ -59,9 +78,9 @@ t_colour ft_specular(t_data *type)
 	type->objet->view = unit_vector(type->objet->view);
 	dot = vector_dot(type->objet->reflection, type->objet->view);
 	dot = max(0, dot);
-	specular.r = type->light->rgb_light.r * (pow(dot, shininess)) * 0.5;
-	specular.g = type->light->rgb_light.g * (pow(dot, shininess)) * 0.5;
-	specular.b = type->light->rgb_light.b * (pow(dot, shininess)) * 0.5;
+	specular.r = type->light->rgb_light.r * (pow(dot, shininess)) * ks;
+	specular.g = type->light->rgb_light.g * (pow(dot, shininess)) * ks;
+	specular.b = type->light->rgb_light.b * (pow(dot, shininess)) * ks;
 	return (specular);
 }
 

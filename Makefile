@@ -6,7 +6,7 @@
 #    By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/30 04:53:16 by mac               #+#    #+#              #
-#    Updated: 2020/11/05 13:36:23 by sqatim           ###   ########.fr        #
+#    Updated: 2020/11/12 09:02:24 by sqatim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS = main.c\
 	rotation.c\
 	ft_space_split.c\
 	hit_function.c\
+	bmp_function.c\
 	$(GNL)
 
 OBJ = $(SRCS:.c=.o)	   

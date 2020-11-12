@@ -13,6 +13,7 @@
 #include <fcntl.h>
 
 #include "structures.h"
+#include "bmp_function.h"
 #include "allocation.h"
 #include "tool.h"
 #include "parcing_object.h"

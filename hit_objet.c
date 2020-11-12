@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:16:55 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/09 20:35:41 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/12 11:05:43 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ double object_sp_cy(t_data *type, t_objet *tmp, t_ray *ombre)
 	}
 	return (0);
 }
+
 static void check_tr_fl(t_data *type, double save, int *index)
 {
 	if (save == 0)
@@ -75,6 +76,7 @@ static void check_tr_fl(t_data *type, double save, int *index)
 		}
 	}
 }
+
 void hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
 {
 	double has_inter;
