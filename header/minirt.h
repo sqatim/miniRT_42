@@ -27,6 +27,7 @@
 #include "key_hook.h"
 #include "translation.h"
 #include "rotation.h"
+#include "rotation_bonus.h"
 #include "calcul_p_n.h"
 #include "phong.h"
 #include "colour.h"

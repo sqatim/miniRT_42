@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/11 12:14:26 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:49:20 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct s_camera
     double fov;
     t_vector pixel;
     t_vector r_dir;
+    t_vector translation;
+    t_vector rotation;
     struct s_camera *previous;
     struct s_camera *next;
 } t_camera;
@@ -69,6 +71,21 @@ typedef struct s_colour
     double g;
     double b;
 } t_colour;
+
+typedef struct s_info
+{
+    char **pos;
+    char **pos1;
+    char **pos2;
+    char **colour;
+    char **vector;
+    double radius;
+    double height;
+    char **translation;
+    char **rotation;
+    double fov;
+    double int_light;
+} t_info;
 
 typedef struct s_objet
 {
@@ -100,6 +117,7 @@ typedef struct s_shadow
     double intersect;
 
 } t_shadow;
+
 typedef struct s_tools
 {
     int index;
@@ -109,6 +127,7 @@ typedef struct s_tools
     double dahs;
     int done;
     int bmp;
+    int tran_rot;
 } t_tools;
 
 typedef struct s_parcing
@@ -132,6 +151,7 @@ typedef struct s_light
     t_vector pos;
     t_colour rgb_light;
     double int_light;
+    t_vector translation;
     struct s_light *previous;
     struct s_light *next;
 } t_light;

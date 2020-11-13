@@ -5,96 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/02 17:15:50 by thor              #+#    #+#             */
-/*   Updated: 2020/11/12 13:50:19 by sqatim           ###   ########.fr       */
+/*   Created: 2020/11/13 12:22:12 by sqatim            #+#    #+#             */
+/*   Updated: 2020/11/13 14:20:34 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int check_orient(int type)
+t_vector convert_to_radian(t_vector angle)
 {
-    if (type == sphere_d || type == triangle_d)
-        return (0);
-    else
-        return (1);
+    angle.x = angle.x * (PI / 180);
+    angle.y = angle.y * (PI / 180);
+    angle.z = angle.z * (PI / 180);
+    return (angle);
 }
-
-void rotation_x(t_data *type)
+t_vector rot_vector(t_vector vect_ort, t_vector angle)
 {
     t_vector vect;
-    double angle_rot;
 
-    angle_rot = -PI / 18;
-    if (type->key.key == back)
-        angle_rot *= -1;
-    if (type->key.type == camera_d)
-        vect = type->clone.camera->ort_vec;
-    else if (check_orient(type->clone.objet->type))
-        vect = type->clone.objet->v;
-    if (type->key.key == ahead || type->key.key == back)
-    {
-        vect.y = vect.y * cos(angle_rot) - vect.z * sin(angle_rot);
-        vect.z = vect.y * sin(angle_rot) + vect.z * cos(angle_rot);
-    }
-    if (type->key.type == camera_d)
-        type->clone.camera->ort_vec = unit_vector(vect);
-    else if (check_orient(type->clone.objet->type))
-        type->clone.objet->v = unit_vector(vect);
-}
-
-void rotation_y(t_data *type)
-{
-    t_vector vect;
-    double angle_rot;
-
-    angle_rot = -PI / 18;
-    if (type->key.key == down)
-        angle_rot *= -1;
-    if (type->key.type == camera_d)
-        vect = type->clone.camera->ort_vec;
-    else if (check_orient(type->clone.objet->type))
-        vect = type->clone.objet->v;
-    if (type->key.key == up || type->key.key == down)
-    {
-        vect.x = vect.z * sin(angle_rot) + vect.x * cos(angle_rot);
-        vect.z = vect.z * cos(angle_rot) - vect.x * sin(angle_rot);
-    }
-    if (type->key.type == camera_d)
-        type->clone.camera->ort_vec = unit_vector(vect);
-    else if (check_orient(type->clone.objet->type))
-        type->clone.objet->v = unit_vector(vect);
-}
-
-void rotation_z(t_data *type)
-{
-    t_vector vect;
-    double angle_rot;
-
-    angle_rot = -PI / 18;
-    if (type->key.key == left)
-        angle_rot *= -1;
-    if (type->key.type == camera_d)
-        vect = type->clone.camera->ort_vec;
-    else if (check_orient(type->clone.objet->type))
-        vect = type->clone.objet->v;
-    if (type->key.key == right || type->key.key == left)
-    {
-        vect.x = vect.x * cos(angle_rot) - vect.y * sin(angle_rot);
-        vect.y = vect.x * sin(angle_rot) + vect.y * cos(angle_rot);
-    }
-    if (type->key.type == camera_d)
-        type->clone.camera->ort_vec = unit_vector(vect);
-    else if (check_orient(type->clone.objet->type))
-        type->clone.objet->v = unit_vector(vect);
-}
-void rotation(t_data *type)
-{
-
-    if (type->key.rot_xyz == 1 && (type->key.key == ahead || type->key.key == back))
-        rotation_x(type);
-    if (type->key.rot_xyz == 2 && (type->key.key == up || type->key.key == down))
-        rotation_y(type);
-    if (type->key.rot_xyz == 3 && (type->key.key == right || type->key.key == left))
-        rotation_z(type);
+    vect = vect_ort;
+    angle = convert_to_radian(angle);
+    vect_ort.y = vect.y * cos(angle.x) - vect.z * sin(angle.x);
+    vect_ort.z = vect.y * sin(angle.x) + vect.z * cos(angle.x);
+    vect = vect_ort;
+    vect_ort.z = vect.z * cos(angle.y) - vect.x * sin(angle.y);
+    vect_ort.x = vect.z * sin(angle.y) + vect.x * cos(angle.y);
+    vect = vect_ort;
+    vect_ort.x = vect.x * cos(angle.z) - vect.y * sin(angle.z);
+    vect_ort.y = vect.x * sin(angle.z) + vect.y * cos(angle.z);
+    vect_ort = unit_vector(vect_ort);
+    return (vect_ort);
 }

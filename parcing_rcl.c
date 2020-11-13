@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:36:24 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/03 12:28:50 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/13 11:50:54 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,30 @@ void parc_amb(t_data *type, char *line)
 void parc_camera(t_data *type, char *line)
 {
     char **camera;
-    char **pos;
-    char **ort_vec;
-    double fov;
+    t_info object;
 
     camera = ft_space_split(line);
-    pos = ft_split(camera[1], ',');
-    ort_vec = ft_split(camera[2], ',');
-    fov = ft_atod(camera[3]);
-
-    type->camera = add_camera(type, pos, ort_vec, fov);
+    object.pos = ft_split(camera[1], ',');
+    object.vector = ft_split(camera[2], ',');
+    object.fov = ft_atod(camera[3]);
+    if (type->tool.tran_rot > 0)
+    {
+        object.translation = ft_split(camera[4], ',');
+        if (type->tool.tran_rot == 2)
+            object.rotation = ft_split(camera[5], ',');
+    }
+    type->camera = add_camera(type, object);
 }
 
 void parc_light(t_data *type, char *line)
 {
     char **light;
-    char **rgb;
-    char **pos;
-    double int_light;
+    t_info object;
 
     light = ft_space_split(line);
-    pos = ft_split(light[1], ',');
-    rgb = ft_split(light[3], ',');
-    int_light = ft_atod(light[2]);
+    object.pos = ft_split(light[1], ',');
+    object.colour = ft_split(light[3], ',');
+    object.int_light = ft_atod(light[2]);
 
-    type->light = add_light(type, pos, int_light, rgb);
+    type->light = add_light(type, object);
 }

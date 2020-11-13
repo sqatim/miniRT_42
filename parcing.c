@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:23:04 by thor              #+#    #+#             */
-/*   Updated: 2020/11/11 12:12:38 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/13 10:57:47 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void parcing_check(t_data *type, char *line)
 	parc = ft_space_split(line);
 	type->parcing.check = -1;
 	type->parcing.indice = 0;
+	type->tool.tran_rot = 0;
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	if (ft_isalpha(line[i]))

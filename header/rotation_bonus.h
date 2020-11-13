@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotation.h                                         :+:      :+:    :+:   */
+/*   rotation_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/02 17:31:19 by thor              #+#    #+#             */
-/*   Updated: 2020/11/13 12:36:35 by sqatim           ###   ########.fr       */
+/*   Created: 2020/11/13 12:28:01 by sqatim            #+#    #+#             */
+/*   Updated: 2020/11/13 12:29:04 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROTATION_H
-#define ROTATION_H
+#ifndef ROTATION_BONUS_H
+#define ROTATION_BONUS_H
 
 #include "minirt.h"
 
-t_vector rot_vector(t_vector vect_ort, t_vector angle);
+void rotation_r_l(t_data *type);
+void rotation_u_d(t_data *type);
+void rotation_a_b(t_data *type);
+void rotation(t_data *type);
 
 #endif

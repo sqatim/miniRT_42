@@ -1,0 +1,50 @@
+   // if (type->tool.tran_rot > 0)
+    // {
+    //     new_cylinder->translation = x_y_z(object.translation[0], object.translation[1], object.translation[2]);
+    //     new_cylinder->pos = vector_add(new_cylinder->pos, new_cylinder->translation);
+    //     if (type->tool.tran_rot == 2)
+    //     {
+    //         new_cylinder->rotation = x_y_z(object.rotation[0], object.rotation[1], object.rotation[2]);
+    //         new_cylinder->v = rot_vector(new_cylinder->v, new_cylinder->rotation);
+    //     }
+    // }
+    // extr_cylinder(new_cylinder, cylinder);
+
+
+        if (type->tool.tran_rot > 0)
+    {
+        new_triangle->translation = x_y_z(object.translation[0], object.translation[1], object.translation[2]);
+        new_triangle->pos = vector_add(new_triangle->pos, new_triangle->translation);
+    }
+
+
+        if (type->tool.tran_rot > 0)
+    {
+        new_square->translation = x_y_z(object.translation[0], object.translation[1], object.translation[2]);
+        new_square->pos = vector_add(new_square->pos, new_square->translation);
+        if (type->tool.tran_rot == 2)
+        {
+            new_square->rotation = x_y_z(object.rotation[0], object.rotation[1], object.rotation[2]);
+            new_square->v = rot_vector(new_square->v, new_square->rotation);
+            new_square->v = unit_vector(new_square->v);
+        }
+    }
+
+
+       if (type->tool.tran_rot > 0)
+    {
+        new_plane->translation = x_y_z(object.translation[0], object.translation[1], object.translation[2]);
+        new_plane->pos = vector_add(new_plane->pos, new_plane->translation);
+        if (type->tool.tran_rot == 2)
+        {
+            new_plane->rotation = x_y_z(object.rotation[0], object.rotation[1], object.rotation[2]);
+            new_plane->v = rot_vector(new_plane->v, new_plane->rotation);
+        }
+    }
+
+
+      // if (type->tool.tran_rot > 0)
+    // {
+    //     new_sphere->translation = x_y_z(object.translation[0], object.translation[1], object.translation[2]);
+    //     new_sphere->pos = vector_add(new_sphere->pos, new_sphere->translation);
+    // }

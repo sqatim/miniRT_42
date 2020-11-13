@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 00:59:19 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/12 14:40:24 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/13 14:41:39 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,14 +94,22 @@ t_vector x_y_z(char *x, char *y, char *z)
 
 int free_exit(t_data *type, int wich)
 {
+    t_objet *tmp;
     if (type->objet != NULL)
     {
+        tmp = type->objet;
         while (type->objet != NULL)
         {
+            while (type->objet != NULL)
+            {
+                tmp->next = type->objet->next;
+            }
             free(type->objet);
-            type->objet = type->objet->next;
+            type->objet = NULL;
         }
+        type->objet = tmp;
     }
+    // ft_putstr_fd("zamlaaaa\n", 1);
     if (type->camera != NULL)
     {
         while (type->camera != NULL)
