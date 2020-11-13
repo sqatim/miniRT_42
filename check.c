@@ -29,6 +29,8 @@ void ft_print(t_data *type, char *name, int number)
 		ft_putstr_fd(" : an error in translation\n", 1);
 	else if (number == 6)
 		ft_putstr_fd(" : an error in rotation\n", 1);
+	else if (number == 7)
+		ft_putstr_fd(" : out of limit of element\n", 1);
 }
 
 void ft_print_cont(t_data *type, char *name, int object, int error)
@@ -50,26 +52,26 @@ void ft_print_cont(t_data *type, char *name, int object, int error)
 		ft_putstr_fd(" : an error in fov\n", 1);
 	free_exit(type, 1);
 }
-int element_miss(t_data *type, int object)
+int miss_or_out(t_data *type, int object, int wich)
 {
 	if (object == resolution_d)
-		ft_print(type, "Resolution", 1);
+		ft_print(type, "Resolution", wich);
 	else if (object == ambient_d)
-		ft_print(type, "Ambient", 1);
+		ft_print(type, "Ambient", wich);
 	else if (object == light_d)
-		ft_print(type, "Light", 1);
+		ft_print(type, "Light", wich);
 	else if (object == camera_d)
-		ft_print(type, "Camera", 1);
+		ft_print(type, "Camera", wich);
 	else if (object == sphere_d)
-		ft_print(type, "Sphere", 1);
+		ft_print(type, "Sphere", wich);
 	else if (object == plane_d)
-		ft_print(type, "Plane", 1);
+		ft_print(type, "Plane", wich);
 	else if (object == square_d)
-		ft_print(type, "Square", 1);
+		ft_print(type, "Square", wich);
 	else if (object == cylinder_d)
-		ft_print(type, "Cylinder", 1);
+		ft_print(type, "Cylinder", wich);
 	else if (object == triangle_d)
-		ft_print(type, "Triangle", 1);
+		ft_print(type, "Triangle", wich);
 	return (free_exit(type, 1));
 }
 
@@ -256,9 +258,11 @@ int check_resolution(t_data *type, char **parc)
 	int i;
 
 	i = 0;
-	if (ft_2strlen(parc) != 3)
-		return (element_miss(type, resolution_d));
-	else if (check_numb(parc[1]) == 0 || check_numb(parc[2]) == 0 || ft_atoi(parc[1]) == 0 || ft_atoi(parc[2]) == 0)
+	if (ft_2strlen(parc) < 3)
+		return (miss_or_out(type, resolution_d, 1));
+	else if (ft_2strlen(parc) > 3)
+		return (miss_or_out(type, resolution_d, 7));
+	if (check_numb(parc[1]) == 0 || check_numb(parc[2]) == 0 || ft_atoi(parc[1]) == 0 || ft_atoi(parc[2]) == 0)
 	{
 		if (check_numb(parc[1]) == 0 || ft_atoi(parc[1]) == 0)
 			ft_print_cont(type, "Resolution", resolution_d, 1);
@@ -275,9 +279,11 @@ int check_resolution(t_data *type, char **parc)
 
 int check_ambient(t_data *type, char **parc)
 {
-	if (ft_2strlen(parc) != 3)
-		return (element_miss(type, ambient_d));
-	else if (check_double(parc[1]) == 0 || (ft_atod(parc[1]) < 0 || ft_atod(parc[1]) > 1))
+	if (ft_2strlen(parc) < 3)
+		return (miss_or_out(type, ambient_d, 1));
+	else if (ft_2strlen(parc) > 3)
+		return (miss_or_out(type, ambient_d, 7));
+	if (check_double(parc[1]) == 0 || (ft_atod(parc[1]) < 0 || ft_atod(parc[1]) > 1))
 		ft_print_cont(type, "Ambient", ambient_d, 0);
 	else if (check_rgb(parc[2]) == 0)
 		return (wrong_rgb(type, ambient_d));
@@ -289,7 +295,7 @@ int check_ambient(t_data *type, char **parc)
 int check_light(t_data *type, char **parc)
 {
 	if (ft_2strlen(parc) < 4)
-		return (element_miss(type, light_d));
+		return (miss_or_out(type, light_d, 1));
 	else if (ft_2strlen(parc) > 4)
 	{
 		if (ft_2strlen(parc) == 5)
@@ -298,8 +304,10 @@ int check_light(t_data *type, char **parc)
 				return (wrong_trans_rot(type, light_d, 1));
 			type->tool.tran_rot = 1;
 		}
+		else if (ft_2strlen(parc) > 5)
+			return (miss_or_out(type, light_d, 7));
 	}
-	else if (check_pos(parc[1]) == 0)
+	if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, light_d));
 	else if (check_double(parc[2]) == 0 || (ft_atod(parc[2]) < 0 || ft_atod(parc[2]) > 1))
 		ft_print_cont(type, "Light", light_d, 0);
@@ -311,17 +319,19 @@ int check_light(t_data *type, char **parc)
 int check_sphere(t_data *type, char **parc)
 {
 	if (ft_2strlen(parc) < 4)
-		return (element_miss(type, sphere_d));
+		return (miss_or_out(type, sphere_d, 1));
 	if (ft_2strlen(parc) > 4)
 	{
 		if (ft_2strlen(parc) == 5)
 		{
 			if (check_pos(parc[4]) == 0)
 				return (wrong_trans_rot(type, sphere_d, 1));
+			type->tool.tran_rot = 1;
 		}
-		type->tool.tran_rot = 1;
+		else if (ft_2strlen(parc) > 5)
+			return (miss_or_out(type, sphere_d, 7));
 	}
-	else if (check_pos(parc[1]) == 0)
+	if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, sphere_d));
 	else if (check_double(parc[2]) == 0 || ft_atod(parc[2]) < 0)
 		ft_print_cont(type, "Sphere", sphere_d, 0);
@@ -333,7 +343,7 @@ int check_sphere(t_data *type, char **parc)
 int check_plane(t_data *type, char **parc)
 {
 	if (ft_2strlen(parc) < 4)
-		return (element_miss(type, plane_d));
+		return (miss_or_out(type, plane_d, 1));
 	else if (ft_2strlen(parc) > 4)
 	{
 		if (ft_2strlen(parc) == 5)
@@ -348,8 +358,10 @@ int check_plane(t_data *type, char **parc)
 				return (wrong_trans_rot(type, plane_d, 2));
 			type->tool.tran_rot = 2;
 		}
+		else if (ft_2strlen(parc) > 6)
+			return (miss_or_out(type, plane_d, 7));
 	}
-	else if (check_pos(parc[1]) == 0)
+	if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, plane_d));
 	else if (check_vec_ort(parc[2]) == 0)
 		return (wrong_vec_ort(type, plane_d));
@@ -361,7 +373,7 @@ int check_plane(t_data *type, char **parc)
 int check_square(t_data *type, char **parc)
 {
 	if (ft_2strlen(parc) < 5)
-		return (element_miss(type, square_d));
+		return (miss_or_out(type, square_d, 1));
 	else if (ft_2strlen(parc) > 5)
 	{
 		if (ft_2strlen(parc) == 6)
@@ -376,8 +388,10 @@ int check_square(t_data *type, char **parc)
 				return (wrong_trans_rot(type, square_d, 2));
 			type->tool.tran_rot = 2;
 		}
+		else if (ft_2strlen(parc) > 7)
+			return (miss_or_out(type, square_d, 7));
 	}
-	else if (check_pos(parc[1]) == 0)
+	if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, square_d));
 	else if (check_vec_ort(parc[2]) == 0)
 		return (wrong_vec_ort(type, square_d));
@@ -391,7 +405,7 @@ int check_square(t_data *type, char **parc)
 int check_cylinder(t_data *type, char **parc)
 {
 	if (ft_2strlen(parc) < 6)
-		return (element_miss(type, cylinder_d));
+		return (miss_or_out(type, cylinder_d, 1));
 	else if (ft_2strlen(parc) > 6)
 	{
 		if (ft_2strlen(parc) == 7)
@@ -406,8 +420,10 @@ int check_cylinder(t_data *type, char **parc)
 				return (wrong_trans_rot(type, cylinder_d, 2));
 			type->tool.tran_rot = 2;
 		}
+		else if (ft_2strlen(parc) > 8)
+			return (miss_or_out(type, cylinder_d, 7));
 	}
-	else if (check_pos(parc[1]) == 0)
+	if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, cylinder_d));
 	else if (check_vec_ort(parc[2]) == 0)
 		return (wrong_vec_ort(type, cylinder_d));
@@ -423,7 +439,7 @@ int check_cylinder(t_data *type, char **parc)
 int check_triangle(t_data *type, char **parc)
 {
 	if (ft_2strlen(parc) < 5)
-		return (element_miss(type, triangle_d));
+		return (miss_or_out(type, triangle_d, 1));
 	else if (ft_2strlen(parc) > 5)
 	{
 		if (ft_2strlen(parc) == 6)
@@ -432,8 +448,10 @@ int check_triangle(t_data *type, char **parc)
 				return (wrong_trans_rot(type, triangle_d, 1));
 			type->tool.tran_rot = 1;
 		}
+		else if (ft_2strlen(parc) > 6)
+			return (miss_or_out(type, triangle_d, 7));
 	}
-	else if (check_pos(parc[1]) == 0 || check_pos(parc[2]) == 0 || check_pos(parc[3]) == 0)
+	if (check_pos(parc[1]) == 0 || check_pos(parc[2]) == 0 || check_pos(parc[3]) == 0)
 		return (wrong_pos(type, triangle_d));
 	else if (check_rgb(parc[4]) == 0)
 		return (wrong_rgb(type, triangle_d));
@@ -443,7 +461,7 @@ int check_triangle(t_data *type, char **parc)
 int check_camera(t_data *type, char **parc)
 {
 	if (ft_2strlen(parc) < 4)
-		return (element_miss(type, camera_d));
+		return (miss_or_out(type, camera_d, 1));
 	else if (ft_2strlen(parc) > 4)
 	{
 		if (ft_2strlen(parc) == 5)
@@ -458,9 +476,10 @@ int check_camera(t_data *type, char **parc)
 				return (wrong_trans_rot(type, camera_d, 2));
 			type->tool.tran_rot = 2;
 		}
-		// khasni nzid l cas dyal fo9 6
+		else if (ft_2strlen(parc) > 6)
+			return (miss_or_out(type, camera_d, 7));
 	}
-	else if (check_pos(parc[1]) == 0)
+	if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, camera_d));
 	else if (check_vec_ort(parc[2]) == 0)
 		return (wrong_vec_ort(type, camera_d));

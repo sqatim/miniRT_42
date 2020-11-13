@@ -94,37 +94,30 @@ t_vector x_y_z(char *x, char *y, char *z)
 
 int free_exit(t_data *type, int wich)
 {
-    t_objet *tmp;
-    if (type->objet != NULL)
+    t_objet *tmp_o;
+    t_camera *tmp_c;
+    t_light *tmp_l;
+
+    while (type->objet != NULL)
     {
-        tmp = type->objet;
-        while (type->objet != NULL)
-        {
-            while (type->objet != NULL)
-            {
-                tmp->next = type->objet->next;
-            }
-            free(type->objet);
-            type->objet = NULL;
-        }
-        type->objet = tmp;
+        tmp_o = type->objet->next;
+        free(type->objet);
+        type->objet = NULL;
+        type->objet = tmp_o;
     }
-    // ft_putstr_fd("zamlaaaa\n", 1);
-    if (type->camera != NULL)
+    while (type->camera != NULL)
     {
-        while (type->camera != NULL)
-        {
-            free(type->camera);
-            type->camera = type->camera->next;
-        }
+        tmp_c = type->camera->next;
+        free(type->camera);
+        type->camera = NULL;
+        type->camera = tmp_c;
     }
-    if (type->light != NULL)
+    while (type->light != NULL)
     {
-        while (type->light != NULL)
-        {
-            free(type->light);
-            type->light = type->light->next;
-        }
+        tmp_l = type->light->next;
+        free(type->light);
+        type->light = NULL;
+        type->light = tmp_l;
     }
     exit(wich);
 }
