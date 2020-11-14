@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:22:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/12 14:05:55 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/14 11:04:35 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int key_press(int keycode, t_data *type)
 		change_element(type);
 	}
 	if (keycode == 53)
-		exit(0);
+		free_exit(type,0);
 	mlx_put_image_to_window(type->mlx.mlx_ptr, type->mlx.win_ptr, type->mlx.img_ptr, 0, 0);
 
 	return (0);
@@ -152,7 +152,7 @@ int key_press(int keycode, t_data *type)
 int ft_close(t_data *type)
 {
 	(void)type;
-	exit(0);
+	return(free_exit(type,0));
 }
 void ft_mlx(t_data *type, int wich)
 {
@@ -160,14 +160,6 @@ void ft_mlx(t_data *type, int wich)
 	int size_line;
 	int endian;
 
-	// if(!(type->mlx.mlx_ptr = mlx_init()))
-	//     return (NULL);
-	// if(!(type->mlx.img_ptr = mlx_new_image(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height)))
-	//     return (NULL);
-	// if(!(type->mlx.tab = (int *)mlx_get_data_addr(type->mlx.img_ptr, &bpp, &size_line, &endian)))
-	//     return (NULL);
-	// if(!(type->mlx.win_ptr = mlx_new_window(type->mlx.mlx_ptr, type->rsl.width, type->rsl.height, "samir")))
-	//     return (NULL);
 	if (wich == 1)
 	{
 		type->mlx.mlx_ptr = mlx_init();

@@ -6,15 +6,15 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 11:52:29 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/05 12:01:18 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/14 10:43:34 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double  hit_sphere(t_objet *objet, t_ray *ray)
+double	hit_sphere(t_objet *objet, t_ray *ray)
 {
-	t_varCal    var;
+	t_varCal	var;
 
 	var.oc = vector_sub(ray->origin, objet->pos);
 	var.a = vector_dot(ray->direction, ray->direction);
@@ -33,7 +33,7 @@ double  hit_sphere(t_objet *objet, t_ray *ray)
 		return (var.t1);
 }
 
-double  hit_plane(t_objet *objet, t_ray *ray)
+double	hit_plane(t_objet *objet, t_ray *ray)
 {
 	double		a;
 	double		b;
@@ -78,21 +78,6 @@ double	hit_square(t_objet *objet, t_ray *ray)
 	return (0);
 }
 
-void	calcul_delta_cy(t_objet *objet, t_ray *ray, t_varCal *var)
-{
-	var->oc = vector_sub(ray->origin, objet->pos);
-	var->a = vector_dot(ray->direction, ray->direction) -\
-	(vector_dot(ray->direction, objet->v)\
-	* vector_dot(ray->direction, objet->v));
-	var->b = 2 * (vector_dot(ray->direction, var->oc) -\
-	(vector_dot(ray->direction, objet->v) *\
-	vector_dot(var->oc, objet->v)));
-	var->c = vector_dot(var->oc, var->oc)\
-	- (vector_dot(var->oc, objet->v) * vector_dot(var->oc, objet->v))\
-	- (objet->radius * objet->radius);
-	var->delta = var->b * var->b - 4 * var->a * var->c;
-}
-
 double	hit_cylinder(t_objet *objet, t_ray *ray)
 {
 	t_varCal	var;
@@ -107,9 +92,9 @@ double	hit_cylinder(t_objet *objet, t_ray *ray)
 	if (var.t1 < 0)
 		return (0);
 	m1 = vector_dot(ray->direction, objet->v) * \
-	var.t2 + vector_dot(var.oc, objet->v);
+		var.t2 + vector_dot(var.oc, objet->v);
 	m2 = vector_dot(ray->direction, objet->v) *\
-	var.t1 + vector_dot(var.oc, objet->v);
+		var.t1 + vector_dot(var.oc, objet->v);
 	if (m1 >= 0 && m1 <= objet->height)
 		return (var.t2);
 	else if (m2 >= 0 && m2 <= objet->height)

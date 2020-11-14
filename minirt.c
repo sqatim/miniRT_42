@@ -6,24 +6,24 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:41:19 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/11 10:30:31 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/14 14:36:36 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int merge(t_colour *data)
+int			merge(t_colour *data)
 {
 	return ((data->r * 256 * 256) + (data->g * 256) + data->b);
 }
 
-t_colour coleur(t_data *type)
+t_colour	coleur(t_data *type)
 {
-	double t1;
-	t_objet *tmp;
-	t_colour black;
-	t_colour phong_s;
-	t_colour shadow1;
+	double		t1;
+	t_objet		*tmp;
+	t_colour	black;
+	t_colour	phong_s;
+	t_colour	shadow1;
 
 	t1 = FLT_MAX;
 	tmp = type->objet;
@@ -40,10 +40,10 @@ t_colour coleur(t_data *type)
 		return (black);
 }
 
-void minirt(t_data *type)
+void		minirt(t_data *type)
 {
-	int i;
-	t_colour colour;
+	int			i;
+	t_colour	colour;
 
 	i = 0;
 	type->rsl.x = 0;

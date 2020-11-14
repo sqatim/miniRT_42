@@ -6,13 +6,13 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:16:55 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/12 11:05:43 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/14 14:35:26 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void just_calcul(t_data *type, double has_inter)
+void		just_calcul(t_data *type, double has_inter)
 {
 	t_objet *tmp;
 
@@ -30,24 +30,10 @@ void just_calcul(t_data *type, double has_inter)
 		triangle_p_n(type, has_inter);
 }
 
-void witch_object(t_objet *objet, t_ray *ray, double *has_inter)
+double		object_sp_cy(t_data *type, t_objet *tmp, t_ray *ombre)
 {
-	if (objet->type == sphere_d)
-		*has_inter = hit_sphere(objet, ray);
-	else if (objet->type == plane_d)
-		*has_inter = hit_plane(objet, ray);
-	else if (objet->type == square_d)
-		*has_inter = hit_square(objet, ray);
-	else if (objet->type == cylinder_d)
-		*has_inter = hit_cylinder(objet, ray);
-	else if (objet->type == triangle_d)
-		*has_inter = hit_triangle(objet, ray);
-}
-
-double object_sp_cy(t_data *type, t_objet *tmp, t_ray *ombre)
-{
-	t_objet *temporaire;
-	double save;
+	double	save;
+	t_objet	*temporaire;
 
 	temporaire = tmp;
 	if (type->tool.type == sphere_d || type->tool.type == cylinder_d)
@@ -64,7 +50,7 @@ double object_sp_cy(t_data *type, t_objet *tmp, t_ray *ombre)
 	return (0);
 }
 
-static void check_tr_fl(t_data *type, double save, int *index)
+static void	check_shadow(t_data *type, double save, int *index)
 {
 	if (save == 0)
 	{
@@ -77,17 +63,16 @@ static void check_tr_fl(t_data *type, double save, int *index)
 	}
 }
 
-void hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
+void		hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
 {
-	double has_inter;
-	t_objet *temporaire;
-	int index;
-	double save;
+	int		index;
+	double	save;
+	double	has_inter;
+	t_objet	*temporaire;
 
 	temporaire = tmp;
 	index = 0;
 	has_inter = 0;
-
 	save = object_sp_cy(type, tmp, ombre);
 	while (temporaire != NULL)
 	{
@@ -97,17 +82,17 @@ void hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp)
 		{
 			witch_object(temporaire, ombre, &has_inter);
 			if (has_inter > 0 && has_inter <= ombre->lenght)
-				check_tr_fl(type, save, &index);
+				check_shadow(type, save, &index);
 			temporaire = temporaire->next;
 		}
 	}
 }
 
-void hit_objet(t_data *type, double *t1)
+void		hit_objet(t_data *type, double *t1)
 {
-	t_ray *ray;
-	t_objet *tmp;
-	double has_inter;
+	t_ray	*ray;
+	t_objet	*tmp;
+	double	has_inter;
 
 	ray = &type->ray;
 	type->tool.type = 0;

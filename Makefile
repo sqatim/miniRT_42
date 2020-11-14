@@ -6,7 +6,7 @@
 #    By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/30 04:53:16 by mac               #+#    #+#              #
-#    Updated: 2020/11/13 12:27:36 by sqatim           ###   ########.fr        #
+#    Updated: 2020/11/14 13:49:40 by sqatim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,9 @@ SRCS = main.c\
 	hit_objet.c\
 	phong.c\
 	vector.c\
+	vector2.c\
 	tool.c\
+	tool2.c\
 	parcing.c\
 	parcing_object.c\
 	parcing_rcl.c\
@@ -38,6 +40,12 @@ SRCS = main.c\
 	calcul_p_n.c\
 	allocation.c\
 	check.c\
+	check_tools.c\
+	check_rcl.c\
+	check_object.c\
+	check_object2.c\
+	check_w_wrong.c\
+	print_error.c\
 	camera.c\
 	translation.c\
 	translation1.c\

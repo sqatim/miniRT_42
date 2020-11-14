@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tool.h                                             :+:      :+:    :+:   */
+/*   check_tools.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 14:46:40 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/14 14:33:32 by sqatim           ###   ########.fr       */
+/*   Created: 2020/11/14 11:13:26 by sqatim            #+#    #+#             */
+/*   Updated: 2020/11/14 11:14:51 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOOL_H
-#define TOOL_H
+#ifndef CHECK_TOOLS_H
+#define CHECK_TOOLS_H
 
 #include "minirt.h"
 
-double ft_atod(const char *str);
-int ft_2strlen(char **str);
-t_colour r_g_b(char *r, char *g, char *b);
-t_vector x_y_z(char *x, char *y, char *z);
-int free_exit(t_data *type, int wich);
-void	calcul_delta_cy(t_objet *objet, t_ray *ray, t_varCal *var);
-void		witch_object(t_objet *objet, t_ray *ray, double *has_inter);
+
+int check_numb(char *str);
+int check_double(char *str);
+int check_rotation(char *parc);
+int check_rgb(char *parc);
+int check_pos(char *parc);
+int check_vec_ort(char *parc);
 
 #endif

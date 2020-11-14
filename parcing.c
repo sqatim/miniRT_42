@@ -6,40 +6,16 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:23:04 by thor              #+#    #+#             */
-/*   Updated: 2020/11/13 10:57:47 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/14 14:58:11 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void parcing_tool(t_data *type, int indice, char *line)
+void		parcing_check(t_data *type, char *line)
 {
-	if (indice == resolution_d)
-		parc_resl(type, line);
-	else if (indice == ambient_d)
-		parc_amb(type, line);
-	else if (indice == camera_d)
-		parc_camera(type, line);
-	else if (indice == light_d)
-		parc_light(type, line);
-	else if (indice == camera_d)
-		parc_camera(type, line);
-	else if (indice == sphere_d)
-		parc_sphere(type, line);
-	else if (indice == plane_d)
-		parc_plane(type, line);
-	else if (indice == square_d)
-		parc_square(type, line);
-	else if (indice == cylinder_d)
-		parc_cylinder(type, line);
-	else if (indice == triangle_d)
-		parc_triangle(type, line);
-}
-
-void parcing_check(t_data *type, char *line)
-{
-	int i;
-	char **parc;
+	int		i;
+	char	**parc;
 
 	i = 0;
 	parc = ft_space_split(line);
@@ -52,26 +28,19 @@ void parcing_check(t_data *type, char *line)
 	{
 		check_type(type, parc);
 		if (type->parcing.check == 0)
-		{
-			write(1, "t2akad man type line ", 21);
-			ft_putnbr_fd(type->parcing.error, 1);
-			free_exit(type, 1);
-		}
+			print_error_type(type);
 		else
 			type->parcing.indice = check_element(type,
-												 parc, type->parcing.check, type->parcing.error);
+					parc, type->parcing.check, type->parcing.error);
 	}
 	else if (!ft_isalpha(line[i]) && line[i])
-	{
-		write(1, "t2akad man type line ", 21);
-		free_exit(type, 1);
-	}
+		print_error_type(type);
 }
 
-char *ft_str_in_str(const char *s1, const char *s2)
+char		*ft_str_in_str(const char *s1, const char *s2)
 {
-	size_t i;
-	size_t j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;
@@ -93,10 +62,10 @@ char *ft_str_in_str(const char *s1, const char *s2)
 	return (NULL);
 }
 
-void read_line(t_data *type, int fd)
+void		read_line(t_data *type, int fd)
 {
-	int r;
-	char *line;
+	int		r;
+	char	*line;
 
 	while ((r = get_next_line(fd, &line)) > 0)
 	{
@@ -114,12 +83,12 @@ void read_line(t_data *type, int fd)
 		exit(1);
 }
 
-void parcing(t_data *type, char **av, int ac)
+void		parcing(t_data *type, char **av, int ac)
 {
-	int fd;
-	char *line;
-	char **parc;
-	int r;
+	int		fd;
+	int		r;
+	char	*line;
+	char	**parc;
 
 	fd = open(av[1], O_RDONLY);
 	if (ac == 2 || ac == 3)

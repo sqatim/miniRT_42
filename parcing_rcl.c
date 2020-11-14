@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:36:24 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/13 11:50:54 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/14 14:48:34 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,28 @@ void parc_light(t_data *type, char *line)
     object.int_light = ft_atod(light[2]);
 
     type->light = add_light(type, object);
+}
+
+void	parcing_tool(t_data *type, int indice, char *line)
+{
+	if (indice == resolution_d)
+		parc_resl(type, line);
+	else if (indice == ambient_d)
+		parc_amb(type, line);
+	else if (indice == camera_d)
+		parc_camera(type, line);
+	else if (indice == light_d)
+		parc_light(type, line);
+	else if (indice == camera_d)
+		parc_camera(type, line);
+	else if (indice == sphere_d)
+		parc_sphere(type, line);
+	else if (indice == plane_d)
+		parc_plane(type, line);
+	else if (indice == square_d)
+		parc_square(type, line);
+	else if (indice == cylinder_d)
+		parc_cylinder(type, line);
+	else if (indice == triangle_d)
+		parc_triangle(type, line);
 }

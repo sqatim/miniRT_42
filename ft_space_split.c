@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/31 18:58:00 by sqatim            #+#    #+#             */
-/*   Updated: 2020/10/31 13:09:50 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/14 14:19:15 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,16 @@ static int		words(char *str)
 	j = 0;
 	while (str[i])
 	{
-		while ((str[i] == ' ' || str[i] == '\t' )&& str[i])
+		while ((str[i] == ' ' || str[i] == '\t') && str[i])
 			i++;
 		if (str[i] && str[i] != ' ' && str[i] != '\t')
-		{	
+		{
 			i++;
 			j++;
 		}
 		while (str[i] && str[i] != ' ' && str[i] != '\t')
 			i++;
 	}
-
 	return (j);
 }
 
@@ -56,7 +55,6 @@ static int		carcts(char *str)
 	{
 		i++;
 	}
-
 	return (i);
 }
 

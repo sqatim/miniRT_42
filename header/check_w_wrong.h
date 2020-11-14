@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tool.h                                             :+:      :+:    :+:   */
+/*   check_w_wrong.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/02 14:46:40 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/14 14:33:32 by sqatim           ###   ########.fr       */
+/*   Created: 2020/11/14 11:22:19 by sqatim            #+#    #+#             */
+/*   Updated: 2020/11/14 11:23:32 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOOL_H
-#define TOOL_H
+#ifndef CHECK_W_WRONG_H
+#define CHECK_W_WRONG_H
 
 #include "minirt.h"
 
-double ft_atod(const char *str);
-int ft_2strlen(char **str);
-t_colour r_g_b(char *r, char *g, char *b);
-t_vector x_y_z(char *x, char *y, char *z);
-int free_exit(t_data *type, int wich);
-void	calcul_delta_cy(t_objet *objet, t_ray *ray, t_varCal *var);
-void		witch_object(t_objet *objet, t_ray *ray, double *has_inter);
+int miss_or_out(t_data *type, int object, int wich);
+int wrong_pos(t_data *type, int object);
+int wrong_vec_ort(t_data *type, int object);
+int wrong_rgb(t_data *type, int object);
+int wrong_trans_rot(t_data *type, int object, int wich);
 
 #endif
