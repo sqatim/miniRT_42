@@ -6,13 +6,13 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:07:29 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 11:12:37 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 16:14:42 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double max(double a, double b)
+double	max(double a, double b)
 {
 	double result;
 
@@ -20,7 +20,7 @@ double max(double a, double b)
 	return (result);
 }
 
-double min(double a, double b)
+double	min(double a, double b)
 {
 	double result;
 

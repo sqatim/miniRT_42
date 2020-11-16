@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 11:26:18 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 11:04:39 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:09:39 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ int			check_light(t_data *type, char **parc)
 		return (miss_or_out(type, LIGHT_D, 1));
 	else if (ft_2strlen(parc) > 4)
 	{
-		if (ft_2strlen(parc) == 5)
+		if (ft_2strlen(parc) > 5)
+			return (miss_or_out(type, LIGHT_D, 7));
+		if (ft_2strlen(parc) >= 5)
 		{
 			if (check_pos(parc[4]) == 0)
 				return (wrong_trans_rot(type, LIGHT_D, 1));
 			type->tool.tran_rot = 1;
 		}
-		else if (ft_2strlen(parc) > 5)
-			return (miss_or_out(type, LIGHT_D, 7));
 	}
 	if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, LIGHT_D));

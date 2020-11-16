@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:36:24 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 11:06:15 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:18:27 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	parc_light(t_data *type, char *line)
 	object.pos = ft_split(light[1], ',');
 	object.colour = ft_split(light[3], ',');
 	object.int_light = ft_atod(light[2]);
+	if (type->tool.tran_rot > 0)
+		object.translation = ft_split(light[4], ',');
 	type->light = add_light(type, object);
 }
 

@@ -11,6 +11,7 @@ SRC_NAME= main.c\
 	vector2.c\
 	tool.c\
 	tool2.c\
+	tool3.c\
 	parcing.c\
 	parcing_object.c\
 	parcing_rcl.c\
@@ -26,6 +27,7 @@ SRC_NAME= main.c\
 	check_w_wrong.c\
 	print_error.c\
 	camera.c\
+	key_hook.c\
 	translation.c\
 	translation1.c\
 	rotation_bonus.c\

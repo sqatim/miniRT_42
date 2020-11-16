@@ -6,15 +6,14 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 11:53:15 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 10:48:52 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 17:09:22 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HIT_FUNCTION_H
-#define HIT_FUNCTION_H
+# define HIT_FUNCTION_H
 
-#include "minirt.h"
-
+# include "minirt.h"
 
 double	hit_sphere(t_objet *objet, t_ray *ray);
 double	hit_plane(t_objet *objet, t_ray *ray);

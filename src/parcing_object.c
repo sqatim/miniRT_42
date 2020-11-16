@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:29:08 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 10:07:43 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 20:15:23 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,7 @@ void	parc_sphere(t_data *type, char *line)
 	object.colour = ft_split(sphere[3], ',');
 	object.radius = ft_atod(sphere[2]);
 	if (type->tool.tran_rot > 0)
-	{
 		object.translation = ft_split(sphere[4], ',');
-		if (type->tool.tran_rot == 2)
-			object.rotation = ft_split(sphere[5], ',');
-	}
 	type->objet = add_sphere(type, object);
 }
 

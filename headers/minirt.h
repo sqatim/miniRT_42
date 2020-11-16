@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:00:01 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 13:15:30 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 17:11:33 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@
 # include "print_error.h"
 # include "vector.h"
 # include "camera.h"
-# include "key_hook.h"
 # include "translation.h"
 # include "rotation.h"
 # include "rotation_bonus.h"
@@ -48,6 +47,7 @@
 # include "phong.h"
 # include "colour.h"
 # include "get_next_line.h"
+# include "key_hook.h"
 # include "../libft/libft.h"
 
 # define RESOLUTION_D 1
@@ -59,8 +59,6 @@
 # define SQUARE_D 7
 # define CYLINDER_D 8
 # define TRIANGLE_D 9
-# define max(a, b) ((double)a >= (double)b ? (double)a : (double)b)
-# define min(a, b) ((double)a <= (double)b ? (double)a : (double)b)
 
 void		check_type(t_data *type, char **parc);
 int			check_element(t_data *type, char **parc, int check);
@@ -74,5 +72,6 @@ void		hit_objet(t_data *type, double *t1);
 t_colour	shadows(t_data *type, t_objet *tmp);
 double		ft_atod(const char *str);
 char		**ft_space_split(char const *s);
+void		ft_mlx(t_data *type, int wich);
 
 #endif
