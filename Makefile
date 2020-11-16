@@ -1,28 +1,7 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/01/30 04:53:16 by mac               #+#    #+#              #
-#    Updated: 2020/11/14 13:49:40 by sqatim           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME= miniRT
 
-NAME  = miniRT
-
-MLX = -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
-
-CFLAGE =  -g -Wall -Wextra -Werror
-
-GREEN = \033[0;32m
-
-DEFAULT = \033[0m
-
-GNL = ./GNL/get_next_line.c ./GNL/get_next_line_utils.c
-
-SRCS = main.c\
+SRC_PATH= src
+SRC_NAME= main.c\
 	minirt.c\
 	shading.c\
 	colour.c\
@@ -54,37 +33,83 @@ SRCS = main.c\
 	hit_function.c\
 	bmp_function.c\
 	rotation.c\
-	$(GNL)
+	get_next_line.c\
+	get_next_line_utils.c
 
-OBJ = $(SRCS:.c=.o)	   
+HDR_PATH= headers
+HDR_NAME= allocation.h \
+	allocation_objet.h \
+	bmp_function.h \
+	calcul_p_n.h \
+	camera.h \
+	check_orcl.h \
+	check_tools.h \
+	check_w_wrong.h \
+	colour.h \
+	get_next_line.h \
+	hit_function.h \
+	hit_objet.h \
+	key_hook.h \
+	minirt.h \
+	parcing.h \
+	parcing_object.h \
+	parcing_rcl.h \
+	phong.h \
+	print_error.h \
+	rotation.h \
+	rotation_bonus.h \
+	structures.h \
+	tool.h \
+	translation.h \
+	vector.h
 
-	
-all: $(NAME)
+OBJ_PATH= obj
+OBJ_NAME= $(SRC_NAME:.c=.o)
 
-$(NAME): $(OBJ)
-		@rm -rf miniRT
-		@gcc $(CFLAGE)  $(OBJ) $(MLX) libft/libft.a -o miniRT
-		@echo "			Made by : \033[1;91mSqatim\033[m"
-		@echo "          _       _______ _____    "
-		@echo "         (_)     (_) ___ \_   _|   "
-		@echo "  _ __ ___  _ _ __  _| |_/ / | |   "
-		@echo " | '_ ' _ \| | '_ \| |    /  | |   "
-		@echo " | | | | | | | | | | | |\ \  | |   "
-		@echo " |_| |_| |_|_|_| |_|_\_| \_| \_/   "
-		@echo "Compilation of miniRT:  \033[1;32mOK\033[m"
+OBJ= $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+SRC= $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+HDR= $(addprefix $(HDR_PATH)/,$(HDR_NAME))
 
-%.o: %.c
-	@$(CC) -o $@ -c $< -I header
-	@echo "creating $@ $(GREEN){DONE} $(DEFAULT)"
-	
+LIB_PATH= libft
+LIB= libft.a
+
+# **************************************************************************** #
+
+COMP= gcc
+# CFLAGES= -Wall -Wextra -Werror 
+CFLAGES=
+
+# -L /usr/local/lib/
+LD_FLAGS= -L$(LIB_PATH)  -lmlx -framework OpenGL -framework AppKit
+LD_LIBS= -l$(patsubst lib%.a,%, $(LIB))
+
+# /usr/local/include 
+HDR_FLAGS= -I headers 
+
+# **************************************************************************** #
+
+all: lib $(NAME)
+
+$(NAME): $(LIB_PATH)/$(LIB) $(OBJ)
+	@$(COMP) $(LD_FLAGS) $(LD_LIBS) $(OBJ) -o $@
+	@ echo "\033[1;32m>> $(NAME) binary is ready ;)\033[0m"
+
+lib:
+	@make -sC $(LIB_PATH)
+
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HDR)
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@$(COMP) $(CFLAGS) $(HDR_FLAGS) -o $@ -c $<
 
 clean:
-		@rm -rf $(OBJ)
-		@echo "miniRT : Removing Objs"
+	@rm -fr $(OBJ)
+	@rmdir $(OBJ_PATH) 2> /dev/null || true
+	@make -C $(LIB_PATH) clean
+	@echo "\033[1;33m>> $(NAME) object files deleted.\033[0m" 
 
 fclean: clean
-		@rm -rf $(NAME)
-		@echo "miniRT : Removing miniRT"
+	@rm -fr $(NAME)
+	@make -C $(LIB_PATH) fclean
+	@echo "\033[0;31m>> $(NAME) all resources deleted.\033[0m" 
 
 re: fclean all
-
