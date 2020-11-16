@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 22:31:32 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 11:06:15 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:11:40 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static t_colour	ft_diffuse(t_data *type)
 {
 	double		dot;
 	t_colour	diffuse;
-	t_colour	produit;
 	t_vector	l_norm;
 
 	l_norm = unit_vector(type->objet->light);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colour.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thor <thor@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 01:18:31 by thor              #+#    #+#             */
-/*   Updated: 2020/11/04 10:01:17 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:09:21 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_colour	min_max(t_colour rgb)
 	return (result);
 }
 
-t_colour	make_number(t_colour rgb, double nbr)
+t_colour	make_number(double nbr)
 {
 	t_colour result;
 

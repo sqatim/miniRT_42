@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:00:01 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 12:12:48 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:15:30 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@
 # define min(a, b) ((double)a <= (double)b ? (double)a : (double)b)
 
 void		check_type(t_data *type, char **parc);
-int			check_element(t_data *type, char **parc, int check, int ligne_err);
+int			check_element(t_data *type, char **parc, int check);
 int			key_hook(int key, t_data *type);
 t_colour	coleur(t_data *type);
 int			merge(t_colour *data);

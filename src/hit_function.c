@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 11:52:29 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 10:48:52 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 14:30:15 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ double	hit_sphere(t_objet *objet, t_ray *ray)
 double	hit_plane(t_objet *objet, t_ray *ray)
 {
 	double		a;
-	double		b;
 	double		t;
 	t_vector	oc;
 

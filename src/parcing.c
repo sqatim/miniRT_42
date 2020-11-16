@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:23:04 by thor              #+#    #+#             */
-/*   Updated: 2020/11/16 10:05:09 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:15:58 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		parcing_check(t_data *type, char *line)
 			print_error_type(type);
 		else
 			type->parcing.indice = check_element(type,
-					parc, type->parcing.check, type->parcing.error);
+					parc, type->parcing.check);
 	}
 	else if (!ft_isalpha(line[i]) && line[i])
 		print_error_type(type);
@@ -111,9 +111,6 @@ static void	check(t_data *type, char **av, int ac, int fd)
 void		parcing(t_data *type, char **av, int ac)
 {
 	int		fd;
-	int		r;
-	char	*line;
-	char	**parc;
 
 	fd = open(av[1], O_RDONLY);
 	if (ac == 2 || ac == 3)

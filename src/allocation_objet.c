@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/20 18:28:40 by thor              #+#    #+#             */
-/*   Updated: 2020/11/16 11:05:50 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:56:30 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ t_objet	*add_square(t_data *type, t_info object)
 	new_square->type = SQUARE_D;
 	new_square->pos = x_y_z(object.pos[0], object.pos[1], object.pos[2]);
 	new_square->v = x_y_z(object.vector[0], object.vector[1], object.vector[2]);
+	new_square->v = unit_vector(new_square->v);
 	new_square->colour = make_range(r_g_b(object.colour[0],\
 				object.colour[1], object.colour[2]));
 	new_square->height = object.height;

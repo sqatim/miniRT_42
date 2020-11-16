@@ -76,8 +76,8 @@ LIB= libft.a
 # **************************************************************************** #
 
 COMP= gcc
-# CFLAGES= -Wall -Wextra -Werror 
-CFLAGES=
+CFLAGES= -Wall -Wextra -Werror 
+
 
 # -L /usr/local/lib/
 LD_FLAGS= -L$(LIB_PATH)  -lmlx -framework OpenGL -framework AppKit
@@ -99,7 +99,7 @@ lib:
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HDR)
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(COMP) $(CFLAGS) $(HDR_FLAGS) -o $@ -c $<
+	@$(COMP) $(CFLAGES) $(HDR_FLAGS) -o $@ -c $<
 
 clean:
 	@rm -fr $(OBJ)

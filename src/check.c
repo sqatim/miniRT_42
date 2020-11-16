@@ -6,13 +6,13 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/26 01:10:34 by thor              #+#    #+#             */
-/*   Updated: 2020/11/16 11:06:15 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:14:59 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int		check_element(t_data *type, char **parc, int check, int ligne_err)
+int		check_element(t_data *type, char **parc, int check)
 {
 	if (check == RESOLUTION_D)
 		return (check_resolution(type, parc));

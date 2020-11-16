@@ -6,28 +6,26 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 04:16:55 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 11:06:15 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:14:35 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void		just_calcul(t_data *type, double has_inter)
+void		just_calcul(t_data *type)
 {
-	t_objet *tmp;
-
 	while (type->objet->i != type->tool.index)
 		type->objet = type->objet->next;
 	if (type->objet->type == SPHERE_D)
-		sphere_p_n(type, has_inter);
+		sphere_p_n(type);
 	else if (type->objet->type == PLANE_D)
-		plane_p_n(type, has_inter);
+		plane_p_n(type);
 	else if (type->objet->type == SQUARE_D)
-		square_p_n(type, has_inter);
+		square_p_n(type);
 	else if (type->objet->type == CYLINDER_D)
-		cylinder_p_n(type, has_inter);
+		cylinder_p_n(type);
 	else if (type->objet->type == TRIANGLE_D)
-		triangle_p_n(type, has_inter);
+		triangle_p_n(type);
 }
 
 double		object_sp_cy(t_data *type, t_objet *tmp, t_ray *ombre)
@@ -114,5 +112,5 @@ void		hit_objet(t_data *type, double *t1)
 	}
 	type->objet = tmp;
 	if (type->tool.intersect == 1)
-		just_calcul(type, has_inter);
+		just_calcul(type);
 }

@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:22:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 11:06:15 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 12:59:07 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int check_trans_rot(t_data *type, int key)
 	}
 	return (0);
 }
-int check_direction(t_data *type, int key)
+int check_direction(int key)
 {
 	if (key == right)
 		return (1);
@@ -120,7 +120,7 @@ int key_press(int keycode, t_data *type)
 	if (type->key.check == 2)
 	{
 		type->key.key = keycode;
-		if (type->key.tr_rt == 0 && check_direction(type, keycode))
+		if (type->key.tr_rt == 0 && check_direction(keycode))
 		{
 			type->key.renitialise = 1;
 			translation(type);
@@ -130,7 +130,7 @@ int key_press(int keycode, t_data *type)
 		{
 			type->key.renitialise = 1;
 			check_xyz(type, keycode);
-			if (type->key.rot_xyz != 0 || check_direction(type, keycode))
+			if (type->key.rot_xyz != 0 || check_direction(keycode))
 			{
 				rotation(type);
 				minirt(type);
@@ -156,8 +156,6 @@ int ft_close(t_data *type)
 }
 void ft_mlx(t_data *type, int wich)
 {
-	int bpp;
-	int size_line;
 	int endian;
 
 	if (wich == 1)

@@ -6,13 +6,13 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 13:34:47 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/14 13:38:21 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:13:07 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	sphere_p_n(t_data *type, double has_inter)
+void	sphere_p_n(t_data *type)
 {
 	t_vector produit;
 
@@ -22,7 +22,7 @@ void	sphere_p_n(t_data *type, double has_inter)
 	type->objet->normal = unit_vector(type->objet->normal);
 }
 
-void	plane_p_n(t_data *type, double has_inter)
+void	plane_p_n(t_data *type)
 {
 	double		a;
 	t_vector	produit;
@@ -35,7 +35,7 @@ void	plane_p_n(t_data *type, double has_inter)
 		type->objet->normal = vector_scal(-1, type->objet->normal);
 }
 
-void	square_p_n(t_data *type, double has_inter)
+void	square_p_n(t_data *type)
 {
 	double		a;
 	t_vector	produit;
@@ -48,7 +48,7 @@ void	square_p_n(t_data *type, double has_inter)
 		type->objet->normal = vector_scal(-1, type->objet->normal);
 }
 
-void	cylinder_p_n(t_data *type, double has_inter)
+void	cylinder_p_n(t_data *type)
 {
 	double		m;
 	t_vector	x;
@@ -70,7 +70,7 @@ void	cylinder_p_n(t_data *type, double has_inter)
 	type->objet->normal = unit_vector(type->objet->normal);
 }
 
-void	triangle_p_n(t_data *type, double has_inter)
+void	triangle_p_n(t_data *type)
 {
 	t_vector produit;
 	t_vector edge1;

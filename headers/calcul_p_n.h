@@ -15,10 +15,10 @@
 
 # include "minirt.h"
 
-void	sphere_p_n(t_data *type, double has_inter);
-void	plane_p_n(t_data *type, double has_inter);
-void	square_p_n(t_data *type, double has_inter);
-void	cylinder_p_n(t_data *type, double has_inter);
-void	triangle_p_n(t_data *type, double has_inter);
+void	sphere_p_n(t_data *type);
+void	plane_p_n(t_data *type);
+void	square_p_n(t_data *type);
+void	cylinder_p_n(t_data *type);
+void	triangle_p_n(t_data *type);
 
 #endif

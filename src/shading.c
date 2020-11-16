@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 02:19:52 by thor              #+#    #+#             */
-/*   Updated: 2020/11/14 10:20:23 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:10:47 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,12 @@ t_colour		shadows(t_data *type, t_objet *tmp)
 {
 	t_colour	un;
 	t_ray		ombre;
-	double		has_intersect;
 	t_light		*light;
 
 	type->shad.intersect = 0;
 	light = type->light;
 	type->shad.degre = 0;
-	un = make_number(un, 1.0);
+	un = make_number(1.0);
 	ombre.origin = vector_scal(0.001, type->objet->normal);
 	ombre.origin = vector_add(type->objet->point, ombre.origin);
 	while (type->light != NULL)

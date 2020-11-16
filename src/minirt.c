@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:41:19 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/14 14:36:36 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 13:09:36 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_colour	coleur(t_data *type)
 
 	t1 = FLT_MAX;
 	tmp = type->objet;
-	black = make_number(black, 0);
+	black = make_number(0);
 	hit_objet(type, &t1);
 	if (type->tool.intersect == 1)
 	{
