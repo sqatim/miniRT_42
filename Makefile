@@ -27,10 +27,6 @@ SRC_NAME= main.c\
 	check_w_wrong.c\
 	print_error.c\
 	camera.c\
-	key_hook.c\
-	translation.c\
-	translation1.c\
-	rotation_bonus.c\
 	ft_space_split.c\
 	hit_function.c\
 	bmp_function.c\
@@ -39,31 +35,13 @@ SRC_NAME= main.c\
 	get_next_line_utils.c
 
 HDR_PATH= headers
-HDR_NAME= allocation.h \
-	allocation_objet.h \
-	bmp_function.h \
-	calcul_p_n.h \
-	camera.h \
-	check_orcl.h \
-	check_tools.h \
-	check_w_wrong.h \
-	colour.h \
+HDR_NAME= calcul.h \
+	check.h \
 	get_next_line.h \
-	hit_function.h \
-	hit_objet.h \
-	key_hook.h \
 	minirt.h \
 	parcing.h \
-	parcing_object.h \
-	parcing_rcl.h \
-	phong.h \
-	print_error.h \
-	rotation.h \
-	rotation_bonus.h \
 	structures.h \
 	tool.h \
-	translation.h \
-	vector.h
 
 OBJ_PATH= obj
 OBJ_NAME= $(SRC_NAME:.c=.o)

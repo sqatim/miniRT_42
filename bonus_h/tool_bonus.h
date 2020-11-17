@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tool.h                                             :+:      :+:    :+:   */
+/*   tool_bonus.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:46:40 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 13:00:36 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/17 12:38:55 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOOL_H
-# define TOOL_H
+#ifndef TOOL_BONUS_H
+# define TOOL_BONUS_H
 
-# include "minirt.h"
+# include "minirt_bonus.h"
 
 double		ft_atod(const char *str);
 int			ft_2strlen(char **str);
@@ -41,5 +41,6 @@ t_colour	min_max(t_colour rgb);
 t_colour	make_number(double nbr);
 t_colour	make_range(t_colour rgb);
 int			create_bmp(t_data *type);
+
 
 #endif

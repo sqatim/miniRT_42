@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   minirt_bonus.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:00:01 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 13:02:27 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/16 17:11:33 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef MINIRT_BONUS_H
+# define MINIRT_BONUS_H
 
 # define PI 3.14159
 
@@ -24,12 +24,13 @@
 # include <unistd.h>
 # include <fcntl.h>
 
-# include "structures.h"
-# include "tool.h"
-# include "parcing.h"
-# include "calcul.h"
-# include "check.h"
-# include "get_next_line.h"
+# include "structures_bonus.h"
+# include "check_bonus.h"
+# include "tool_bonus.h"
+# include "parcing_bonus.h"
+# include "transformation_bonus.h"
+# include "calcul_bonus.h"
+# include "get_next_line_bonus.h"
 # include "../libft/libft.h"
 
 # define RESOLUTION_D 1
@@ -54,7 +55,5 @@ t_colour	shadows(t_data *type, t_objet *tmp);
 double		ft_atod(const char *str);
 char		**ft_space_split(char const *s);
 void		ft_mlx(t_data *type, int wich);
-int			key_press(int keycode, t_data *type);
-int			ft_close(t_data *type);
 
 #endif

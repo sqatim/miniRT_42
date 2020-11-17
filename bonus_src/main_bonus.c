@@ -1,45 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 10:22:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 11:34:14 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/17 12:14:56 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
-
-int		key_press(int keycode, t_data *type)
-{
-	if (keycode == 0 || keycode == 2)
-	{
-		if (keycode == 0)
-		{
-			if (type->camera->previous != NULL)
-				type->camera = type->camera->previous;
-		}
-		else if (keycode == 2)
-		{
-			if (type->camera->next != NULL)
-				type->camera = type->camera->next;
-		}
-		minirt(type);
-		mlx_put_image_to_window(type->mlx.mlx_ptr, type->mlx.win_ptr,\
-		type->mlx.img_ptr, 0, 0);
-	}
-	if (keycode == 53)
-		free_exit(type, 0);
-	return (0);
-}
-
-int		ft_close(t_data *type)
-{
-	(void)type;
-	return (free_exit(type, 0));
-}
+#include "minirt_bonus.h"
 
 void	ft_mlx(t_data *type, int wich)
 {
@@ -65,12 +36,20 @@ void	ft_mlx(t_data *type, int wich)
 	}
 }
 
+void	clone(t_data *type)
+{
+	type->clone.objet = type->objet;
+	type->clone.camera = type->camera;
+	type->clone.light = type->light;
+}
+
 int		main(int ac, char **av)
 {
 	t_data type;
 
 	ft_bzero(&type, sizeof(t_data));
 	parcing(&type, av, ac);
+	clone(&type);
 	ft_mlx(&type, 1);
 	minirt(&type);
 	if (type.tool.bmp == 1)

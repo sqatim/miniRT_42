@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structures.h                                       :+:      :+:    :+:   */
+/*   structures_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/17 11:40:43 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/17 12:38:43 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTURES_H
-# define STRUCTURES_H
+#ifndef STRUCTURES_BONUS_H
+# define STRUCTURES_BONUS_H
 
 typedef struct	s_vector
 {
@@ -19,6 +19,16 @@ typedef struct	s_vector
 	double y;
 	double z;
 }				t_vector;
+
+typedef struct	s_key
+{
+	int key;
+	int type;
+	int check;
+	int rot_xyz;
+	int tr_rt;
+	int renitialise;
+}				t_key;
 
 typedef struct	s_varcal
 {
@@ -106,6 +116,8 @@ typedef struct	s_tools
 	int		index;
 	int		type;
 	int		intersect;
+	double	dif;
+	int		done;
 	int		bmp;
 	int		tran_rot;
 }				t_tools;
@@ -149,6 +161,13 @@ typedef struct	s_phong
 	t_colour	ambiant;
 }				t_phong;
 
+typedef struct	s_clone
+{
+	t_camera	*camera;
+	t_light		*light;
+	t_objet		*objet;
+}				t_clone;
+
 typedef struct	s_mlx
 {
 	void	*mlx_ptr;
@@ -175,6 +194,7 @@ typedef struct	s_data
 	t_vector		vector;
 	t_objet			*objet;
 	t_tools			tool;
+	t_key			key;
 	t_ray			ray;
 	t_colour		colour;
 	t_mlx			mlx;
@@ -182,6 +202,7 @@ typedef struct	s_data
 	t_ambient		ambient;
 	t_camera		*camera;
 	t_resolution	rsl;
+	t_clone			clone;
 	t_phong			phong;
 	t_parcing		parcing;
 	int				i;
