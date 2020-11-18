@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 08:51:02 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 11:27:10 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/18 17:49:17 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int			create_bmp(t_data *type)
 {
 	int fd;
 
-	fd = open("save.bmp", O_CREAT | O_RDWR);
+	fd = open("save.bmp", O_CREAT | O_RDWR, 00700);
 	bmp_file_header(type, &fd);
 	bmp_file_info_header(type, &fd);
 	pixel_data(type, &fd);

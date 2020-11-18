@@ -1,7 +1,13 @@
 NAME= miniRT
 
 SRC_PATH= src
-SRC_NAME= main.c\
+SRC_B_PATH= bonus_src
+HDR_PATH= headers
+HDR_B_PATH= bonus_headers
+OBJ_PATH= obj
+LIB_PATH= libft
+
+SRC_NAME=main.c\
 	minirt.c\
 	shading.c\
 	colour.c\
@@ -34,7 +40,43 @@ SRC_NAME= main.c\
 	get_next_line.c\
 	get_next_line_utils.c
 
-HDR_PATH= headers
+SRC_B_NAME= allocation_bonus.c\
+	allocation_objet2_bonus.c\
+	allocation_objet_bonus.c\
+	bmp_function_bonus.c\
+	calcul_p_n_bonus.c\
+	camera_bonus.c\
+	check_bonus.c\
+	check_object2_bonus.c\
+	check_object_bonus.c\
+	check_rcl_bonus.c\
+	check_tools_bonus.c\
+	check_w_wrong_bonus.c\
+	colour_bonus.c\
+	ft_space_split_bonus.c\
+	get_next_line_bonus.c\
+	get_next_line_utils_bonus.c\
+	hit_function_bonus.c\
+	hit_objet_bonus.c\
+	key_hook_bonus.c\
+	main_bonus.c\
+	minirt_bonus.c\
+	parcing_bonus.c\
+	parcing_object_bonus.c\
+	parcing_rcl_bonus.c\
+	phong_bonus.c\
+	print_error_bonus.c\
+	rotation_bonus.c\
+	rotation_key_bonus.c\
+	shading_bonus.c\
+	tool2_bonus.c\
+	tool3_bonus.c\
+	tool_bonus.c\
+	translation1_bonus.c\
+	translation_bonus.c\
+	vector2_bonus.c\
+	vector_bonus.c
+
 HDR_NAME= calcul.h \
 	check.h \
 	get_next_line.h \
@@ -43,53 +85,44 @@ HDR_NAME= calcul.h \
 	structures.h \
 	tool.h \
 
-OBJ_PATH= obj
+HDR_B_NAME= calcul_bonus.h\
+	check_bonus.h\
+	get_next_line_bonus.h\
+	minirt_bonus.h\
+	parcing_bonus.h\
+	structures_bonus.h\
+	tool_bonus.h\
+	transformation_bonus.h
+
 OBJ_NAME= $(SRC_NAME:.c=.o)
 
 OBJ= $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 SRC= $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+SRC_B= $(addprefix $(SRC_B_PATH)/,$(SRC_B_NAME))
 HDR= $(addprefix $(HDR_PATH)/,$(HDR_NAME))
+HDR_B= $(addprefix $(HDR_B_PATH)/,$(HDR_B_NAME))
 
-LIB_PATH= libft
 LIB= libft.a
-
-# **************************************************************************** #
+FLAGS= -Wall -Wextra -Werror
+LLIB_FLAG= -L$(LIB_PATH) libft/libft.a
+LMLX_FLAG= -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+IMLX_FLAG= -I /usr/local/include
+H_FLAG= -I headers
+#***************************************************************************** #
 
 COMP= gcc
-CFLAGES= -Wall -Wextra -Werror 
 
+all: lib  $(NAME)
 
-# -L /usr/local/lib/
-LD_FLAGS= -L$(LIB_PATH)  -lmlx -framework OpenGL -framework AppKit
-LD_LIBS= -l$(patsubst lib%.a,%, $(LIB))
-
-# /usr/local/include 
-HDR_FLAGS= -I headers 
-
-# **************************************************************************** #
-
-all: lib $(NAME)
-
-$(NAME): $(LIB_PATH)/$(LIB) $(OBJ)
-	@$(COMP) $(LD_FLAGS) $(LD_LIBS) $(OBJ) -o $@
-	@ echo "\033[1;32m>> $(NAME) binary is ready ;)\033[0m"
+$(NAME) : $(LIB_PATH)/$(LIB) $(OBJ)
+	$(COMP) $(H_FLAG) $(LLIB_FLAG) $(LMLX_FLAG) $(IMLX_FLAG)  $(OBJ) -o $@
 
 lib:
-	@make -sC $(LIB_PATH)
+	make -C $(LIB_PATH)
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(HDR)
-	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(COMP) $(CFLAGES) $(HDR_FLAGS) -o $@ -c $<
+$(OBJ_PATH)/%.o:  $(SRC_PATH)/%.c $(HDR) sam
+	mkdir -p $(OBJ_PATH)
+	$(COMP) $(FLAGS) $(H_FLAG)  -o $@ -c $<
 
-clean:
-	@rm -fr $(OBJ)
-	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	@make -C $(LIB_PATH) clean
-	@echo "\033[1;33m>> $(NAME) object files deleted.\033[0m" 
-
-fclean: clean
-	@rm -fr $(NAME)
-	@make -C $(LIB_PATH) fclean
-	@echo "\033[0;31m>> $(NAME) all resources deleted.\033[0m" 
-
-re: fclean all
+sam:
+	@echo "samir"
