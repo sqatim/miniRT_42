@@ -150,9 +150,10 @@ $(OBJ_PATH)/%.o:  $(SRC_PATH)/%.c $(HDR)
 	@mkdir -p $(OBJ_PATH) 
 	@$(COMP) $(FLAGS) $(H_FLAG)  -o $@ -c $<
 
-$(OBJ_PATH)/%.o:  $(SRC_B_PATH)/%.c $(HDR_B)
+$(OBJ_PATH)/%.o:  $(SRC_B_PATH)/%.c $(HDR_B) 
 	@mkdir -p $(OBJ_PATH) 
 	@$(COMP) $(FLAGS) $(H_B_FLAG)  -o $@ -c $<
+	echo "love my Makefile"
 
 clean:
 	@rm -rf $(OBJ_PATH)
