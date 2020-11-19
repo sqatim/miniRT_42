@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:46:40 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 12:38:55 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 12:04:23 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ t_colour	min_max(t_colour rgb);
 t_colour	make_number(double nbr);
 t_colour	make_range(t_colour rgb);
 int			create_bmp(t_data *type);
-
 
 #endif

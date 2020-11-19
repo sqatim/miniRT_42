@@ -6,82 +6,41 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/02 01:10:37 by thor              #+#    #+#             */
-/*   Updated: 2020/11/17 12:14:56 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 12:01:29 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
 
-int	check_objet(int type)
+static void	change_prev(t_data *type)
 {
-	if (type == SPHERE_D || type == PLANE_D || type == SQUARE_D ||\
-			type == CYLINDER_D || type == TRIANGLE_D)
-		return (1);
-	return (0);
-}
-
-void	check_xyz(t_data *type, int key)
-{
-	if (key == 7)
-		type->key.rot_xyz = 1;
-	else if (key == 16)
-		type->key.rot_xyz = 2;
-	else if (key == 6)
-		type->key.rot_xyz = 3;
-}
-
-int		check_trans_rot(t_data *type, int key)
-{
-	if (key == 17)
+	if (type->key.type == CAMERA_D && type->camera->previous != NULL)
 	{
-		type->key.tr_rt = 0;
-		return (1);
+		type->camera = type->camera->previous;
+		minirt(type);
 	}
-	else if (key == 15)
+	else if (check_objet(type->key.type) &&\
+		type->clone.objet->previous != NULL)
 	{
-		type->key.tr_rt = 1;
-		return (1);
+		type->clone.objet = type->clone.objet->previous;
+		type->key.type = type->clone.objet->type;
 	}
-	return (0);
+	else if (type->key.type == LIGHT_D &&\
+			type->clone.light->previous != NULL)
+		type->clone.light = type->clone.light->previous;
 }
 
-int		check_direction(int key)
-{
-	if (key == RIGHT)
-		return (1);
-	if (key == LEFT)
-		return (1);
-	if (key == UP)
-		return (1);
-	if (key == DOWN)
-		return (1);
-	if (key == BACK)
-		return (1);
-	if (key == AHEAD)
-		return (1);
-	return (0);
-}
-
-void	change_element(t_data *type)
+void		change_element(t_data *type)
 {
 	if (type->key.key == 0)
-	{
-		if (type->key.type == CAMERA_D && type->camera->previous != NULL)
-			type->camera = type->camera->previous;
-		else if (check_objet(type->key.type) &&\
-		type->clone.objet->previous != NULL)
-		{
-			type->clone.objet = type->clone.objet->previous;
-			type->key.type = type->clone.objet->type;
-		}
-		else if (type->key.type == LIGHT_D &&\
-			type->clone.light->previous != NULL)
-			type->clone.light = type->clone.light->previous;
-	}
+		change_prev(type);
 	else if (type->key.key == 2)
 	{
 		if (type->key.type == CAMERA_D && type->camera->next != NULL)
+		{
 			type->camera = type->camera->next;
+			minirt(type);
+		}
 		else if (check_objet(type->key.type) && type->clone.objet->next != NULL)
 		{
 			type->clone.objet = type->clone.objet->next;
@@ -92,27 +51,28 @@ void	change_element(t_data *type)
 	}
 }
 
-int	hook_element(t_data *type, int key)
+static void	rot_or_tra(int keycode, t_data *type)
 {
-	if (key == 31)
+	type->key.key = keycode;
+	if (type->key.tr_rt == 0 && check_direction(keycode))
 	{
-		type->key.type = type->clone.objet->type;
-		return (1);
+		type->key.renitialise = 1;
+		translation(type);
+		minirt(type);
 	}
-	if (key == 8)
+	if (type->key.tr_rt == 1)
 	{
-		type->key.type = CAMERA_D;
-		return (1);
+		type->key.renitialise = 1;
+		check_xyz(type, keycode);
+		if (type->key.rot_xyz != 0 || check_direction(keycode))
+		{
+			rotation(type);
+			minirt(type);
+		}
 	}
-	if (key == 37)
-	{
-		type->key.type = LIGHT_D;
-		return (1);
-	}
-	return (0);
 }
 
-int	key_press(int keycode, t_data *type)
+int			key_press(int keycode, t_data *type)
 {
 	if (hook_element(type, keycode))
 		type->key.check = 1;
@@ -120,25 +80,7 @@ int	key_press(int keycode, t_data *type)
 		&& check_trans_rot(type, keycode))
 		type->key.check = 2;
 	if (type->key.check == 2)
-	{
-		type->key.key = keycode;
-		if (type->key.tr_rt == 0 && check_direction(keycode))
-		{
-			type->key.renitialise = 1;
-			translation(type);
-			minirt(type);
-		}
-		if (type->key.tr_rt == 1)
-		{
-			type->key.renitialise = 1;
-			check_xyz(type, keycode);
-			if (type->key.rot_xyz != 0 || check_direction(keycode))
-			{
-				rotation(type);
-				minirt(type);
-			}
-		}
-	}
+		rot_or_tra(keycode, type);
 	if (keycode == 0 || keycode == 2)
 	{
 		type->key.key = keycode;
@@ -151,7 +93,7 @@ int	key_press(int keycode, t_data *type)
 	return (0);
 }
 
-int	ft_close(t_data *type)
+int			ft_close(t_data *type)
 {
 	(void)type;
 	return (free_exit(type, 0));

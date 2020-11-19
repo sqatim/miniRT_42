@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/17 12:38:43 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 13:31:51 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,6 @@ typedef struct	s_tools
 	int		index;
 	int		type;
 	int		intersect;
-	double	dif;
-	int		done;
 	int		bmp;
 	int		tran_rot;
 }				t_tools;
@@ -129,6 +127,7 @@ typedef struct	s_parcing
 	int	error;
 	int	r;
 	int	a;
+	int c;
 }				t_parcing;
 
 typedef struct	s_ray
@@ -205,7 +204,6 @@ typedef struct	s_data
 	t_clone			clone;
 	t_phong			phong;
 	t_parcing		parcing;
-	int				i;
 	t_shadow		shad;
 }				t_data;
 

@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:36:24 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 20:18:27 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 13:34:13 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	parc_camera(t_data *type, char *line)
 			object.rotation = ft_split(camera[5], ',');
 	}
 	type->camera = add_camera(type, object);
+	type->parcing.c = 1;
 }
 
 void	parc_light(t_data *type, char *line)

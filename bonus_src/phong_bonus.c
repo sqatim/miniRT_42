@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 22:31:32 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 12:14:56 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 11:57:24 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_colour		ft_specular(t_data *type)
 	dot = 2 * vector_dot(type->objet->normal, type->objet->light);
 	scal = vector_scal(dot, type->objet->normal);
 	type->objet->reflection = vector_sub(scal, type->objet->light);
-	type->objet->view = vector_scal(-1, type->objet->point);
+	type->objet->view = vector_scal(-1, type->ray.direction);
 	type->objet->reflection = unit_vector(type->objet->reflection);
 	type->objet->view = unit_vector(type->objet->view);
 	dot = vector_dot(type->objet->reflection, type->objet->view);

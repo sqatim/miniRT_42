@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:22:00 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 12:35:16 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 12:04:14 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ void		change_element(t_data *type);
 int			hook_element(t_data *type, int key);
 int			key_press(int keycode, t_data *type);
 int			ft_close(t_data *type);
-
 
 #endif

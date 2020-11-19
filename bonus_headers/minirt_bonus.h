@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt_bonus.h                                           :+:      :+:    :+:   */
+/*   minirt_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/16 11:00:01 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 17:11:33 by sqatim           ###   ########.fr       */
+/*   Created: 2020/11/19 12:03:50 by sqatim            #+#    #+#             */
+/*   Updated: 2020/11/19 12:10:12 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,6 @@ int			check_element(t_data *type, char **parc, int check);
 t_colour	coleur(t_data *type);
 int			merge(t_colour *data);
 void		minirt(t_data *type);
-void		objet(t_objet *objet);
-t_colour	colour_scal(double nbr, t_colour rgb);
-void		hit_objet(t_data *type, double *t1);
 t_colour	shadows(t_data *type, t_objet *tmp);
 double		ft_atod(const char *str);
 char		**ft_space_split(char const *s);

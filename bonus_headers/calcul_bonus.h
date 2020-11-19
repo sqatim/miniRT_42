@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:36:06 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 12:37:27 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 12:09:39 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void		calcul_delta_cy(t_objet *objet, t_ray *ray, t_varcal *var);
 double		hit_cylinder(t_objet *objet, t_ray *ray);
 double		hit_triangle(t_objet *objet, t_ray *ray);
 void		hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp);
+void		hit_objet(t_data *type, double *t1);
 void		ray(t_data *type);
 void		half_w_h(t_data *type);
 t_vector	calcul_pixel(t_data *type, t_vector left_corner,\

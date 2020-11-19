@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:58:50 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 14:00:22 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 11:47:51 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void		rotation_z(t_data *type)
 		}
 		if (type->key.type == CAMERA_D)
 			type->clone.camera->ort_vec = unit_vector(vect_ort);
-		// else if (check_orient(type->clone.objet->type))
 		else if (check_orient(type->key.type))
 			type->clone.objet->v = unit_vector(vect_ort);
 	}

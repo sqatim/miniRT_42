@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 12:24:20 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 12:35:31 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 12:03:28 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,5 @@ int		wrong_trans_rot(t_data *type, int object, int wich);
 void	ft_print(t_data *type, char *name, int number);
 void	ft_print_cont(t_data *type, char *name, int object, int error);
 void	print_error_type(t_data *type);
-
-
 
 #endif

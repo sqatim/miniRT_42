@@ -60,6 +60,7 @@ SRC_B_NAME= allocation_bonus.c\
 	hit_function_bonus.c\
 	hit_objet_bonus.c\
 	key_hook_bonus.c\
+	key_hook2_bonus.c\
 	main_bonus.c\
 	minirt_bonus.c\
 	parcing_bonus.c\
@@ -153,7 +154,6 @@ $(OBJ_PATH)/%.o:  $(SRC_PATH)/%.c $(HDR)
 $(OBJ_PATH)/%.o:  $(SRC_B_PATH)/%.c $(HDR_B) 
 	@mkdir -p $(OBJ_PATH) 
 	@$(COMP) $(FLAGS) $(H_B_FLAG)  -o $@ -c $<
-	echo "love my Makefile"
 
 clean:
 	@rm -rf $(OBJ_PATH)

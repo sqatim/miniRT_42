@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/17 11:40:43 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 13:33:47 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct	s_parcing
 	int	error;
 	int	r;
 	int	a;
+	int c;
 }				t_parcing;
 
 typedef struct	s_ray
@@ -184,7 +185,6 @@ typedef struct	s_data
 	t_resolution	rsl;
 	t_phong			phong;
 	t_parcing		parcing;
-	int				i;
 	t_shadow		shad;
 }				t_data;
 

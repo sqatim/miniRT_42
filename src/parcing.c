@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:23:04 by thor              #+#    #+#             */
-/*   Updated: 2020/11/16 13:15:58 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 13:33:33 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,12 @@ void		parcing(t_data *type, char **av, int ac)
 	if (ac == 2 || ac == 3)
 	{
 		check(type, av, ac, fd);
-		if (type->parcing.r == 0)
+		if (type->parcing.r == 0 || type->parcing.c == 0)
 		{
-			ft_putstr_fd("Resolution not found\n", 1);
+			if(type->parcing.r == 0)
+				ft_putstr_fd("Resolution not found\n", 1);
+			else
+				ft_putstr_fd("Camera not found\n", 1);
 			free_exit(type, 1);
 		}
 	}

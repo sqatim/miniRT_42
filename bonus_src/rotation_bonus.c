@@ -6,12 +6,11 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 12:22:12 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 14:00:26 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/19 11:48:18 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt_bonus.h"
-
 
 t_vector	convert_to_radian(t_vector angle)
 {

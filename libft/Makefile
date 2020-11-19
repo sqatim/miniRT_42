@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sqatim <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/20 21:39:46 by sqatim            #+#    #+#              #
-#    Updated: 2019/11/09 22:01:18 by sqatim           ###   ########.fr        #
+#    Updated: 2020/11/19 10:45:56 by sqatim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,15 +55,15 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ) libft.h
-	gcc $(CFLAGS) -c $(SRC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	@gcc $(CFLAGS) -c $(SRC)
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
 
 clean :
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
 
 fclean : clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re : fclean all
 
