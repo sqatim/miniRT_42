@@ -7,6 +7,7 @@ HDR_B_PATH= bonus_headers
 OBJ_PATH= obj
 LIB_PATH= libft
 
+
 SRC_NAME=main.c\
 	minirt.c\
 	shading.c\
@@ -95,11 +96,14 @@ HDR_B_NAME= calcul_bonus.h\
 	transformation_bonus.h
 
 OBJ_NAME= $(SRC_NAME:.c=.o)
+OBJ_B_NAME= $(SRC_B_NAME:.c=.o)
 
 OBJ= $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+OBJ_B= $(addprefix $(OBJ_PATH)/,$(OBJ_B_NAME))
 SRC= $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 SRC_B= $(addprefix $(SRC_B_PATH)/,$(SRC_B_NAME))
 HDR= $(addprefix $(HDR_PATH)/,$(HDR_NAME))
+HDR_B= $(addprefix $(HDR_B_PATH)/,$(HDR_B_NAME))
 HDR_B= $(addprefix $(HDR_B_PATH)/,$(HDR_B_NAME))
 
 LIB= libft.a
@@ -108,21 +112,56 @@ LLIB_FLAG= -L$(LIB_PATH) libft/libft.a
 LMLX_FLAG= -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 IMLX_FLAG= -I /usr/local/include
 H_FLAG= -I headers
+H_B_FLAG= -I bonus_headers
 #***************************************************************************** #
 
 COMP= gcc
 
-all: lib  $(NAME)
+all: lib  $(NAME) 
 
 $(NAME) : $(LIB_PATH)/$(LIB) $(OBJ)
-	$(COMP) $(H_FLAG) $(LLIB_FLAG) $(LMLX_FLAG) $(IMLX_FLAG)  $(OBJ) -o $@
+	@rm -rf miniRT
+	@$(COMP) $(H_FLAG) $(LLIB_FLAG) $(LMLX_FLAG) $(IMLX_FLAG)  $(OBJ) -o $@
+	@echo "			Made by : \033[1;91mSqatim\033[m"
+	@echo "          _       _______ _____    "
+	@echo "         (_)     (_) ___ \_   _|   "
+	@echo "  _ __ ___  _ _ __  _| |_/ / | |   "
+	@echo " | '_ ' _ \| | '_ \| |    /  | |   "
+	@echo " | | | | | | | | | | | |\ \  | |   "
+	@echo " |_| |_| |_|_|_| |_|_\_| \_| \_/   "
+	@echo "Compilation of $(NAME):  \033[1;32mOK\033[m"
+
+
+bonus : lib $(LIB_PATH)/$(LIB) $(OBJ_B)
+	@$(COMP) $(H_B_FLAG) $(LLIB_FLAG) $(LMLX_FLAG) $(IMLX_FLAG)  $(OBJ_B) -o $(NAME)
+	@echo "			Made by : \033[1;91mSqatim\033[m"
+	@echo "          _       _______ _____    "
+	@echo "         (_)     (_) ___ \_   _|   "
+	@echo "  _ __ ___  _ _ __  _| |_/ / | |   "
+	@echo " | '_ ' _ \| | '_ \| |    /  | |   "
+	@echo " | | | | | | | | | | | |\ \  | |   "
+	@echo " |_| |_| |_|_|_| |_|_\_| \_| \_/   "
+	@echo "Compilation of $(NAME):  \033[1;32mOK\033[m"
 
 lib:
-	make -C $(LIB_PATH)
+	@make -sC $(LIB_PATH)
 
-$(OBJ_PATH)/%.o:  $(SRC_PATH)/%.c $(HDR) sam
-	mkdir -p $(OBJ_PATH)
-	$(COMP) $(FLAGS) $(H_FLAG)  -o $@ -c $<
+$(OBJ_PATH)/%.o:  $(SRC_PATH)/%.c $(HDR)
+	@mkdir -p $(OBJ_PATH) 
+	@$(COMP) $(FLAGS) $(H_FLAG)  -o $@ -c $<
 
-sam:
-	@echo "samir"
+$(OBJ_PATH)/%.o:  $(SRC_B_PATH)/%.c $(HDR_B)
+	@mkdir -p $(OBJ_PATH) 
+	@$(COMP) $(FLAGS) $(H_B_FLAG)  -o $@ -c $<
+
+clean:
+	@rm -rf $(OBJ_PATH)
+	@make clean -C $(LIB_PATH)
+	@echo "\033[1;33m>> all objects files are deleted.\033[0m" 
+
+fclean: clean
+	@rm -rf $(NAME)
+	@make fclean -C $(LIB_PATH)
+	@echo "\033[0;31m>> $(NAME) && all obbjects are deleted.\033[0m" 
+
+re : fclean all
