@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 11:26:18 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 12:14:56 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/20 11:59:37 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int			check_resolution(t_data *type, char **parc)
 			|| ft_atoi(parc[1]) == 0 || ft_atoi(parc[2]) == 0)
 	{
 		if (check_numb(parc[1]) == 0 || ft_atoi(parc[1]) == 0)
-			ft_print_cont(type, "Resolution", RESOLUTION_D, 1);
+			ft_print_cont(type, "Error\nResolution", RESOLUTION_D, 1);
 		else if (check_numb(parc[2]) == 0 || ft_atoi(parc[2]) == 0)
-			ft_print_cont(type, "Resolution", RESOLUTION_D, 2);
+			ft_print_cont(type, "Error\nResolution", RESOLUTION_D, 2);
 	}
 	if (type->parcing.r == 1)
 	{
-		write(1, "You must declare just one Resolution\n", 37);
+		write(1, "Error\nYou must declare just one Resolution\n", 37);
 		free_exit(type, 1);
 	}
 	return (RESOLUTION_D);
@@ -45,11 +45,11 @@ int			check_ambient(t_data *type, char **parc)
 		return (miss_or_out(type, AMBIENT_D, 7));
 	if (check_double(parc[1]) == 0 ||\
 			(ft_atod(parc[1]) < 0 || ft_atod(parc[1]) > 1))
-		ft_print_cont(type, "Ambient", AMBIENT_D, 0);
+		ft_print_cont(type, "Error\nAmbient", AMBIENT_D, 0);
 	else if (check_rgb(parc[2]) == 0)
 		return (wrong_rgb(type, AMBIENT_D));
 	if (type->parcing.a == 1)
-		write(1, "You must declare just one Ambient\n", 34);
+		write(1, "Error\nYou must declare just one Ambient\n", 34);
 	return (AMBIENT_D);
 }
 
@@ -72,7 +72,7 @@ int			check_light(t_data *type, char **parc)
 		return (wrong_pos(type, LIGHT_D));
 	else if (check_double(parc[2]) == 0 ||\
 			(ft_atod(parc[2]) < 0 || ft_atod(parc[2]) > 1))
-		ft_print_cont(type, "Light", LIGHT_D, 0);
+		ft_print_cont(type, "Error\nLight", LIGHT_D, 0);
 	else if (check_rgb(parc[3]) == 0)
 		return (wrong_rgb(type, LIGHT_D));
 	return (LIGHT_D);
@@ -108,6 +108,6 @@ int			check_camera(t_data *type, char **parc)
 		return (wrong_vec_ort(type, CAMERA_D));
 	else if (check_double(parc[3]) == 0 ||\
 			(ft_atod(parc[3]) < 0 || ft_atod(parc[3]) > 180))
-		ft_print_cont(type, "Camera", CAMERA_D, 0);
+		ft_print_cont(type, "Error\nCamera", CAMERA_D, 0);
 	return (CAMERA_D);
 }

@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 13:44:32 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 12:14:56 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/20 11:59:57 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			check_square(t_data *type, char **parc)
 	else if (check_vec_ort(parc[2]) == 0)
 		return (wrong_vec_ort(type, SQUARE_D));
 	else if (check_double(parc[3]) == 0 || ft_atod(parc[3]) < 0)
-		ft_print_cont(type, "Square", SQUARE_D, 0);
+		ft_print_cont(type, "Error\nSquare", SQUARE_D, 0);
 	else if (check_rgb(parc[4]) == 0)
 		return (wrong_rgb(type, SQUARE_D));
 	return (SQUARE_D);
@@ -78,8 +78,8 @@ int			check_cylinder(t_data *type, char **parc)
 	else if (check_rgb(parc[3]) == 0)
 		return (wrong_rgb(type, CYLINDER_D));
 	else if (check_double(parc[4]) == 0 || ft_atod(parc[4]) < 0)
-		ft_print_cont(type, "Cylinder", CYLINDER_D, 1);
+		ft_print_cont(type, "Error\nCylinder", CYLINDER_D, 1);
 	else if (check_double(parc[5]) == 0 || ft_atod(parc[5]) < 0)
-		ft_print_cont(type, "Cylinder", CYLINDER_D, 2);
+		ft_print_cont(type, "Error\nCylinder", CYLINDER_D, 2);
 	return (CYLINDER_D);
 }

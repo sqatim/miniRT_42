@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/18 19:23:04 by thor              #+#    #+#             */
-/*   Updated: 2020/11/19 13:33:33 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/20 12:05:42 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,21 +89,21 @@ static void	check(t_data *type, char **av, int ac, int fd)
 	{
 		if (ft_strlen(av[2]) != 5 || (!(ft_strnstr(av[2], "-save", 5))))
 		{
-			ft_putstr_fd("check argument 2", 1);
+			ft_putstr_fd("Error\nCheck argument 2", 1);
 			exit(1);
 		}
 		type->tool.bmp = 1;
 	}
 	if (fd == -1)
 	{
-		ft_putstr_fd("File not found", 1);
+		ft_putstr_fd("Error\nFile not found", 1);
 		exit(1);
 	}
 	if (ft_str_in_str(av[1], ".rt"))
 		read_line(type, fd);
 	else
 	{
-		ft_putstr_fd("File is not format \".rt\"", 1);
+		ft_putstr_fd("Error\nFile is not format \".rt\"", 1);
 		exit(1);
 	}
 }
@@ -118,19 +118,19 @@ void		parcing(t_data *type, char **av, int ac)
 		check(type, av, ac, fd);
 		if (type->parcing.r == 0 || type->parcing.c == 0)
 		{
-			if(type->parcing.r == 0)
-				ft_putstr_fd("Resolution not found\n", 1);
+			if (type->parcing.r == 0)
+				ft_putstr_fd("Error\nResolution not found\n", 1);
 			else
-				ft_putstr_fd("Camera not found\n", 1);
+				ft_putstr_fd("Error\nCamera not found\n", 1);
 			free_exit(type, 1);
 		}
 	}
 	else
 	{
 		if (ac == 1)
-			ft_putstr_fd("Argument missing\n", 1);
+			ft_putstr_fd("Error\nArgument missing\n", 1);
 		else
-			ft_putstr_fd("Argument out limit\n", 1);
+			ft_putstr_fd("Error\nArgument out limit\n", 1);
 		exit(1);
 	}
 }

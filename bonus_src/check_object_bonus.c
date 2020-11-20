@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/14 11:25:00 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 12:14:56 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/20 12:01:44 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			check_sphere(t_data *type, char **parc)
 	if (check_pos(parc[1]) == 0)
 		return (wrong_pos(type, SPHERE_D));
 	else if (check_double(parc[2]) == 0 || ft_atod(parc[2]) < 0)
-		ft_print_cont(type, "Sphere", SPHERE_D, 0);
+		ft_print_cont(type, "Error\nSphere", SPHERE_D, 0);
 	else if (check_rgb(parc[3]) == 0)
 		return (wrong_rgb(type, SPHERE_D));
 	return (SPHERE_D);
