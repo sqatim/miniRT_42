@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:52:14 by thor              #+#    #+#             */
-/*   Updated: 2020/11/16 16:14:06 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/21 17:13:24 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,18 @@ void		half_w_h(t_data *type)
 	double theta;
 	double ratio;
 
-	theta = type->camera->fov * PI / 180;
+	theta = -1 * type->camera->fov * PI / 180;
 	if (type->rsl.width >= type->rsl.height)
 	{
 		ratio = type->rsl.width / type->rsl.height;
-		type->rsl.half_height = -1 *\
-					(((double)type->rsl.height / 1000) * tan(theta / 2));
-		type->rsl.half_width = ((double)type->rsl.width / 1000)\
-					* ratio * tan(theta / 2);
+		type->rsl.half_height = 2 * tan(theta / 2);
+		type->rsl.half_width = ratio * 2 * tan(theta / 2);
 	}
 	else
 	{
 		ratio = type->rsl.height / type->rsl.width;
-		type->rsl.half_height = -1 * (ratio *\
-				((double)type->rsl.height / 1000) * tan(theta / 2));
-		type->rsl.half_width = ((double)type->rsl.width / 1000)\
-				* tan(theta / 2);
+		type->rsl.half_height = ratio * 2 * (tan(theta / 2));
+		type->rsl.half_width = 2 * tan(theta / 2);
 	}
 }
 
