@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 17:08:26 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/19 12:10:03 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/23 12:04:34 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ void		hit_objet2(t_data *type, t_ray *ombre, t_objet *tmp);
 void		hit_objet(t_data *type, double *t1);
 void		ray(t_data *type);
 void		half_w_h(t_data *type);
-t_vector	calcul_pixel(t_data *type, t_vector left_corner,\
-				t_vector u, t_vector v);
-t_vector	mapper_pixel(t_data *type, t_vector u, t_vector v, t_vector n);
+void		calcul_pixel(t_data *type);
+void		mapper_pixel(t_data *type);
 void		camera_setting(t_data *type);
 t_colour	phong(t_data *type, t_colour shadow);
 

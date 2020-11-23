@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 14:41:19 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/16 13:09:36 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/23 12:04:59 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void		minirt(t_data *type)
 	i = 0;
 	type->rsl.x = 0;
 	type->rsl.y = 0;
+	camera_setting(type);
 	while (type->rsl.y < type->rsl.height)
 	{
 		type->rsl.x = 0;
 		while (type->rsl.x < type->rsl.width)
 		{
-			camera_setting(type);
 			ray(type);
 			colour = coleur(type);
 			type->colour.r = (int)colour.r;
