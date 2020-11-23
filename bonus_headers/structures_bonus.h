@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/22 21:13:36 by thor              #+#    #+#             */
-/*   Updated: 2020/11/19 13:31:51 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/23 14:47:58 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ typedef struct	s_camera
 	t_vector		ort_vec;
 	double			fov;
 	t_vector		pixel;
+	t_vector		n;
+	t_vector		u;
+	t_vector		v;
+	t_vector		l;
 	t_vector		r_dir;
 	t_vector		translation;
 	t_vector		rotation;
