@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 12:03:50 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/19 12:10:12 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/23 17:28:21 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ t_colour	shadows(t_data *type, t_objet *tmp);
 double		ft_atod(const char *str);
 char		**ft_space_split(char const *s);
 void		ft_mlx(t_data *type, int wich);
+int			mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 
 #endif

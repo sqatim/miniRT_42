@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:00:01 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/19 12:08:01 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/23 17:33:14 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ char		**ft_space_split(char const *s);
 void		ft_mlx(t_data *type, int wich);
 int			key_press(int keycode, t_data *type);
 int			ft_close(t_data *type);
+int			mlx_get_screen_size(void *mlx_ptr, int *sizex, int *sizey);
 
 #endif

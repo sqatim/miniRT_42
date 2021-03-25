@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/12 08:51:02 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/17 12:14:56 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/23 18:40:42 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int			create_bmp(t_data *type)
 {
 	int fd;
 
-	fd = open("miniRT.bmp", O_CREAT | O_RDWR);
+	fd = open("rt.bmp", O_CREAT | O_RDWR);
 	bmp_file_header(type, &fd);
 	bmp_file_info_header(type, &fd);
 	pixel_data(type, &fd);

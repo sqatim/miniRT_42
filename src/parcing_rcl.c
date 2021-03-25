@@ -6,7 +6,7 @@
 /*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 14:36:24 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/19 13:34:13 by sqatim           ###   ########.fr       */
+/*   Updated: 2020/11/23 17:30:07 by sqatim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	parc_resl(t_data *type, char *line)
 {
-	char **res;
+	char	**res;
+	int		a;
+	int		b;
 
+	mlx_get_screen_size(type->mlx.mlx_ptr, &a, &b);
 	res = ft_space_split(line);
 	type->rsl.width = ft_atoi(res[1]);
 	type->rsl.height = ft_atoi(res[2]);
-	if (type->rsl.width > 2560)
-		type->rsl.width = 2560;
-	if (type->rsl.height > 1440)
-		type->rsl.height = 1440;
+	if (type->rsl.width > a)
+		type->rsl.width = a;
+	if (type->rsl.height > b)
+		type->rsl.height = b;
 	type->parcing.r = 1;
 }
 

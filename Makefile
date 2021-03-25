@@ -6,7 +6,8 @@ HDR_PATH= headers
 HDR_B_PATH= bonus_headers
 OBJ_PATH= obj
 LIB_PATH= libft
-
+OGL_PATH= ./minilibx_opengl_20191021
+MMS_PATH= ./minilibx_mms_20200219
 
 SRC_NAME=main.c\
 	minirt.c\
@@ -110,7 +111,7 @@ HDR_B= $(addprefix $(HDR_B_PATH)/,$(HDR_B_NAME))
 LIB= libft.a
 FLAGS= -Wall -Wextra -Werror
 LLIB_FLAG= -L$(LIB_PATH) libft/libft.a
-LMLX_FLAG= -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+LMLX_FLAG= -L ./minilibx_opengl_20191021 libmlx.a -L ./minilibx_mms_20200219 libmlx.dylib -framework OpenGL -framework AppKit
 IMLX_FLAG= -I /usr/local/include
 H_FLAG= -I headers
 H_B_FLAG= -I bonus_headers
@@ -118,11 +119,13 @@ H_B_FLAG= -I bonus_headers
 
 COMP= gcc
 
-all: lib  $(NAME) 
+all: lib ogl mms $(NAME) 
 
-$(NAME) : $(LIB_PATH)/$(LIB) $(OBJ)
-	@rm -rf miniRT
+$(NAME) : $(LIB_PATH)/$(LIB) $(OBJ) 
+	@cp ./minilibx_opengl_20191021/libmlx.a .
+	@cp ./minilibx_mms_20200219/libmlx.dylib .
 	@$(COMP) $(H_FLAG) $(LLIB_FLAG) $(LMLX_FLAG) $(IMLX_FLAG)  $(OBJ) -o $@
+	@clear
 	@echo "			Made by : \033[1;91mSqatim\033[m"
 	@echo "          _       _______ _____    "
 	@echo "         (_)     (_) ___ \_   _|   "
@@ -133,8 +136,11 @@ $(NAME) : $(LIB_PATH)/$(LIB) $(OBJ)
 	@echo "Compilation of $(NAME):  \033[1;32mOK\033[m"
 
 
-bonus : lib $(LIB_PATH)/$(LIB) $(OBJ_B)
+bonus : lib ogl mms $(LIB_PATH)/$(LIB) $(OBJ_B) $(OGL) $(MMS)
+	@cp ./minilibx_opengl_20191021/libmlx.a .
+	@cp ./minilibx_mms_20200219/libmlx.dylib .
 	@$(COMP) $(H_B_FLAG) $(LLIB_FLAG) $(LMLX_FLAG) $(IMLX_FLAG)  $(OBJ_B) -o $(NAME)
+	@clear
 	@echo "			Made by : \033[1;91mSqatim\033[m"
 	@echo "          _       _______ _____    "
 	@echo "         (_)     (_) ___ \_   _|   "
@@ -146,6 +152,12 @@ bonus : lib $(LIB_PATH)/$(LIB) $(OBJ_B)
 
 lib:
 	@make -sC $(LIB_PATH)
+
+ogl:
+	@make -sC $(OGL_PATH)
+
+mms:
+	@make -sC $(MMS_PATH)
 
 $(OBJ_PATH)/%.o:  $(SRC_PATH)/%.c $(HDR)
 	@mkdir -p $(OBJ_PATH) 
@@ -162,7 +174,11 @@ clean:
 
 fclean: clean
 	@rm -rf $(NAME)
+	@rm -rf libmlx.a
+	@rm -rf libmlx.dylib
 	@make fclean -C $(LIB_PATH)
+	@make clean -sC $(OGL_PATH)
+	@make clean -sC $(MMS_PATH)
 	@echo "\033[0;31m>> $(NAME) && all obbjects are deleted.\033[0m" 
 
 re : fclean all
