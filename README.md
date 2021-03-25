@@ -11,7 +11,7 @@ panic! After this project we’ll be able to show off nice looking pictures.
 
 ## How To Use
 1. Clone this repo.
-2. Cun the `make` or `make bonus` (for rotation and translation with keyboard) command.
+2. Run the `make` or `make bonus` (for rotation and translation with keyboard) command.
 ps : this project is only tested in MAC os, I don't know it's behavios in other os.
 3. The programm takes a scene as an argument. Multiple scenes are directly available in the directory "./scenes/" .
     ```
